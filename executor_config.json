@@ -1,0 +1,13 @@
+{
+  "applications": {},
+  "sites": {},
+  "ollama": {"url": "http://127.0.0.1:11434"},
+  "run_llm": {"prompt": "Explain in three sentences what a computer does."},
+  "run_llm_benchmark": {"prompt": "List five uses of a computer, with one short sentence each."},
+  "camera_photo": {"device": 0},
+  "camera_video": {"device": 0, "fps": 20},
+  "record_audio": {"sample_rate": 16000},
+  "screen_record_start": {"maximum_seconds": 300},
+  "transcribe_audio": {"model": "base"},
+  "i2c": {"bus": 1}
+}

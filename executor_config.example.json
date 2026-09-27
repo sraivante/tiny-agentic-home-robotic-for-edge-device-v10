@@ -1,0 +1,18 @@
+{
+  "applications": {"vscode": "C:/path/to/Code.exe"},
+  "run_script": {"path": "scripts/example.py"},
+  "docker_compose_up": {"file": "compose.yaml"},
+  "create_service": {"command": "C:/path/to/service.exe"},
+  "set_permissions": {"mode": "640", "grant": "YOUR_USER:R"},
+  "edit_system_config": {"file": "C:/path/to/config.txt"},
+  "manage_users": {"operation": "add", "user": "testuser"},
+  "display": {"output": "HDMI-1", "second_output": "HDMI-2"},
+  "set_audio_output": {"speakers": "EXACT_DEVICE_NAME_OR_ID", "headphones": "EXACT_DEVICE_NAME_OR_ID"},
+  "vpn_connect": {"name": "YOUR_CONFIGURED_VPN"},
+  "vpn_disconnect": {"name": "YOUR_CONFIGURED_VPN"},
+  "scan_lan": {"subnet": "192.168.1.0/24"},
+  "port_forward": {"ssh_host": "user@example-host", "destination_host": "127.0.0.1", "destination_port": 8080},
+  "send_email": {"host": "smtp.example.com", "port": 465, "tls": "ssl", "from": "you@example.com", "username": "you@example.com", "password_env": "LAB_SMTP_PASSWORD"},
+  "send_message": {"apps": {"telegram": {"provider": "telegram", "token_env": "LAB_TELEGRAM_TOKEN", "contacts": {"Test contact": "EXACT_CHAT_ID"}}, "slack": {"provider": "slack", "token_env": "LAB_SLACK_TOKEN", "contacts": {"Test channel": "EXACT_CHANNEL_ID"}}}},
+  "web_login": {"sites": {"example": {"url": "https://example.com/login", "username_selector": "#username", "password_selector": "#password", "submit_selector": "button[type=submit]", "success_selector": "#account-home", "browser_channel": "chrome"}}}
+}

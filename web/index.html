@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142e2b">
+  <title>Union Command v10 · Sample Lab</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Command Lab home"><span class="logo">↗</span> command<span class="brand-light">lab</span><span class="divider"></span><span class="workspace">LOCAL WORKSPACE</span></a>
+    <div class="connection"><span class="dot"></span><span id="connection">Connecting…</span></div>
+  </header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">UNION COMMAND V10 / SAMPLE EXECUTOR LAB</p><h1>From words to action.</h1><p class="lede">One command. Your models. See what happens.</p></div><div class="local-mark"><span>↳</span> Runs on your device<br><small>Local inference · CPU · FP32</small></div></div>
+    <p class="sample-banner"><strong>Sample executor, for testing only.</strong> The model is the product; the executor is a demo and is not fully developed. Critical actions (shutdown, delete, run_command, GPIO on/off…) are blocked unless you start the lab with <code>--allow-risk critical</code>.</p>
+    <div id="notice" class="notice" role="alert" hidden></div>
+    <section class="models-section" aria-labelledby="models-heading">
+      <div class="section-heading"><h2 id="models-heading"><span class="step-dot">01</span> Choose your models</h2><div class="inline-actions"><span id="selection-count">0 selected</span><button id="select-all" class="text-button" type="button">Select all</button></div></div>
+      <div id="models" class="model-grid" aria-label="Available models"></div>
+    </section>
+    <div class="workbench">
+      <section class="panel command-panel" aria-labelledby="command-heading">
+        <div class="section-heading"><h2 id="command-heading"><span class="step-dot">02</span> Pick a command</h2><span class="pill" id="action-total">371 actions</span></div>
+        <p class="helper">Explore every category, or write a command of your own.</p>
+        <div class="field-row"><div class="field"><label for="category">Category</label><select id="category"><option value="">All categories</option></select></div><div class="field"><label for="source-model">Examples from</label><select id="source-model"></select></div></div>
+        <div class="search-field"><span aria-hidden="true">⌕</span><input id="action-search" type="search" placeholder="Find an action or description…" aria-label="Search actions"></div>
+        <div class="field"><label for="action">Action <span id="filtered-count"></span></label><select id="action"></select></div>
+        <div id="availability" class="availability"></div>
+        <div class="field"><label for="example">Dataset command</label><select id="example"></select></div>
+        <div id="example-source" class="source-note"></div>
+        <div class="field command-editor"><label for="command">Edit your command <span id="character-count">0 / 256</span></label><textarea id="command" maxlength="256" rows="4" placeholder="e.g. what time is it" spellcheck="false"></textarea></div>
+        <div id="expected" class="expected"></div>
+        <div class="run-area"><button id="run" class="primary-button" type="button" disabled><span aria-hidden="true">▶</span> Run & execute <span class="key-hint">Ctrl ↵</span></button><button id="predict-only" class="secondary-button" type="button" disabled>Predict only</button></div>
+        <p class="run-note"><span class="dot"></span> Automatic execution · once per selected model</p>
+        <p class="device-note">Run & execute applies the predicted action to this device. File actions use a separate test folder for each model.</p>
+        <div class="desktop-controls">
+          <div class="section-heading"><h3>Watch the agent work</h3><button id="refresh-windows" class="text-button" type="button">Refresh windows</button></div>
+          <div class="field"><label for="target-window">Keyboard target</label><select id="target-window"><option value="auto">Auto · next app or file opened</option></select></div>
+          <p class="helper" id="target-status">Open an app or file to set the keyboard target automatically.</p>
+          <button id="demo" class="secondary-button demo-button" type="button">▶ Run visible file demo</button>
+          <button id="stop-demo" class="text-button" type="button" hidden>Stop after this step</button>
+          <p class="helper">Create a file → open editor → type → save → read it back. Every step uses the selected model's prediction.</p>
+        </div>
+      </section>
+      <section class="panel results-panel" aria-labelledby="results-heading">
+        <div class="section-heading"><h2 id="results-heading"><span class="step-dot">03</span> Follow the result</h2><button id="export" class="text-button" type="button" disabled>Export JSON ↗</button></div>
+        <div class="pipeline" aria-label="Execution sequence"><span>Model output</span><span class="arrow">→</span><span>Execution plan</span><span class="arrow">→</span><span>Result</span></div>
+        <div id="progress" class="progress" role="status" aria-live="polite">Ready when you are.</div>
+        <div id="empty-state" class="empty-state"><div class="terminal-icon">&gt;_</div><h3>Your next command starts here.</h3><p>Choose one or more models, pick a command,<br>and watch prediction turn into execution.</p><div class="example-chips"><button type="button" data-prompt="what time is it">What time is it? ↗</button><button type="button" data-prompt="calculate 12 + 8">Calculate 12 + 8 ↗</button></div></div>
+        <div id="results" aria-live="polite" aria-relevant="additions text"></div>
+      </section>
+    </div>
+    <footer><span id="coverage">Loading local model manifest…</span><span>English · Hinglish · Hindi</span></footer>
+    <details class="bundle-details"><summary>Datasets & local workspace</summary><p id="dataset-details"></p><p id="files-root"></p><p>Examples are fitting-data samples (up to 6 per action). The full training and test datasets are not published. See README.md for held-out test accuracy, speed and temperature results on laptop CPU and Raspberry Pi 5.</p></details>
+    <details class="bundle-details"><summary>Executor coverage & setup</summary><p id="executor-summary"></p><p>Desktop input uses the target window above. Hardware and integrations require their matching device, utility or account profile. Edit executor_config.json and restart the lab to configure them.</p><div id="executor-coverage" class="coverage-list"></div></details>
+  </main>
+</body>
+</html>

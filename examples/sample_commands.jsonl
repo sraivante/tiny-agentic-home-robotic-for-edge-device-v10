@@ -1,0 +1,35 @@
+{"text": "volume 40 kar do", "action": "set_volume", "args": {"value": 40}, "lang": "hi"}
+{"text": "gaana pause karo", "action": "media_pause", "args": {}, "lang": "hi"}
+{"text": "brightness thoda kam karo", "action": "brightness_down", "args": {}, "lang": "hi"}
+{"text": "dark mode on kar do", "action": "dark_mode_on", "args": {}, "lang": "hi"}
+{"text": "wifi ka signal kitna strong hai", "action": "get_wifi_signal", "args": {}, "lang": "hi"}
+{"text": "connect to wifi Redmi Note 12 password hello@123", "action": "connect_wifi", "args": {"ssid": "Redmi Note 12", "password": "hello@123"}, "lang": "en"}
+{"text": "gpio 17 ko high karo", "action": "gpio_on", "args": {"pin": 17}, "lang": "hi"}
+{"text": "physical pin 11 ki value padho", "action": "gpio_read", "args": {"pin": 11, "numbering": "board"}, "lang": "hi"}
+{"text": "i2c bus scan karo", "action": "i2c_scan", "args": {}, "lang": "hi"}
+{"text": "pi ka temperature batao", "action": "get_temperature", "args": {}, "lang": "hi"}
+{"text": "fan speed kitni hai", "action": "get_fan_speed", "args": {}, "lang": "hi"}
+{"text": "create file \"notes/todo.txt\"", "action": "create_file", "args": {"path": "notes/todo.txt"}, "lang": "en"}
+{"text": "disk space kitna bacha hai", "action": "get_disk_space", "args": {}, "lang": "hi"}
+{"text": "notepad kholo", "action": "open_app", "args": {"app": "notepad"}, "lang": "hi"}
+{"text": "is window ko minimize karo", "action": "minimize_window", "args": {}, "lang": "hi"}
+{"text": "youtube pe lofi music search karo", "action": "youtube_search", "args": {"query": "lofi music"}, "lang": "hi"}
+{"text": "login to github username dev_user password Test@123", "action": "web_login", "args": {"site": "github", "username": "dev_user", "password": "Test@123"}, "lang": "en"}
+{"text": "sab select karo", "action": "select_all", "args": {}, "lang": "hi"}
+{"text": "clipboard history dikhao", "action": "clipboard_history", "args": {}, "lang": "hi"}
+{"text": "5 minute ka timer lagao", "action": "set_timer", "args": {"amount": 5, "unit": "min"}, "lang": "hi"}
+{"text": "calculate 12 + 8", "action": "calculate", "args": {"expression": "12 + 8"}, "lang": "en"}
+{"text": "firewall ka status batao", "action": "firewall_status", "args": {}, "lang": "hi"}
+{"text": "firewall mein port 8080 allow karo", "action": "firewall_allow", "args": {"port": 8080}, "lang": "hi"}
+{"text": "ssh service ka status dikhao", "action": "service_status", "args": {"service": "ssh"}, "lang": "hi"}
+{"text": "nginx service restart karo", "action": "service_restart", "args": {"service": "nginx"}, "lang": "hi"}
+{"text": "docker containers list karo", "action": "docker_list", "args": {}, "lang": "hi"}
+{"text": "numpy python package install karo", "action": "install_python_package", "args": {"name": "numpy"}, "lang": "hi"}
+{"text": "ollama pe kaunse models hain", "action": "list_llm_models", "args": {}, "lang": "hi"}
+{"text": "llama3 model chalao", "action": "run_llm", "args": {"model": "llama3"}, "lang": "hi"}
+{"text": "tmux sessions dikhao", "action": "list_sessions", "args": {}, "lang": "hi"}
+{"text": "run command \"ls -la\"", "action": "run_command", "args": {"command": "ls -la"}, "lang": "en"}
+{"text": "cpu usage batao", "action": "get_cpu_usage", "args": {}, "lang": "hi"}
+{"text": "10 min baad shutdown kar dena", "action": "shutdown", "args": {"amount": 10, "unit": "min"}, "lang": "hi"}
+{"text": "tum kya kya kar sakte ho", "action": "help", "args": {}, "lang": "hi"}
+{"text": "turn it off", "action": "clarify", "args": {}, "lang": "en"}

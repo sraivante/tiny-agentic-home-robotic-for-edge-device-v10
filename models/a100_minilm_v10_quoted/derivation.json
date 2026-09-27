@@ -1,0 +1,12 @@
+{
+  "derived_from": {
+    "checkpoint_sha256": "6c93e7764eb268763ad85d8d5d71c03fb6eb4d16b6ec9b3926e498c5365b046a",
+    "weights_changed": false,
+    "parent_derivation": null
+  },
+  "decoding": {
+    "version": 3,
+    "description": "Preserve overlapping quoted file names and domain hostnames; preserve learned numeric spans"
+  },
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b"
+}

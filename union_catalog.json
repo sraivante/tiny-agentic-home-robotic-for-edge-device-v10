@@ -1,0 +1,5554 @@
+[
+ {
+  "action": "add_persistent_mount",
+  "origin": "gap3",
+  "desc": "Add an fstab mount",
+  "risk": "caution",
+  "slots": [
+   "device"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "airplane_mode_off",
+  "origin": "B",
+  "desc": "Airplane mode off",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "airplane_mode_on",
+  "origin": "B",
+  "desc": "Airplane mode on (all radios off)",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "antivirus_scan",
+  "origin": "B",
+  "desc": "Run a quick antivirus scan",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "attach_session",
+  "origin": "gap3",
+  "desc": "Attach to a session",
+  "risk": "safe",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "backup_disk_image",
+  "origin": "gap3",
+  "desc": "Image-backup a disk",
+  "risk": "critical",
+  "slots": [
+   "device"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "battery_saver_off",
+  "origin": "B",
+  "desc": "Turn off battery saver",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "battery_saver_on",
+  "origin": "B",
+  "desc": "Turn on battery saver",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "bcm_to_board",
+  "origin": "gap6",
+  "desc": "Convert BCM GPIO number to physical header pin",
+  "risk": "safe",
+  "slots": [
+   "pin"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "bluetooth_connect",
+  "origin": "gap",
+  "desc": "Connect a paired Bluetooth device",
+  "risk": "safe",
+  "slots": [
+   "device"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "bluetooth_off",
+  "origin": "A+B",
+  "desc": "Turn Bluetooth off",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "bluetooth_on",
+  "origin": "A+B",
+  "desc": "Turn Bluetooth on",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "board_to_bcm",
+  "origin": "gap6",
+  "desc": "Convert physical header pin to BCM GPIO number",
+  "risk": "safe",
+  "slots": [
+   "pin",
+   "numbering"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "bookmark_page",
+  "origin": "gap",
+  "desc": "Bookmark current page",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "brightness_down",
+  "origin": "A+B",
+  "desc": "Decrease brightness (default step 10)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "step"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "brightness_up",
+  "origin": "A+B",
+  "desc": "Increase brightness (default step 10)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "step"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "browser_back",
+  "origin": "gap",
+  "desc": "Browser back",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "browser_forward",
+  "origin": "gap",
+  "desc": "Browser forward",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "build_project",
+  "origin": "gap3",
+  "desc": "Build/compile a project",
+  "risk": "caution",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "calculate",
+  "origin": "gap5",
+  "desc": "Evaluate an arithmetic expression",
+  "risk": "safe",
+  "slots": [
+   "expression"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "camera_photo",
+  "origin": "B",
+  "desc": "Take a photo with the camera",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "camera_video",
+  "origin": "gap",
+  "desc": "Record video for a duration",
+  "risk": "safe",
+  "slots": [
+   "amount",
+   "unit"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "cancel_alarm",
+  "origin": "gap",
+  "desc": "Cancel alarm",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "cancel_shutdown",
+  "origin": "A+B",
+  "desc": "Cancel a scheduled shutdown/restart",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "cancel_timer",
+  "origin": "gap",
+  "desc": "Cancel timer",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "check_ai_accelerator",
+  "origin": "gap2",
+  "desc": "Detect AI HAT / Hailo NPU",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "check_filesystem",
+  "origin": "gap3",
+  "desc": "fsck a filesystem",
+  "risk": "critical",
+  "slots": [
+   "device"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "check_port",
+  "origin": "gap2",
+  "desc": "Check if a TCP port is open on a host",
+  "risk": "safe",
+  "slots": [
+   "host",
+   "port"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "check_updates",
+  "origin": "B",
+  "desc": "Check for OS updates",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "clarify",
+  "origin": "union",
+  "desc": "Recognised request but a required value is missing/invalid or the target is ambiguous; ask the user",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "action"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "clear_notifications",
+  "origin": "gap",
+  "desc": "Clear notifications",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "clear_temp_files",
+  "origin": "B",
+  "desc": "Delete temporary files",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "clipboard_history",
+  "origin": "gap",
+  "desc": "Open clipboard history",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "clone_disk",
+  "origin": "gap3",
+  "desc": "Clone the system to another disk",
+  "risk": "critical",
+  "slots": [
+   "device"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "close_app",
+  "origin": "B",
+  "desc": "Close an application (may lose unsaved work)",
+  "risk": "caution",
+  "slots": [
+   "app"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "close_tab",
+  "origin": "B",
+  "desc": "Close current tab",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "close_window",
+  "origin": "B",
+  "desc": "Close current window (Alt+F4)",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "compress_file",
+  "origin": "gap",
+  "desc": "Zip a file/folder",
+  "risk": "safe",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "connect_wifi",
+  "origin": "gap",
+  "desc": "Connect to a Wi-Fi network (optional password)",
+  "risk": "caution",
+  "slots": [
+   "ssid"
+  ],
+  "optional": [
+   "password"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "convert_media",
+  "origin": "gap3",
+  "desc": "Convert/transcode media",
+  "risk": "caution",
+  "slots": [
+   "file",
+   "format"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "copy",
+  "origin": "B",
+  "desc": "Copy (Ctrl+C)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "copy_file",
+  "origin": "A",
+  "desc": "copy file \"{src}\" to \"{dst}\"",
+  "risk": "caution",
+  "slots": [
+   "src",
+   "dst"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "copy_ssh_key",
+  "origin": "gap3",
+  "desc": "Install SSH key on a host",
+  "risk": "caution",
+  "slots": [
+   "host"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "create_calendar_event",
+  "origin": "gap5",
+  "desc": "Create a calendar event",
+  "risk": "safe",
+  "slots": [
+   "title",
+   "time"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "create_file",
+  "origin": "A",
+  "desc": "create empty file \"{path}\"",
+  "risk": "caution",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "create_folder",
+  "origin": "A+B",
+  "desc": "Create a new folder on the desktop",
+  "risk": "caution",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "create_service",
+  "origin": "gap3",
+  "desc": "Create a systemd service",
+  "risk": "critical",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "create_symlink",
+  "origin": "gap3",
+  "desc": "Create a symbolic link",
+  "risk": "caution",
+  "slots": [
+   "path",
+   "link"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "create_virtualenv",
+  "origin": "gap3",
+  "desc": "Create a Python virtualenv",
+  "risk": "caution",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "cut",
+  "origin": "B",
+  "desc": "Cut (Ctrl+X)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "dark_mode_off",
+  "origin": "B",
+  "desc": "Switch to light theme",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "dark_mode_on",
+  "origin": "B",
+  "desc": "Switch to dark theme",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "delete_file",
+  "origin": "A+B",
+  "desc": "Delete a file/folder by name (to recycle bin on Windows)",
+  "risk": "critical",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "disable_auto_updates",
+  "origin": "gap3",
+  "desc": "Disable unattended updates",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "discover_devices",
+  "origin": "gap2",
+  "desc": "Discover mDNS/LAN devices",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "display_mode",
+  "origin": "B",
+  "desc": "Projection mode: pc_only / duplicate / extend / second_only",
+  "risk": "safe",
+  "slots": [
+   "mode"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "dnd_off",
+  "origin": "B",
+  "desc": "Do not disturb / focus mode off",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "dnd_on",
+  "origin": "B",
+  "desc": "Do not disturb / focus mode on",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "dns_lookup",
+  "origin": "A",
+  "desc": "dns lookup {host}",
+  "risk": "safe",
+  "slots": [
+   "host"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "docker_compose_up",
+  "origin": "gap3",
+  "desc": "Bring up a compose stack",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "docker_list",
+  "origin": "gap3",
+  "desc": "List containers",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "docker_prune",
+  "origin": "gap3",
+  "desc": "Prune unused docker data",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "docker_run",
+  "origin": "gap3",
+  "desc": "Run a container from an image",
+  "risk": "caution",
+  "slots": [
+   "image"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "docker_stop",
+  "origin": "gap3",
+  "desc": "Stop a container",
+  "risk": "caution",
+  "slots": [
+   "container"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "download_file",
+  "origin": "gap3",
+  "desc": "Download a file from a URL",
+  "risk": "caution",
+  "slots": [
+   "url"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "drop_caches",
+  "origin": "gap3",
+  "desc": "Drop page caches",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "edit_system_config",
+  "origin": "gap2+gap3",
+  "desc": "Edit a system/boot config file",
+  "risk": "critical",
+  "slots": [],
+  "optional": [
+   "file"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "emoji_panel",
+  "origin": "gap",
+  "desc": "Open emoji panel",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "empty_recycle_bin",
+  "origin": "B",
+  "desc": "Permanently empty recycle bin / trash",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "enable_auto_updates",
+  "origin": "gap3",
+  "desc": "Enable unattended security updates",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "enable_zram",
+  "origin": "gap3",
+  "desc": "Enable compressed RAM swap",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "expand_filesystem",
+  "origin": "gap3",
+  "desc": "Expand root filesystem",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "extract_archive",
+  "origin": "gap",
+  "desc": "Extract an archive",
+  "risk": "safe",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "factory_reset",
+  "origin": "A",
+  "desc": "factory reset computer",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "find_command",
+  "origin": "gap2",
+  "desc": "Is a command installed / where",
+  "risk": "safe",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "find_in_page",
+  "origin": "gap",
+  "desc": "Find text on page",
+  "risk": "safe",
+  "slots": [
+   "query"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "firewall_allow",
+  "origin": "gap3",
+  "desc": "Allow a port",
+  "risk": "caution",
+  "slots": [
+   "port"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "firewall_deny",
+  "origin": "gap3",
+  "desc": "Block a port",
+  "risk": "critical",
+  "slots": [
+   "port"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "firewall_off",
+  "origin": "B",
+  "desc": "Turn firewall OFF (security risk)",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "firewall_on",
+  "origin": "B",
+  "desc": "Turn firewall on",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "firewall_status",
+  "origin": "A",
+  "desc": "show firewall status",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "fix_gpio_permissions",
+  "origin": "gap6",
+  "desc": "Add user to gpio group / fix udev rules",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "flash_firmware",
+  "origin": "gap2+gap3",
+  "desc": "Flash firmware / bootloader EEPROM",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "flush_dns",
+  "origin": "A+B",
+  "desc": "Flush DNS cache",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "forget_wifi",
+  "origin": "gap4",
+  "desc": "Forget a saved Wi-Fi network",
+  "risk": "caution",
+  "slots": [
+   "ssid"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "format_drive",
+  "origin": "A",
+  "desc": "format drive",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "fullscreen",
+  "origin": "gap",
+  "desc": "Toggle full screen (F11)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_bandwidth_usage",
+  "origin": "gap2",
+  "desc": "Live/historical bandwidth usage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_battery",
+  "origin": "A+B",
+  "desc": "Tell battery percentage / charging state",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_boot_config",
+  "origin": "gap2",
+  "desc": "Active boot/firmware config",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_boot_logs",
+  "origin": "gap2",
+  "desc": "Previous-boot logs",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_boot_time",
+  "origin": "gap2",
+  "desc": "Boot time and slowest units",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_brightness",
+  "origin": "A",
+  "desc": "show brightness",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_cpu_clock",
+  "origin": "A",
+  "desc": "show cpu clock",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_cpu_governor",
+  "origin": "gap2",
+  "desc": "Show CPU frequency governor",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_cpu_pressure",
+  "origin": "gap2",
+  "desc": "CPU pressure (PSI)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_cpu_usage",
+  "origin": "A+B",
+  "desc": "Show CPU usage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_current_user",
+  "origin": "A",
+  "desc": "show current user",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_date",
+  "origin": "A+B",
+  "desc": "Tell today's date / day",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_default_gateway",
+  "origin": "gap2",
+  "desc": "Default gateway/routing",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_diagnostics",
+  "origin": "gap2",
+  "desc": "Collect a full diagnostics/bug-report dump",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_disk_health",
+  "origin": "gap2",
+  "desc": "Disk/SSD/NVMe SMART health",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_disk_io",
+  "origin": "gap2",
+  "desc": "Live disk I/O by process",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_disk_space",
+  "origin": "A+B",
+  "desc": "Show disk / storage space",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_ethernet_status",
+  "origin": "gap2",
+  "desc": "Ethernet link speed/duplex",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_fan_speed",
+  "origin": "gap2",
+  "desc": "Fan RPM",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_firmware_log",
+  "origin": "gap3",
+  "desc": "VideoCore firmware log",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_firmware_version",
+  "origin": "A",
+  "desc": "show firmware version",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_folder_sizes",
+  "origin": "gap2",
+  "desc": "Which folders use the most space",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_gpu_memory",
+  "origin": "gap2",
+  "desc": "GPU/VideoCore memory split",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_gpu_usage",
+  "origin": "gap",
+  "desc": "GPU usage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_hostname",
+  "origin": "A",
+  "desc": "show hostname",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_interrupts",
+  "origin": "gap3",
+  "desc": "IRQ counts",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_ip",
+  "origin": "A+B",
+  "desc": "Show IP address",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_kernel_log",
+  "origin": "gap2",
+  "desc": "Show kernel ring-buffer (dmesg)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_kernel_version",
+  "origin": "gap2",
+  "desc": "Show kernel version",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_load_average",
+  "origin": "gap2",
+  "desc": "Show system load average",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_mac_address",
+  "origin": "gap",
+  "desc": "Show MAC address",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_memory_pressure",
+  "origin": "gap2",
+  "desc": "Memory pressure (PSI)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_per_core_usage",
+  "origin": "gap2",
+  "desc": "Per-core CPU usage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_power_draw",
+  "origin": "gap2",
+  "desc": "Show board power draw (Pi5 PMIC)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_public_ip",
+  "origin": "gap",
+  "desc": "Show public IP",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_radio_status",
+  "origin": "gap2",
+  "desc": "Is Wi-Fi/BT blocked (rfkill)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_ram_usage",
+  "origin": "A+B",
+  "desc": "Show RAM / memory usage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_reboot_history",
+  "origin": "gap2",
+  "desc": "Reboot/shutdown history",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_sdcard_info",
+  "origin": "gap2",
+  "desc": "SD card manufacturer/model",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_service_logs",
+  "origin": "gap2",
+  "desc": "Show a service's logs",
+  "risk": "safe",
+  "slots": [
+   "service"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_slab_usage",
+  "origin": "gap3",
+  "desc": "Kernel slab cache usage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_swap_usage",
+  "origin": "gap2",
+  "desc": "Swap usage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_system_info",
+  "origin": "A+B",
+  "desc": "Show system information (OS, CPU, model)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_temperature",
+  "origin": "A+B",
+  "desc": "CPU / SoC temperature",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_throttle_status",
+  "origin": "A+B",
+  "desc": "Under-voltage / throttling status",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_time",
+  "origin": "A+B",
+  "desc": "Tell the current time",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_time_sync",
+  "origin": "gap2",
+  "desc": "NTP/time sync status",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_uptime",
+  "origin": "A+B",
+  "desc": "Show how long the system has been running",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_voltage",
+  "origin": "A",
+  "desc": "show core voltage",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_volume",
+  "origin": "A+B",
+  "desc": "Tell current volume",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "get_wifi_signal",
+  "origin": "gap2",
+  "desc": "Wi-Fi signal strength",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_alt_functions",
+  "origin": "gap6",
+  "desc": "List ALT functions of a pin",
+  "risk": "safe",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_blink",
+  "origin": "gap6",
+  "desc": "Blink a pin (optional interval ms, count)",
+  "risk": "caution",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering",
+   "interval",
+   "count"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_conflicts",
+  "origin": "gap6",
+  "desc": "Which pins are reserved by overlays / I2C / SPI / UART",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_debug",
+  "origin": "gap6",
+  "desc": "Diagnose one pin: mode, level, pull, overlay conflicts, chip, permissions",
+  "risk": "safe",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_debug_all",
+  "origin": "gap6",
+  "desc": "Diagnose the whole GPIO subsystem",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_info",
+  "origin": "gap6",
+  "desc": "Live mode/level/pull of a pin (pinctrl get)",
+  "risk": "safe",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_off",
+  "origin": "A+B",
+  "desc": "Set a GPIO pin LOW",
+  "risk": "critical",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "gpio_on",
+  "origin": "A+B",
+  "desc": "Set a GPIO pin HIGH (e.g. relay / LED on)",
+  "risk": "critical",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "gpio_pin_role",
+  "origin": "gap6",
+  "desc": "What a pin is for (SDA/SCL/TXD/GND...) or where a role is",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "pin",
+   "numbering",
+   "role"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_pulse",
+  "origin": "gap6",
+  "desc": "Set a pin high for a duration then low",
+  "risk": "caution",
+  "slots": [
+   "pin",
+   "amount",
+   "unit"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_pwm",
+  "origin": "gap6",
+  "desc": "PWM on a pin (duty %, optional Hz)",
+  "risk": "caution",
+  "slots": [
+   "pin",
+   "duty"
+  ],
+  "optional": [
+   "numbering",
+   "freq"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "gpio_read",
+  "origin": "A+B",
+  "desc": "Read GPIO pin state",
+  "risk": "caution",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_reset",
+  "origin": "gap6",
+  "desc": "Reset a pin to default input",
+  "risk": "caution",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_reset_all",
+  "origin": "gap6",
+  "desc": "Reset all GPIO pins",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_servo",
+  "origin": "gap6",
+  "desc": "Move a servo on a pin to an angle",
+  "risk": "caution",
+  "slots": [
+   "pin",
+   "angle"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "gpio_set_alt",
+  "origin": "gap6",
+  "desc": "Set a pin to an ALT function",
+  "risk": "critical",
+  "slots": [
+   "pin",
+   "alt"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "gpio_set_mode",
+  "origin": "gap6",
+  "desc": "Set a GPIO pin as input or output",
+  "risk": "caution",
+  "slots": [
+   "pin",
+   "mode"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_set_pull",
+  "origin": "gap6",
+  "desc": "Set internal pull-up/down/none on a pin",
+  "risk": "caution",
+  "slots": [
+   "pin",
+   "pull"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_stop_watch",
+  "origin": "gap6",
+  "desc": "Stop GPIO monitoring",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "pin",
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "gpio_toggle",
+  "origin": "gap",
+  "desc": "Toggle GPIO pin",
+  "risk": "caution",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "gpio_watch",
+  "origin": "gap6",
+  "desc": "Monitor a pin for edges / button presses",
+  "risk": "safe",
+  "slots": [
+   "pin"
+  ],
+  "optional": [
+   "numbering",
+   "edge"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "harden_ssh",
+  "origin": "gap3",
+  "desc": "Harden sshd (key-only, no root)",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "hash_file",
+  "origin": "A",
+  "desc": "hash file \"{path}\"",
+  "risk": "safe",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "help",
+  "origin": "gap",
+  "desc": "help",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "hibernate",
+  "origin": "A+B",
+  "desc": "Hibernate",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "high_contrast_off",
+  "origin": "gap",
+  "desc": "High contrast off",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "high_contrast_on",
+  "origin": "gap",
+  "desc": "High contrast on",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "hotspot_off",
+  "origin": "B",
+  "desc": "Turn mobile hotspot off",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "hotspot_on",
+  "origin": "B",
+  "desc": "Turn on hotspot (optional ssid/password)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "ssid",
+   "password"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "i2c_dump",
+  "origin": "gap6",
+  "desc": "Dump all registers of an I2C device",
+  "risk": "safe",
+  "slots": [
+   "address"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "i2c_read",
+  "origin": "gap6",
+  "desc": "Read a register from an I2C device",
+  "risk": "safe",
+  "slots": [
+   "address",
+   "register"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "i2c_scan",
+  "origin": "gap",
+  "desc": "Scan I2C bus",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "i2c_write",
+  "origin": "gap6",
+  "desc": "Write a value to an I2C register",
+  "risk": "critical",
+  "slots": [
+   "address",
+   "register",
+   "value"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "incognito_window",
+  "origin": "gap",
+  "desc": "Private/incognito window",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "install_package",
+  "origin": "gap2+gap3",
+  "desc": "Install a package/application by name",
+  "risk": "caution",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "install_python_package",
+  "origin": "gap3",
+  "desc": "pip-install a Python package",
+  "risk": "caution",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "install_updates",
+  "origin": "B",
+  "desc": "Install OS updates (may reboot)",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "interface_disable",
+  "origin": "A+gap",
+  "desc": "Disable Pi interface",
+  "risk": "critical",
+  "slots": [
+   "interface"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "interface_enable",
+  "origin": "A+gap",
+  "desc": "Enable Pi interface (i2c/spi/serial/onewire/camera)",
+  "risk": "critical",
+  "slots": [
+   "interface"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "kill_process",
+  "origin": "A",
+  "desc": "kill process {pid}",
+  "risk": "critical",
+  "slots": [
+   "pid"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_1wire_sensors",
+  "origin": "gap2",
+  "desc": "List 1-Wire sensors",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_arp",
+  "origin": "gap2",
+  "desc": "ARP table (IP to MAC)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_audio_devices",
+  "origin": "gap2",
+  "desc": "List audio capture/playback devices",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_banned_ips",
+  "origin": "gap3",
+  "desc": "List fail2ban bans",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_bluetooth_devices",
+  "origin": "gap",
+  "desc": "List Bluetooth devices",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_cameras",
+  "origin": "A",
+  "desc": "list cameras",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_connections",
+  "origin": "A",
+  "desc": "show network connections",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_disks",
+  "origin": "A",
+  "desc": "list disk devices",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_displays",
+  "origin": "gap2",
+  "desc": "List connected displays and resolution",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_failed_services",
+  "origin": "gap2",
+  "desc": "List failed services",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_files",
+  "origin": "A",
+  "desc": "list files in \"{path}\"",
+  "risk": "safe",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_free_gpio",
+  "origin": "gap6",
+  "desc": "List unused GPIO pins",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_gpio",
+  "origin": "gap2",
+  "desc": "Read all GPIO pin states",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_gpio_chips",
+  "origin": "gap6",
+  "desc": "List gpiochips (gpiodetect)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_installed_apps",
+  "origin": "gap",
+  "desc": "List installed apps",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_kernel_modules",
+  "origin": "gap2",
+  "desc": "List loaded kernel modules",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_llm_models",
+  "origin": "gap3",
+  "desc": "List local LLM models",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_logged_in_users",
+  "origin": "gap2",
+  "desc": "Who is logged in",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_open_files",
+  "origin": "gap2",
+  "desc": "What holds a device/port/file open",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "device"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_open_ports",
+  "origin": "gap2",
+  "desc": "List open/listening ports",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_packages",
+  "origin": "gap3",
+  "desc": "List installed packages",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_partitions",
+  "origin": "gap2",
+  "desc": "List disks/partitions/filesystems",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_pci",
+  "origin": "A",
+  "desc": "list pci devices",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_printers",
+  "origin": "gap5",
+  "desc": "List printers",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_processes",
+  "origin": "A",
+  "desc": "list running processes",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_serial_ports",
+  "origin": "gap2",
+  "desc": "List serial/UART ports",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_services",
+  "origin": "A",
+  "desc": "list services",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_sessions",
+  "origin": "gap3",
+  "desc": "List sessions",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_spi_devices",
+  "origin": "gap2",
+  "desc": "List SPI devices",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_usb",
+  "origin": "A",
+  "desc": "list usb devices",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "list_wifi",
+  "origin": "B",
+  "desc": "List available Wi-Fi networks",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "load_overlay",
+  "origin": "gap3",
+  "desc": "Load a device-tree overlay",
+  "risk": "caution",
+  "slots": [
+   "overlay"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "lock_screen",
+  "origin": "A+B",
+  "desc": "Lock the screen",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "magnifier_off",
+  "origin": "B",
+  "desc": "Close magnifier",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "magnifier_on",
+  "origin": "B",
+  "desc": "Open magnifier",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "manage_users",
+  "origin": "gap2+gap3",
+  "desc": "Add/remove/modify a user or sudo access",
+  "risk": "critical",
+  "slots": [],
+  "optional": [
+   "user"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "maximize_window",
+  "origin": "B",
+  "desc": "Maximize current window",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "media_next",
+  "origin": "A+B",
+  "desc": "Next track / video",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "media_pause",
+  "origin": "A+B",
+  "desc": "Pause / stop media",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "media_play",
+  "origin": "A+B",
+  "desc": "Play / resume media",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "media_play_pause",
+  "origin": "A",
+  "desc": "play pause media",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "media_prev",
+  "origin": "A+B",
+  "desc": "Previous track / video",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "mic_mute",
+  "origin": "gap",
+  "desc": "Mute microphone",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "mic_unmute",
+  "origin": "gap",
+  "desc": "Unmute microphone",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "minimize_window",
+  "origin": "B",
+  "desc": "Minimize current window",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "monitor_health",
+  "origin": "gap3",
+  "desc": "Live temp/clock/throttle monitor",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "monitor_hotplug",
+  "origin": "gap3",
+  "desc": "Watch udev hotplug events",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "mount_drive",
+  "origin": "gap2",
+  "desc": "Mount a drive",
+  "risk": "caution",
+  "slots": [
+   "device"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "move_file",
+  "origin": "A",
+  "desc": "move file \"{src}\" to \"{dst}\"",
+  "risk": "caution",
+  "slots": [
+   "src",
+   "dst"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "mute",
+  "origin": "A+B",
+  "desc": "Mute audio",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "narrator_off",
+  "origin": "B",
+  "desc": "Turn narrator / screen reader off",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "narrator_on",
+  "origin": "B",
+  "desc": "Turn narrator / screen reader on",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "network_status",
+  "origin": "A+B",
+  "desc": "Is internet connected? Show connection status",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "new_tab",
+  "origin": "B",
+  "desc": "Open a new browser tab",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "new_virtual_desktop",
+  "origin": "gap",
+  "desc": "New virtual desktop",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "next_tab",
+  "origin": "gap",
+  "desc": "Next tab",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "night_light_off",
+  "origin": "B",
+  "desc": "Turn off night light",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "night_light_on",
+  "origin": "B",
+  "desc": "Turn on night light / blue light filter",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "onscreen_keyboard",
+  "origin": "B",
+  "desc": "Open on-screen keyboard",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_app",
+  "origin": "A+B",
+  "desc": "Open / launch an application",
+  "risk": "caution",
+  "slots": [
+   "app"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_config_tool",
+  "origin": "gap3",
+  "desc": "Open raspi-config",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_file",
+  "origin": "gap",
+  "desc": "Open a file by name",
+  "risk": "safe",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_folder",
+  "origin": "B",
+  "desc": "Open a well-known folder",
+  "risk": "safe",
+  "slots": [
+   "folder"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_notification_center",
+  "origin": "gap",
+  "desc": "Open notification centre",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_recycle_bin",
+  "origin": "B",
+  "desc": "Open recycle bin / trash",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_serial_terminal",
+  "origin": "gap3",
+  "desc": "Open a serial console",
+  "risk": "caution",
+  "slots": [
+   "serial_port"
+  ],
+  "optional": [
+   "baud"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_settings",
+  "origin": "A+B",
+  "desc": "Open settings (optionally a specific page)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "page"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_site",
+  "origin": "B",
+  "desc": "Open a known website",
+  "risk": "safe",
+  "slots": [
+   "site"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "open_url",
+  "origin": "B",
+  "desc": "Open an arbitrary URL / domain the user typed",
+  "risk": "safe",
+  "slots": [
+   "url"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "packet_capture",
+  "origin": "gap2+gap3",
+  "desc": "Capture packets on an interface",
+  "risk": "caution",
+  "slots": [],
+  "optional": [
+   "iface"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "partition_disk",
+  "origin": "gap2+gap3",
+  "desc": "Partition or format a disk",
+  "risk": "critical",
+  "slots": [],
+  "optional": [
+   "device"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "paste",
+  "origin": "B",
+  "desc": "Paste (Ctrl+V)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "ping",
+  "origin": "A+B",
+  "desc": "Ping a host",
+  "risk": "safe",
+  "slots": [
+   "host"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "port_forward",
+  "origin": "gap3",
+  "desc": "SSH port-forward",
+  "risk": "caution",
+  "slots": [
+   "port"
+  ],
+  "optional": [
+   "host"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "power_mode",
+  "origin": "gap",
+  "desc": "Power plan: performance / balanced",
+  "risk": "caution",
+  "slots": [
+   "mode"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "press_key",
+  "origin": "gap",
+  "desc": "Press a single named key",
+  "risk": "caution",
+  "slots": [
+   "key"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "prev_tab",
+  "origin": "gap",
+  "desc": "Previous tab",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "print_file",
+  "origin": "gap5",
+  "desc": "Print a file",
+  "risk": "caution",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "print_page",
+  "origin": "gap",
+  "desc": "Print (Ctrl+P)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "pull_llm_model",
+  "origin": "gap3",
+  "desc": "Download an LLM model",
+  "risk": "caution",
+  "slots": [
+   "model"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "read_file",
+  "origin": "A",
+  "desc": "read file \"{path}\"",
+  "risk": "caution",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "recent_files",
+  "origin": "gap",
+  "desc": "Show recent files",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "record_audio",
+  "origin": "gap2",
+  "desc": "Record audio from the mic for a duration",
+  "risk": "safe",
+  "slots": [
+   "amount",
+   "unit"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "redo",
+  "origin": "B",
+  "desc": "Redo (Ctrl+Y)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "refresh",
+  "origin": "B",
+  "desc": "Refresh / reload page",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "remote_shell",
+  "origin": "gap2+gap3",
+  "desc": "Open an SSH shell to a host",
+  "risk": "caution",
+  "slots": [
+   "host"
+  ],
+  "optional": [
+   "user"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "rename_file",
+  "origin": "A",
+  "desc": "rename file \"{src}\" to \"{dst}\"",
+  "risk": "caution",
+  "slots": [
+   "src",
+   "dst"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "reopen_tab",
+  "origin": "B",
+  "desc": "Reopen last closed tab",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "repair_packages",
+  "origin": "gap3",
+  "desc": "Fix broken package state",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "repeat_last",
+  "origin": "gap",
+  "desc": "Repeat the previous command",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "restart",
+  "origin": "A+B+gap",
+  "desc": "Restart / reboot (optional delay)",
+  "risk": "critical",
+  "slots": [],
+  "optional": [
+   "amount",
+   "unit",
+   "at"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "rotate_screen",
+  "origin": "gap",
+  "desc": "Set display orientation",
+  "risk": "safe",
+  "slots": [
+   "orientation"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "run_background",
+  "origin": "gap3",
+  "desc": "Run a command detached",
+  "risk": "critical",
+  "slots": [
+   "command"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "run_benchmark",
+  "origin": "gap2",
+  "desc": "Run a cpu/memory/disk benchmark",
+  "risk": "caution",
+  "slots": [
+   "target"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "run_command",
+  "origin": "gap3",
+  "desc": "Run an arbitrary shell command",
+  "risk": "critical",
+  "slots": [
+   "command"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "run_llm",
+  "origin": "gap3",
+  "desc": "Run a local LLM",
+  "risk": "caution",
+  "slots": [
+   "model"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "run_llm_benchmark",
+  "origin": "gap3",
+  "desc": "Benchmark an LLM",
+  "risk": "safe",
+  "slots": [
+   "model"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "run_network_benchmark",
+  "origin": "gap3",
+  "desc": "iperf LAN throughput test",
+  "risk": "caution",
+  "slots": [
+   "host"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "run_script",
+  "origin": "A",
+  "desc": "run shell script",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "run_stress_test",
+  "origin": "gap2",
+  "desc": "Stress-test the CPU for a duration",
+  "risk": "caution",
+  "slots": [
+   "amount",
+   "unit"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "save_file",
+  "origin": "B",
+  "desc": "Save current file (Ctrl+S)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "scan_lan",
+  "origin": "gap2",
+  "desc": "Scan the LAN for devices",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "scan_ports",
+  "origin": "gap3",
+  "desc": "Port-scan a host",
+  "risk": "caution",
+  "slots": [
+   "host"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "schedule_task",
+  "origin": "gap3",
+  "desc": "Schedule a command (cron)",
+  "risk": "critical",
+  "slots": [
+   "command",
+   "schedule"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "screen_off",
+  "origin": "B",
+  "desc": "Turn the display off (system keeps running)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "screen_record_start",
+  "origin": "gap",
+  "desc": "Start screen recording",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "screen_record_stop",
+  "origin": "gap",
+  "desc": "Stop screen recording",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "screenshot",
+  "origin": "B",
+  "desc": "Take a screenshot",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "scroll_down",
+  "origin": "gap",
+  "desc": "Scroll down",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "scroll_up",
+  "origin": "gap",
+  "desc": "Scroll up",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "search_files",
+  "origin": "B",
+  "desc": "Search files by name",
+  "risk": "safe",
+  "slots": [
+   "query"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "search_in_files",
+  "origin": "gap2",
+  "desc": "Search text inside files",
+  "risk": "safe",
+  "slots": [
+   "query"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "search_package",
+  "origin": "gap3",
+  "desc": "Search available packages",
+  "risk": "safe",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "select_all",
+  "origin": "B",
+  "desc": "Select all (Ctrl+A)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "send_email",
+  "origin": "gap5",
+  "desc": "Send an email",
+  "risk": "caution",
+  "slots": [
+   "to",
+   "text"
+  ],
+  "optional": [
+   "subject"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "send_message",
+  "origin": "gap5",
+  "desc": "Send a chat/SMS message to a contact",
+  "risk": "caution",
+  "slots": [
+   "app",
+   "contact",
+   "text"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "service_disable",
+  "origin": "A+gap",
+  "desc": "Disable a service at boot (and stop)",
+  "risk": "critical",
+  "slots": [
+   "service"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "service_enable",
+  "origin": "A+gap",
+  "desc": "Enable a service at boot (and start)",
+  "risk": "critical",
+  "slots": [
+   "service"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "service_restart",
+  "origin": "A+B",
+  "desc": "Restart a system service",
+  "risk": "critical",
+  "slots": [
+   "service"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "service_start",
+  "origin": "A+B",
+  "desc": "Start a system service",
+  "risk": "critical",
+  "slots": [
+   "service"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "service_status",
+  "origin": "A+B",
+  "desc": "Show a service's status",
+  "risk": "safe",
+  "slots": [
+   "service"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "service_stop",
+  "origin": "A+B",
+  "desc": "Stop a system service",
+  "risk": "critical",
+  "slots": [
+   "service"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_alarm",
+  "origin": "gap",
+  "desc": "Set alarm at clock time (time=HH:MM 24h)",
+  "risk": "safe",
+  "slots": [
+   "time"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_audio_output",
+  "origin": "gap",
+  "desc": "Switch audio output device",
+  "risk": "safe",
+  "slots": [
+   "output"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_boot_order",
+  "origin": "gap3",
+  "desc": "Set bootloader boot order",
+  "risk": "critical",
+  "slots": [],
+  "optional": [
+   "order"
+  ],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_boot_target",
+  "origin": "gap2",
+  "desc": "Boot to desktop or console",
+  "risk": "caution",
+  "slots": [
+   "target"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_brightness",
+  "origin": "A+B",
+  "desc": "Set screen brightness percent",
+  "risk": "caution",
+  "slots": [
+   "value"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_cpu_affinity",
+  "origin": "gap3",
+  "desc": "Pin a process to cores",
+  "risk": "caution",
+  "slots": [
+   "pid",
+   "cores"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_cpu_governor",
+  "origin": "gap2",
+  "desc": "Set CPU frequency governor",
+  "risk": "caution",
+  "slots": [
+   "governor"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_default_printer",
+  "origin": "gap5",
+  "desc": "Set default printer",
+  "risk": "safe",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_disk_label",
+  "origin": "gap3",
+  "desc": "Set a volume label",
+  "risk": "caution",
+  "slots": [
+   "device",
+   "label"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_display_scale",
+  "origin": "gap5",
+  "desc": "Set display scaling percent",
+  "risk": "safe",
+  "slots": [
+   "value"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_keyboard_layout",
+  "origin": "gap3",
+  "desc": "Set keyboard layout",
+  "risk": "caution",
+  "slots": [
+   "layout"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_locale",
+  "origin": "gap3",
+  "desc": "Set system locale",
+  "risk": "caution",
+  "slots": [
+   "locale"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_mouse_speed",
+  "origin": "gap5",
+  "desc": "Set mouse/pointer speed",
+  "risk": "safe",
+  "slots": [
+   "value"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_owner",
+  "origin": "gap3",
+  "desc": "Change file ownership",
+  "risk": "critical",
+  "slots": [
+   "path",
+   "user"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_permissions",
+  "origin": "gap3",
+  "desc": "Change file permissions",
+  "risk": "critical",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_process_priority",
+  "origin": "gap3",
+  "desc": "renice a process",
+  "risk": "caution",
+  "slots": [
+   "pid"
+  ],
+  "optional": [
+   "priority"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_refresh_rate",
+  "origin": "gap5",
+  "desc": "Set monitor refresh rate (Hz)",
+  "risk": "caution",
+  "slots": [
+   "value"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_reminder",
+  "origin": "gap",
+  "desc": "Reminder after a duration",
+  "risk": "safe",
+  "slots": [
+   "amount",
+   "text",
+   "unit"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_resolution",
+  "origin": "gap5",
+  "desc": "Set display resolution",
+  "risk": "caution",
+  "slots": [
+   "resolution"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_swap_size",
+  "origin": "gap3",
+  "desc": "Resize the swap file",
+  "risk": "critical",
+  "slots": [
+   "size"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_swappiness",
+  "origin": "gap3",
+  "desc": "Set vm.swappiness",
+  "risk": "caution",
+  "slots": [
+   "value"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_timer",
+  "origin": "B",
+  "desc": "Set a countdown timer",
+  "risk": "safe",
+  "slots": [
+   "amount",
+   "unit"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_timezone",
+  "origin": "gap2",
+  "desc": "Set the system timezone",
+  "risk": "caution",
+  "slots": [
+   "tz"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "set_volume",
+  "origin": "A+B",
+  "desc": "Set master volume to an exact percent",
+  "risk": "safe",
+  "slots": [
+   "value"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "set_wallpaper",
+  "origin": "gap5",
+  "desc": "Set desktop wallpaper",
+  "risk": "safe",
+  "slots": [
+   "path"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "show_command_history",
+  "origin": "gap2",
+  "desc": "Show command history",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "show_desktop",
+  "origin": "B",
+  "desc": "Minimize everything / show desktop",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "show_pinout",
+  "origin": "gap",
+  "desc": "Show GPIO pinout",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "show_wifi_password",
+  "origin": "gap4",
+  "desc": "Show a saved Wi-Fi password",
+  "risk": "caution",
+  "slots": [],
+  "optional": [
+   "ssid"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "shutdown",
+  "origin": "A+B+gap",
+  "desc": "Shut down the machine (optional delay)",
+  "risk": "critical",
+  "slots": [],
+  "optional": [
+   "amount",
+   "unit",
+   "at"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "sign_out",
+  "origin": "A+B",
+  "desc": "Sign out / log off the current user",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "sleep",
+  "origin": "A+B",
+  "desc": "Put the machine to sleep (optional delay)",
+  "risk": "critical",
+  "slots": [],
+  "optional": [
+   "amount",
+   "unit"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "snap_left",
+  "origin": "B",
+  "desc": "Snap window to left half",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "snap_right",
+  "origin": "B",
+  "desc": "Snap window to right half",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "speed_test",
+  "origin": "gap",
+  "desc": "Internet speed test",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "start_session",
+  "origin": "gap3",
+  "desc": "Start a tmux/screen session",
+  "risk": "safe",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "stop_llm",
+  "origin": "gap3",
+  "desc": "Stop the local LLM",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "stopwatch_start",
+  "origin": "gap",
+  "desc": "Start stopwatch",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "stopwatch_stop",
+  "origin": "gap",
+  "desc": "Stop stopwatch",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "switch_input_language",
+  "origin": "gap",
+  "desc": "Switch keyboard layout",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "switch_user",
+  "origin": "B",
+  "desc": "Switch user",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "switch_window",
+  "origin": "B",
+  "desc": "Switch to the next window (Alt+Tab)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "sync_time",
+  "origin": "gap2",
+  "desc": "Force NTP time sync",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "task_view",
+  "origin": "B",
+  "desc": "Open task view / all windows",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "touchpad_off",
+  "origin": "gap5",
+  "desc": "Disable touchpad",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "touchpad_on",
+  "origin": "gap5",
+  "desc": "Enable touchpad",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "traceroute",
+  "origin": "gap2",
+  "desc": "Traceroute to a host",
+  "risk": "safe",
+  "slots": [
+   "host"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "transcribe_audio",
+  "origin": "gap3",
+  "desc": "Speech-to-text a file",
+  "risk": "safe",
+  "slots": [
+   "file"
+  ],
+  "optional": [
+   "language"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "transfer_files",
+  "origin": "gap2+gap3",
+  "desc": "Copy/rsync/scp files to a host",
+  "risk": "caution",
+  "slots": [
+   "file",
+   "host"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "type_text",
+  "origin": "B",
+  "desc": "Type the given text at the cursor",
+  "risk": "safe",
+  "slots": [
+   "text"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "unban_ip",
+  "origin": "gap3",
+  "desc": "Unban an IP",
+  "risk": "caution",
+  "slots": [
+   "ip"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "undo",
+  "origin": "B",
+  "desc": "Undo (Ctrl+Z)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "uninstall_app",
+  "origin": "gap",
+  "desc": "Uninstall an app",
+  "risk": "critical",
+  "slots": [
+   "app"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "uninstall_package",
+  "origin": "gap3",
+  "desc": "Remove a package",
+  "risk": "critical",
+  "slots": [
+   "name"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "unknown",
+  "origin": "A+B",
+  "desc": "Not a laptop command / not understood - do nothing",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "unmount_drive",
+  "origin": "gap2",
+  "desc": "Unmount/eject a drive",
+  "risk": "caution",
+  "slots": [
+   "device"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "unmute",
+  "origin": "A+B",
+  "desc": "Unmute audio",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "update_packages",
+  "origin": "gap3",
+  "desc": "Refresh package lists",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": true
+ },
+ {
+  "action": "volume_down",
+  "origin": "A+B",
+  "desc": "Decrease volume (default step 10)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "step"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "volume_up",
+  "origin": "A+B",
+  "desc": "Increase volume (default step 10)",
+  "risk": "safe",
+  "slots": [],
+  "optional": [
+   "step"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "vpn_connect",
+  "origin": "gap",
+  "desc": "Connect VPN",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "vpn_disconnect",
+  "origin": "gap",
+  "desc": "Disconnect VPN",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "watch_command",
+  "origin": "gap3",
+  "desc": "Re-run a command on an interval",
+  "risk": "caution",
+  "slots": [
+   "command"
+  ],
+  "optional": [
+   "interval"
+  ],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "web_login",
+  "origin": "gap2",
+  "desc": "Open a website and log in with supplied credentials",
+  "risk": "caution",
+  "slots": [
+   "site",
+   "username",
+   "password"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "web_search",
+  "origin": "B",
+  "desc": "Google search for a query",
+  "risk": "safe",
+  "slots": [
+   "query"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "wifi_off",
+  "origin": "A+B",
+  "desc": "Turn Wi-Fi off",
+  "risk": "critical",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "wifi_on",
+  "origin": "A+B",
+  "desc": "Turn Wi-Fi on",
+  "risk": "caution",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "youtube_search",
+  "origin": "B",
+  "desc": "Search / play something on YouTube",
+  "risk": "safe",
+  "slots": [
+   "query"
+  ],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "zoom_in",
+  "origin": "B",
+  "desc": "Zoom in",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "zoom_out",
+  "origin": "B",
+  "desc": "Zoom out",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ },
+ {
+  "action": "zoom_reset",
+  "origin": "B",
+  "desc": "Reset zoom to 100%",
+  "risk": "safe",
+  "slots": [],
+  "optional": [],
+  "platforms": [
+   "pi",
+   "windows"
+  ],
+  "executable": true,
+  "needs_sudo": false
+ }
+]

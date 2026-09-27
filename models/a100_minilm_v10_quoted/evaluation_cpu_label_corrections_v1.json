@@ -1,0 +1,611 @@
+{
+  "policy": "union-label-corrections-v1",
+  "policy_sha256": "7a97192acfbc5977030c92c75352f9dd2189a1f06089c4dd1111efac545f898e",
+  "correction_manifest_sha256": "cccb975531ba5dfb6bcff8c2df162ddaf575078e3fc7c8728b789d7422334e77",
+  "method": "Re-score original complete evaluation error logs with frozen corrections; all originally correct predictions are exactly known.",
+  "original_evaluation_preserved": true,
+  "final_holdouts_evaluated": false,
+  "splits": {
+    "group_dev": {
+      "original": {
+        "rows": 31707,
+        "action_correct": 30861,
+        "exact_correct": 30596,
+        "action_accuracy": 0.9733181947204087,
+        "exact_accuracy": 0.9649604188349575,
+        "exact_95pct_wilson": [
+          0.9628794593625181,
+          0.9669287274775837
+        ]
+      },
+      "corrected": {
+        "rows": 31707,
+        "action_correct": 30885,
+        "exact_correct": 30620,
+        "exact_accuracy": 0.9657173494811871,
+        "exact_95pct_wilson": [
+          0.9636574815653294,
+          0.9676643831777174
+        ]
+      },
+      "gains": 24,
+      "losses": 0,
+      "changed_labels": 24,
+      "changes": [
+        {
+          "line": 6514,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 8755,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 12978,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 19699,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 76527,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 90059,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 110340,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 156014,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 162581,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 196338,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 279761,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 288204,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 302718,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 319793,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 322052,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 342520,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 371209,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 383067,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 386163,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 404726,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 425476,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 439719,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 448550,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 452223,
+          "rule": "explicit_numeric_calculation",
+          "original_correct": false,
+          "corrected_correct": true
+        }
+      ],
+      "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+      "inference_device": "cpu",
+      "report_sha256": "ac57e0b7171c6742a47899c8dae602ed14aeaec9974050c1213c3bcfb4ddf15d",
+      "complete_error_log_sha256": "285aa1ce2c32861d9130d64adaa9c069f540f5718c8a36e66f4e3753351a14ad"
+    },
+    "validation": {
+      "original": {
+        "rows": 23892,
+        "action_correct": 23632,
+        "exact_correct": 23467,
+        "action_accuracy": 0.9891176963000168,
+        "exact_accuracy": 0.9822116189519504,
+        "exact_95pct_wilson": [
+          0.9804563705588402,
+          0.9838118281445992
+        ]
+      },
+      "corrected": {
+        "rows": 23892,
+        "action_correct": 23656,
+        "exact_correct": 23514,
+        "exact_accuracy": 0.9841788046207935,
+        "exact_95pct_wilson": [
+          0.9825169201580818,
+          0.9856850173995423
+        ]
+      },
+      "gains": 47,
+      "losses": 0,
+      "changed_labels": 47,
+      "changes": [
+        {
+          "line": 21,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 2607,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 3126,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 3128,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 3264,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 3975,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 4712,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 5084,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 5111,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 5974,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 6349,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 6705,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 6790,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 7020,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 7483,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 8006,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 9867,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 10399,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 10475,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 11247,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 11303,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 11637,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 12230,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 12326,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 12395,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 13016,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 13039,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 13296,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 13668,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 14878,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 14899,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 14926,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 15606,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 16274,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 16892,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 18725,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 19032,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 19257,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 19773,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 20201,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 21317,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 21601,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 21671,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 22464,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 22513,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 22783,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 23282,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        }
+      ],
+      "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+      "inference_device": "cpu",
+      "report_sha256": "38dc9455d967b9bca8aa5f45b85b4aaca511dee1eba0f5001a0a49a47f27c1d9",
+      "complete_error_log_sha256": "f0cf6c486343ff28c113a6fb02f69947bacd2157c52642f29090977f429df69f"
+    },
+    "practical_dev": {
+      "original": {
+        "rows": 1321,
+        "action_correct": 1280,
+        "exact_correct": 1274,
+        "action_accuracy": 0.9689629068887207,
+        "exact_accuracy": 0.9644208932626798,
+        "exact_95pct_wilson": [
+          0.9530091537025546,
+          0.9731393992663514
+        ]
+      },
+      "corrected": {
+        "rows": 1321,
+        "action_correct": 1283,
+        "exact_correct": 1282,
+        "exact_accuracy": 0.9704769114307343,
+        "exact_95pct_wilson": [
+          0.959896570590101,
+          0.9783288991249359
+        ]
+      },
+      "gains": 8,
+      "losses": 0,
+      "changed_labels": 8,
+      "changes": [
+        {
+          "line": 229,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 230,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 231,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 233,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 234,
+          "rule": "explicit_windows_command_prompt",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 901,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 902,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        },
+        {
+          "line": 903,
+          "rule": "explicit_partition_list",
+          "original_correct": false,
+          "corrected_correct": true
+        }
+      ],
+      "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+      "inference_device": "cpu",
+      "report_sha256": "b30ee6e57647d9e2768740e1311a839afb8fedca6c8b1c45aef4d1f9437a4137",
+      "complete_error_log_sha256": "03c8f317227b2d2a9f449163148350ad68036d9b3c3f1289d1846fc4240a5cf6"
+    },
+    "golden_dev": {
+      "original": {
+        "rows": 383,
+        "action_correct": 375,
+        "exact_correct": 373,
+        "action_accuracy": 0.97911227154047,
+        "exact_accuracy": 0.9738903394255874,
+        "exact_95pct_wilson": [
+          0.9526118015919232,
+          0.9857571134323975
+        ]
+      },
+      "corrected": {
+        "rows": 383,
+        "action_correct": 375,
+        "exact_correct": 373,
+        "exact_accuracy": 0.9738903394255874,
+        "exact_95pct_wilson": [
+          0.9526118015919232,
+          0.9857571134323975
+        ]
+      },
+      "gains": 0,
+      "losses": 0,
+      "changed_labels": 0,
+      "changes": [],
+      "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+      "inference_device": "cpu",
+      "report_sha256": "b1f1fda020883e1d3439ace27deeb6bbb6e9f2ba1424db17cde8ced66c7bf140",
+      "complete_error_log_sha256": "7437b389d59408d23bcaedeeb5ae6ed3d71c62ea065a3f464b5d421faa8f791a"
+    }
+  }
+}

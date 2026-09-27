@@ -1,0 +1,822 @@
+{
+  "label": "Laptop CPU, held-out test + practical dev + golden dev",
+  "device": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "cpu": "13th Gen Intel(R) Core(TM) i7-1360P",
+    "logical_cpus": 16,
+    "ram_gb": 31.6,
+    "python": "3.13.14",
+    "torch": "2.12.0+cpu",
+    "threads": 4
+  },
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+  "parameters": 23889849,
+  "model_bytes": 96200101,
+  "model_epoch": 5,
+  "batch_size": 64,
+  "load_seconds": 4.98,
+  "metric": "exact match of action and every typed argument; all rows count",
+  "throttled_before": null,
+  "started_at": "2026-09-27T14:30:37+0530",
+  "files": [
+    {
+      "file": "union_test.jsonl",
+      "rows": 24498,
+      "action_correct": 23531,
+      "exact_correct": 23241,
+      "action_accuracy": 0.960527,
+      "exact_accuracy": 0.94869,
+      "exact_95pct_wilson": [
+        0.945856,
+        0.951383
+      ],
+      "seconds": 95.86,
+      "rows_per_second": 255.5,
+      "by_language": {
+        "None": {
+          "rows": 4884,
+          "action_correct": 4857,
+          "exact_correct": 4822,
+          "action_accuracy": 0.994472,
+          "exact_accuracy": 0.987305,
+          "exact_95pct_wilson": [
+            0.983761,
+            0.990084
+          ]
+        },
+        "en": {
+          "rows": 8038,
+          "action_correct": 7581,
+          "exact_correct": 7440,
+          "action_accuracy": 0.943145,
+          "exact_accuracy": 0.925603,
+          "exact_95pct_wilson": [
+            0.919661,
+            0.931139
+          ]
+        },
+        "hi": {
+          "rows": 9958,
+          "action_correct": 9597,
+          "exact_correct": 9503,
+          "action_accuracy": 0.963748,
+          "exact_accuracy": 0.954308,
+          "exact_95pct_wilson": [
+            0.950029,
+            0.958237
+          ]
+        },
+        "mix": {
+          "rows": 1618,
+          "action_correct": 1496,
+          "exact_correct": 1476,
+          "action_accuracy": 0.924598,
+          "exact_accuracy": 0.912237,
+          "exact_95pct_wilson": [
+            0.897456,
+            0.925066
+          ]
+        }
+      },
+      "by_category": {
+        "AI & models": {
+          "rows": 264,
+          "action_correct": 258,
+          "exact_correct": 213,
+          "action_accuracy": 0.977273,
+          "exact_accuracy": 0.806818,
+          "exact_95pct_wilson": [
+            0.754933,
+            0.849902
+          ]
+        },
+        "Apps & windows": {
+          "rows": 1468,
+          "action_correct": 1419,
+          "exact_correct": 1394,
+          "action_accuracy": 0.966621,
+          "exact_accuracy": 0.949591,
+          "exact_95pct_wilson": [
+            0.937179,
+            0.959657
+          ]
+        },
+        "Audio & media": {
+          "rows": 1653,
+          "action_correct": 1625,
+          "exact_correct": 1622,
+          "action_accuracy": 0.983061,
+          "exact_accuracy": 0.981246,
+          "exact_95pct_wilson": [
+            0.973504,
+            0.986757
+          ]
+        },
+        "Browser & web": {
+          "rows": 1527,
+          "action_correct": 1521,
+          "exact_correct": 1494,
+          "action_accuracy": 0.996071,
+          "exact_accuracy": 0.978389,
+          "exact_95pct_wilson": [
+            0.969806,
+            0.984571
+          ]
+        },
+        "Display & appearance": {
+          "rows": 1972,
+          "action_correct": 1943,
+          "exact_correct": 1942,
+          "action_accuracy": 0.985294,
+          "exact_accuracy": 0.984787,
+          "exact_95pct_wilson": [
+            0.978366,
+            0.989323
+          ]
+        },
+        "Files & storage": {
+          "rows": 2793,
+          "action_correct": 2706,
+          "exact_correct": 2662,
+          "action_accuracy": 0.968851,
+          "exact_accuracy": 0.953097,
+          "exact_95pct_wilson": [
+            0.944614,
+            0.960335
+          ]
+        },
+        "GPIO & I2C": {
+          "rows": 2133,
+          "action_correct": 1892,
+          "exact_correct": 1866,
+          "action_accuracy": 0.887014,
+          "exact_accuracy": 0.874824,
+          "exact_95pct_wilson": [
+            0.860103,
+            0.888197
+          ]
+        },
+        "Hardware & Raspberry Pi": {
+          "rows": 1122,
+          "action_correct": 1110,
+          "exact_correct": 1110,
+          "action_accuracy": 0.989305,
+          "exact_accuracy": 0.989305,
+          "exact_95pct_wilson": [
+            0.981399,
+            0.993871
+          ]
+        },
+        "Help & intent handling": {
+          "rows": 762,
+          "action_correct": 733,
+          "exact_correct": 725,
+          "action_accuracy": 0.961942,
+          "exact_accuracy": 0.951444,
+          "exact_95pct_wilson": [
+            0.933789,
+            0.964569
+          ]
+        },
+        "Keyboard & clipboard": {
+          "rows": 883,
+          "action_correct": 859,
+          "exact_correct": 853,
+          "action_accuracy": 0.97282,
+          "exact_accuracy": 0.966025,
+          "exact_95pct_wilson": [
+            0.951913,
+            0.976099
+          ]
+        },
+        "Network & connectivity": {
+          "rows": 2951,
+          "action_correct": 2739,
+          "exact_correct": 2706,
+          "action_accuracy": 0.92816,
+          "exact_accuracy": 0.916977,
+          "exact_95pct_wilson": [
+            0.906472,
+            0.926398
+          ]
+        },
+        "Security & accounts": {
+          "rows": 714,
+          "action_correct": 691,
+          "exact_correct": 691,
+          "action_accuracy": 0.967787,
+          "exact_accuracy": 0.967787,
+          "exact_95pct_wilson": [
+            0.952127,
+            0.97844
+          ]
+        },
+        "Services & processes": {
+          "rows": 1088,
+          "action_correct": 1031,
+          "exact_correct": 1018,
+          "action_accuracy": 0.94761,
+          "exact_accuracy": 0.935662,
+          "exact_95pct_wilson": [
+            0.919495,
+            0.948763
+          ]
+        },
+        "Software & development": {
+          "rows": 926,
+          "action_correct": 856,
+          "exact_correct": 855,
+          "action_accuracy": 0.924406,
+          "exact_accuracy": 0.923326,
+          "exact_95pct_wilson": [
+            0.904386,
+            0.938768
+          ]
+        },
+        "System & power": {
+          "rows": 3085,
+          "action_correct": 3043,
+          "exact_correct": 3008,
+          "action_accuracy": 0.986386,
+          "exact_accuracy": 0.975041,
+          "exact_95pct_wilson": [
+            0.968917,
+            0.979983
+          ]
+        },
+        "Terminal & sessions": {
+          "rows": 410,
+          "action_correct": 405,
+          "exact_correct": 405,
+          "action_accuracy": 0.987805,
+          "exact_accuracy": 0.987805,
+          "exact_95pct_wilson": [
+            0.971774,
+            0.99478
+          ]
+        },
+        "Timers & productivity": {
+          "rows": 747,
+          "action_correct": 700,
+          "exact_correct": 677,
+          "action_accuracy": 0.937082,
+          "exact_accuracy": 0.906292,
+          "exact_95pct_wilson": [
+            0.883265,
+            0.925161
+          ]
+        }
+      },
+      "top_action_confusions": [
+        {
+          "expected": "gpio_stop_watch",
+          "predicted": "gpio_off",
+          "count": 59
+        },
+        {
+          "expected": "i2c_read",
+          "predicted": "i2c_write",
+          "count": 54
+        },
+        {
+          "expected": "create_service",
+          "predicted": "service_enable",
+          "count": 52
+        },
+        {
+          "expected": "hotspot_on",
+          "predicted": "unknown",
+          "count": 51
+        },
+        {
+          "expected": "get_public_ip",
+          "predicted": "get_ip",
+          "count": 51
+        },
+        {
+          "expected": "scan_lan",
+          "predicted": "discover_devices",
+          "count": 37
+        },
+        {
+          "expected": "gpio_blink",
+          "predicted": "gpio_pulse",
+          "count": 35
+        },
+        {
+          "expected": "enable_auto_updates",
+          "predicted": "install_python_package",
+          "count": 35
+        },
+        {
+          "expected": "search_in_files",
+          "predicted": "search_files",
+          "count": 30
+        },
+        {
+          "expected": "cancel_alarm",
+          "predicted": "unknown",
+          "count": 29
+        },
+        {
+          "expected": "speed_test",
+          "predicted": "get_boot_time",
+          "count": 17
+        }
+      ]
+    },
+    {
+      "file": "A_practical-dev.jsonl",
+      "rows": 1321,
+      "action_correct": 1280,
+      "exact_correct": 1274,
+      "action_accuracy": 0.968963,
+      "exact_accuracy": 0.964421,
+      "exact_95pct_wilson": [
+        0.953009,
+        0.973139
+      ],
+      "seconds": 2.5,
+      "rows_per_second": 529.1,
+      "by_language": {
+        "None": {
+          "rows": 1321,
+          "action_correct": 1280,
+          "exact_correct": 1274,
+          "action_accuracy": 0.968963,
+          "exact_accuracy": 0.964421,
+          "exact_95pct_wilson": [
+            0.953009,
+            0.973139
+          ]
+        }
+      },
+      "by_category": {
+        "Apps & windows": {
+          "rows": 108,
+          "action_correct": 107,
+          "exact_correct": 102,
+          "action_accuracy": 0.990741,
+          "exact_accuracy": 0.944444,
+          "exact_95pct_wilson": [
+            0.884066,
+            0.974292
+          ]
+        },
+        "Audio & media": {
+          "rows": 138,
+          "action_correct": 137,
+          "exact_correct": 137,
+          "action_accuracy": 0.992754,
+          "exact_accuracy": 0.992754,
+          "exact_95pct_wilson": [
+            0.960097,
+            0.99872
+          ]
+        },
+        "Display & appearance": {
+          "rows": 90,
+          "action_correct": 89,
+          "exact_correct": 89,
+          "action_accuracy": 0.988889,
+          "exact_accuracy": 0.988889,
+          "exact_95pct_wilson": [
+            0.939716,
+            0.998036
+          ]
+        },
+        "Files & storage": {
+          "rows": 213,
+          "action_correct": 207,
+          "exact_correct": 207,
+          "action_accuracy": 0.971831,
+          "exact_accuracy": 0.971831,
+          "exact_95pct_wilson": [
+            0.939917,
+            0.987027
+          ]
+        },
+        "GPIO & I2C": {
+          "rows": 36,
+          "action_correct": 36,
+          "exact_correct": 36,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.903581,
+            1.0
+          ]
+        },
+        "Hardware & Raspberry Pi": {
+          "rows": 84,
+          "action_correct": 84,
+          "exact_correct": 84,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.956268,
+            1.0
+          ]
+        },
+        "Help & intent handling": {
+          "rows": 143,
+          "action_correct": 112,
+          "exact_correct": 111,
+          "action_accuracy": 0.783217,
+          "exact_accuracy": 0.776224,
+          "exact_95pct_wilson": [
+            0.701201,
+            0.836794
+          ]
+        },
+        "Network & connectivity": {
+          "rows": 169,
+          "action_correct": 169,
+          "exact_correct": 169,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.977775,
+            1.0
+          ]
+        },
+        "Security & accounts": {
+          "rows": 24,
+          "action_correct": 23,
+          "exact_correct": 23,
+          "action_accuracy": 0.958333,
+          "exact_accuracy": 0.958333,
+          "exact_95pct_wilson": [
+            0.797582,
+            0.992607
+          ]
+        },
+        "Services & processes": {
+          "rows": 112,
+          "action_correct": 112,
+          "exact_correct": 112,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.966839,
+            1.0
+          ]
+        },
+        "System & power": {
+          "rows": 180,
+          "action_correct": 180,
+          "exact_correct": 180,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.979105,
+            1.0
+          ]
+        },
+        "Terminal & sessions": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.757506,
+            1.0
+          ]
+        },
+        "Timers & productivity": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.757506,
+            1.0
+          ]
+        }
+      },
+      "top_action_confusions": [
+        {
+          "expected": "list_disks",
+          "predicted": "list_partitions",
+          "count": 6
+        },
+        {
+          "expected": "clarify",
+          "predicted": "set_brightness",
+          "count": 4
+        },
+        {
+          "expected": "unknown",
+          "predicted": "factory_reset",
+          "count": 3
+        },
+        {
+          "expected": "unknown",
+          "predicted": "restart",
+          "count": 3
+        },
+        {
+          "expected": "clarify",
+          "predicted": "set_volume",
+          "count": 3
+        },
+        {
+          "expected": "unknown",
+          "predicted": "format_drive",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "open_file",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "search_files",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "get_brightness",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "cancel_shutdown",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "set_volume",
+          "count": 2
+        },
+        {
+          "expected": "clarify",
+          "predicted": "volume_down",
+          "count": 2
+        },
+        {
+          "expected": "open_app",
+          "predicted": "switch_window",
+          "count": 1
+        },
+        {
+          "expected": "get_current_user",
+          "predicted": "sign_out",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "file": "B_golden_dev.jsonl",
+      "rows": 383,
+      "action_correct": 375,
+      "exact_correct": 373,
+      "action_accuracy": 0.979112,
+      "exact_accuracy": 0.97389,
+      "exact_95pct_wilson": [
+        0.952612,
+        0.985757
+      ],
+      "seconds": 0.83,
+      "rows_per_second": 459.1,
+      "by_language": {
+        "None": {
+          "rows": 383,
+          "action_correct": 375,
+          "exact_correct": 373,
+          "action_accuracy": 0.979112,
+          "exact_accuracy": 0.97389,
+          "exact_95pct_wilson": [
+            0.952612,
+            0.985757
+          ]
+        }
+      },
+      "by_category": {
+        "Apps & windows": {
+          "rows": 45,
+          "action_correct": 45,
+          "exact_correct": 45,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.921348,
+            1.0
+          ]
+        },
+        "Audio & media": {
+          "rows": 64,
+          "action_correct": 63,
+          "exact_correct": 63,
+          "action_accuracy": 0.984375,
+          "exact_accuracy": 0.984375,
+          "exact_95pct_wilson": [
+            0.916659,
+            0.997236
+          ]
+        },
+        "Browser & web": {
+          "rows": 39,
+          "action_correct": 38,
+          "exact_correct": 36,
+          "action_accuracy": 0.974359,
+          "exact_accuracy": 0.923077,
+          "exact_95pct_wilson": [
+            0.796789,
+            0.973493
+          ]
+        },
+        "Display & appearance": {
+          "rows": 51,
+          "action_correct": 50,
+          "exact_correct": 50,
+          "action_accuracy": 0.980392,
+          "exact_accuracy": 0.980392,
+          "exact_95pct_wilson": [
+            0.896954,
+            0.99653
+          ]
+        },
+        "Files & storage": {
+          "rows": 14,
+          "action_correct": 14,
+          "exact_correct": 14,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.784689,
+            1.0
+          ]
+        },
+        "GPIO & I2C": {
+          "rows": 8,
+          "action_correct": 8,
+          "exact_correct": 8,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.675592,
+            1.0
+          ]
+        },
+        "Hardware & Raspberry Pi": {
+          "rows": 7,
+          "action_correct": 7,
+          "exact_correct": 7,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.64567,
+            1.0
+          ]
+        },
+        "Help & intent handling": {
+          "rows": 31,
+          "action_correct": 30,
+          "exact_correct": 30,
+          "action_accuracy": 0.967742,
+          "exact_accuracy": 0.967742,
+          "exact_95pct_wilson": [
+            0.838059,
+            0.994283
+          ]
+        },
+        "Keyboard & clipboard": {
+          "rows": 15,
+          "action_correct": 14,
+          "exact_correct": 14,
+          "action_accuracy": 0.933333,
+          "exact_accuracy": 0.933333,
+          "exact_95pct_wilson": [
+            0.701835,
+            0.988133
+          ]
+        },
+        "Network & connectivity": {
+          "rows": 35,
+          "action_correct": 34,
+          "exact_correct": 34,
+          "action_accuracy": 0.971429,
+          "exact_accuracy": 0.971429,
+          "exact_95pct_wilson": [
+            0.854669,
+            0.994939
+          ]
+        },
+        "Security & accounts": {
+          "rows": 5,
+          "action_correct": 5,
+          "exact_correct": 5,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.565518,
+            1.0
+          ]
+        },
+        "Services & processes": {
+          "rows": 7,
+          "action_correct": 7,
+          "exact_correct": 7,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.64567,
+            1.0
+          ]
+        },
+        "Software & development": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238,
+            1.0
+          ]
+        },
+        "System & power": {
+          "rows": 51,
+          "action_correct": 50,
+          "exact_correct": 50,
+          "action_accuracy": 0.980392,
+          "exact_accuracy": 0.980392,
+          "exact_95pct_wilson": [
+            0.896954,
+            0.99653
+          ]
+        },
+        "Timers & productivity": {
+          "rows": 9,
+          "action_correct": 8,
+          "exact_correct": 8,
+          "action_accuracy": 0.888889,
+          "exact_accuracy": 0.888889,
+          "exact_95pct_wilson": [
+            0.565,
+            0.980109
+          ]
+        }
+      },
+      "top_action_confusions": [
+        {
+          "expected": "get_time",
+          "predicted": "get_temperature",
+          "count": 1
+        },
+        {
+          "expected": "zoom_in",
+          "predicted": "open_app",
+          "count": 1
+        },
+        {
+          "expected": "restart",
+          "predicted": "cancel_shutdown",
+          "count": 1
+        },
+        {
+          "expected": "unmute",
+          "predicted": "unknown",
+          "count": 1
+        },
+        {
+          "expected": "list_wifi",
+          "predicted": "list_disks",
+          "count": 1
+        },
+        {
+          "expected": "dark_mode_off",
+          "predicted": "high_contrast_off",
+          "count": 1
+        },
+        {
+          "expected": "cut",
+          "predicted": "press_key",
+          "count": 1
+        },
+        {
+          "expected": "unknown",
+          "predicted": "open_app",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "temperature": {
+    "source": "Windows ACPI thermal zone (typeperf, Thermal Zone Information)",
+    "samples": 50,
+    "start_c": 60.9,
+    "end_c": 85.9,
+    "min_c": 60.9,
+    "max_c": 95.9,
+    "mean_c": 85.3
+  },
+  "throttled_after": null,
+  "process_rss_mb": 654.0,
+  "finished_at": "2026-09-27T14:32:21+0530"
+}

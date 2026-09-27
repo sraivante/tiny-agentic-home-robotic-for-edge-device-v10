@@ -1,0 +1,13 @@
+# The 96 MB checkpoint lives on Hugging Face; run `python download_model.py`.
+models/**/*.pt
+*.part
+
+# Local environments and runtime output of the sample executor
+.venv/
+runtime/
+__pycache__/
+*.pyc
+my_eval*.json
+my_benchmark*.json
+evaluation_report.json
+benchmark_report.json

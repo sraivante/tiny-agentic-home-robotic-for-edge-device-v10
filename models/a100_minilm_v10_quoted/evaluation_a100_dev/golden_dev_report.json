@@ -1,0 +1,1258 @@
+{
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+  "runtime_source_sha256": "2e2324e92193b18931de0a55eac8fb84e35a18d486f74fca17630a5ec3139fd5",
+  "model_source_sha256": "d350ca978a914f23afd9ac6ba25784a10fc4712b9a3df90cd22f1403136101c4",
+  "decoding": {
+    "version": 3,
+    "description": "Preserve overlapping quoted file names and domain hostnames; preserve learned numeric spans"
+  },
+  "quantization": null,
+  "execution": {
+    "backend": "pytorch"
+  },
+  "derivation": {
+    "checkpoint_sha256": "6c93e7764eb268763ad85d8d5d71c03fb6eb4d16b6ec9b3926e498c5365b046a",
+    "weights_changed": false,
+    "parent_derivation": null
+  },
+  "decoder_source_sha256": "e2319ef242841495046eb0860cfe77bf4d457a85628b5d4aa55459d0d0074749",
+  "checkpoint": "models/a100_minilm_v10_quoted/best.pt",
+  "model_epoch": 5,
+  "parameters": 23889849,
+  "inference_device": "cuda",
+  "model_bytes": 96200101,
+  "batch_size": 128,
+  "evaluator_source_sha256": "cdc2d7a3a9137bce88154ce5fa56225bf5862ebf89fa675b020a879a8db976a5",
+  "timestamp": 1790480420.410923,
+  "splits": {
+    "eval/B_golden_dev.jsonl": {
+      "metrics": {
+        "all": {
+          "rows": 383,
+          "action_correct": 375,
+          "exact_correct": 373,
+          "action_accuracy": 0.97911227154047,
+          "exact_accuracy": 0.9738903394255874,
+          "exact_95pct_wilson": [
+            0.9526118015919232,
+            0.9857571134323975
+          ]
+        },
+        "action:lock_screen": {
+          "rows": 6,
+          "action_correct": 6,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6096657120978477,
+            1.0
+          ]
+        },
+        "language:None": {
+          "rows": 383,
+          "action_correct": 375,
+          "exact_correct": 373,
+          "action_accuracy": 0.97911227154047,
+          "exact_accuracy": 0.9738903394255874,
+          "exact_95pct_wilson": [
+            0.9526118015919232,
+            0.9857571134323975
+          ]
+        },
+        "source:B": {
+          "rows": 383,
+          "action_correct": 375,
+          "exact_correct": 373,
+          "action_accuracy": 0.97911227154047,
+          "exact_accuracy": 0.9738903394255874,
+          "exact_95pct_wilson": [
+            0.9526118015919232,
+            0.9857571134323975
+          ]
+        },
+        "action:open_folder": {
+          "rows": 6,
+          "action_correct": 6,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6096657120978477,
+            1.0
+          ]
+        },
+        "action:open_settings": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:close_app": {
+          "rows": 7,
+          "action_correct": 7,
+          "exact_correct": 7,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6456695649333253,
+            1.0
+          ]
+        },
+        "action:unknown": {
+          "rows": 31,
+          "action_correct": 30,
+          "exact_correct": 30,
+          "action_accuracy": 0.967741935483871,
+          "exact_accuracy": 0.967741935483871,
+          "exact_95pct_wilson": [
+            0.8380589483527563,
+            0.9942827784745831
+          ]
+        },
+        "action:web_search": {
+          "rows": 7,
+          "action_correct": 7,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 0.8571428571428571,
+          "exact_95pct_wilson": [
+            0.486872170725691,
+            0.9743203756552553
+          ]
+        },
+        "action:show_desktop": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:airplane_mode_off": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:battery_saver_off": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:youtube_search": {
+          "rows": 7,
+          "action_correct": 7,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 0.8571428571428571,
+          "exact_95pct_wilson": [
+            0.486872170725691,
+            0.9743203756552553
+          ]
+        },
+        "action:night_light_on": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:switch_user": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:open_app": {
+          "rows": 14,
+          "action_correct": 14,
+          "exact_correct": 14,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7846891972623734,
+            0.9999999999999999
+          ]
+        },
+        "action:hibernate": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:open_site": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:brightness_down": {
+          "rows": 8,
+          "action_correct": 8,
+          "exact_correct": 8,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6755924351161318,
+            1.0
+          ]
+        },
+        "action:media_prev": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:set_volume": {
+          "rows": 21,
+          "action_correct": 21,
+          "exact_correct": 21,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8453609810751603,
+            1.0
+          ]
+        },
+        "action:media_pause": {
+          "rows": 4,
+          "action_correct": 4,
+          "exact_correct": 4,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.5101091635454165,
+            1.0
+          ]
+        },
+        "action:gpio_off": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:wifi_on": {
+          "rows": 6,
+          "action_correct": 6,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6096657120978477,
+            1.0
+          ]
+        },
+        "action:get_system_info": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:bluetooth_on": {
+          "rows": 5,
+          "action_correct": 5,
+          "exact_correct": 5,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.5655175352168389,
+            1.0
+          ]
+        },
+        "action:get_battery": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:set_brightness": {
+          "rows": 8,
+          "action_correct": 8,
+          "exact_correct": 8,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6755924351161318,
+            1.0
+          ]
+        },
+        "action:shutdown": {
+          "rows": 16,
+          "action_correct": 16,
+          "exact_correct": 16,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8063923194655722,
+            1.0000000000000002
+          ]
+        },
+        "action:set_timer": {
+          "rows": 7,
+          "action_correct": 7,
+          "exact_correct": 7,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6456695649333253,
+            1.0
+          ]
+        },
+        "action:get_time": {
+          "rows": 1,
+          "action_correct": 0,
+          "exact_correct": 0,
+          "action_accuracy": 0.0,
+          "exact_accuracy": 0.0,
+          "exact_95pct_wilson": [
+            0.0,
+            0.7934506856227534
+          ]
+        },
+        "action:open_url": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:minimize_window": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:install_updates": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:zoom_in": {
+          "rows": 2,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 0.5,
+          "exact_accuracy": 0.5,
+          "exact_95pct_wilson": [
+            0.09453120573423457,
+            0.9054687942657654
+          ]
+        },
+        "action:screen_off": {
+          "rows": 5,
+          "action_correct": 5,
+          "exact_correct": 5,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.5655175352168389,
+            1.0
+          ]
+        },
+        "action:paste": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:snap_left": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:firewall_off": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:brightness_up": {
+          "rows": 6,
+          "action_correct": 6,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6096657120978477,
+            1.0
+          ]
+        },
+        "action:sleep": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:maximize_window": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:restart": {
+          "rows": 12,
+          "action_correct": 11,
+          "exact_correct": 11,
+          "action_accuracy": 0.9166666666666666,
+          "exact_accuracy": 0.9166666666666666,
+          "exact_95pct_wilson": [
+            0.646120088858892,
+            0.9851349055950824
+          ]
+        },
+        "action:clear_temp_files": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:get_disk_space": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:get_throttle_status": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:select_all": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:network_status": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:dark_mode_on": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:unmute": {
+          "rows": 2,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 0.5,
+          "exact_accuracy": 0.5,
+          "exact_95pct_wilson": [
+            0.09453120573423457,
+            0.9054687942657654
+          ]
+        },
+        "action:get_temperature": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:get_uptime": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:cut": {
+          "rows": 2,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 0.5,
+          "exact_accuracy": 0.5,
+          "exact_95pct_wilson": [
+            0.09453120573423457,
+            0.9054687942657654
+          ]
+        },
+        "action:hotspot_on": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:dnd_on": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:volume_up": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:task_view": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:volume_down": {
+          "rows": 7,
+          "action_correct": 7,
+          "exact_correct": 7,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6456695649333253,
+            1.0
+          ]
+        },
+        "action:service_stop": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:antivirus_scan": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:new_tab": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:close_window": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:media_play": {
+          "rows": 9,
+          "action_correct": 9,
+          "exact_correct": 9,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7008549515804674,
+            1.0
+          ]
+        },
+        "action:onscreen_keyboard": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:reopen_tab": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:type_text": {
+          "rows": 4,
+          "action_correct": 4,
+          "exact_correct": 4,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.5101091635454165,
+            1.0
+          ]
+        },
+        "action:media_next": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:battery_saver_on": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:list_wifi": {
+          "rows": 2,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 0.5,
+          "exact_accuracy": 0.5,
+          "exact_95pct_wilson": [
+            0.09453120573423457,
+            0.9054687942657654
+          ]
+        },
+        "action:gpio_read": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:service_restart": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:search_files": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:get_ip": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:sign_out": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:undo": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:check_updates": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:camera_photo": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:screenshot": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:narrator_on": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:refresh": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:get_volume": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:wifi_off": {
+          "rows": 4,
+          "action_correct": 4,
+          "exact_correct": 4,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.5101091635454165,
+            1.0
+          ]
+        },
+        "action:get_date": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:get_ram_usage": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:gpio_on": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:bluetooth_off": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:zoom_reset": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:empty_recycle_bin": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:ping": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:airplane_mode_on": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:flush_dns": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:night_light_off": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:switch_window": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:copy": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:service_start": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:close_tab": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:display_mode": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:delete_file": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:magnifier_on": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:mute": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:dark_mode_off": {
+          "rows": 2,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 0.5,
+          "exact_accuracy": 0.5,
+          "exact_95pct_wilson": [
+            0.09453120573423457,
+            0.9054687942657654
+          ]
+        },
+        "action:cancel_shutdown": {
+          "rows": 3,
+          "action_correct": 3,
+          "exact_correct": 3,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.4385029682449681,
+            1.0
+          ]
+        },
+        "action:magnifier_off": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:get_cpu_usage": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:hotspot_off": {
+          "rows": 2,
+          "action_correct": 2,
+          "exact_correct": 2,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.34238022750666547,
+            1.0
+          ]
+        },
+        "action:redo": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        }
+      },
+      "seconds": 0.5176047410000137,
+      "top_confusions": [
+        {
+          "expected": "get_time",
+          "predicted": "get_temperature",
+          "count": 1
+        },
+        {
+          "expected": "zoom_in",
+          "predicted": "open_app",
+          "count": 1
+        },
+        {
+          "expected": "restart",
+          "predicted": "cancel_shutdown",
+          "count": 1
+        },
+        {
+          "expected": "unmute",
+          "predicted": "unknown",
+          "count": 1
+        },
+        {
+          "expected": "youtube_search",
+          "predicted": "youtube_search",
+          "count": 1
+        },
+        {
+          "expected": "list_wifi",
+          "predicted": "list_disks",
+          "count": 1
+        },
+        {
+          "expected": "dark_mode_off",
+          "predicted": "high_contrast_off",
+          "count": 1
+        },
+        {
+          "expected": "cut",
+          "predicted": "press_key",
+          "count": 1
+        },
+        {
+          "expected": "unknown",
+          "predicted": "open_app",
+          "count": 1
+        },
+        {
+          "expected": "web_search",
+          "predicted": "web_search",
+          "count": 1
+        }
+      ],
+      "source_sha256": "8ff8cae21cac949f37960cb82b8d2280e01ce275f0f7639148dda6f2a4c3e39c"
+    }
+  },
+  "single_request_ms": {
+    "median": 7.199408499900528,
+    "p95": 7.3482990001139115,
+    "threads": 2
+  }
+}

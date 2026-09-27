@@ -1,0 +1,1054 @@
+{
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+  "runtime_source_sha256": "2e2324e92193b18931de0a55eac8fb84e35a18d486f74fca17630a5ec3139fd5",
+  "model_source_sha256": "d350ca978a914f23afd9ac6ba25784a10fc4712b9a3df90cd22f1403136101c4",
+  "decoding": {
+    "version": 3,
+    "description": "Preserve overlapping quoted file names and domain hostnames; preserve learned numeric spans"
+  },
+  "quantization": null,
+  "execution": {
+    "backend": "pytorch"
+  },
+  "derivation": {
+    "checkpoint_sha256": "6c93e7764eb268763ad85d8d5d71c03fb6eb4d16b6ec9b3926e498c5365b046a",
+    "weights_changed": false,
+    "parent_derivation": null
+  },
+  "decoder_source_sha256": "e2319ef242841495046eb0860cfe77bf4d457a85628b5d4aa55459d0d0074749",
+  "checkpoint": "models/a100_minilm_v10_quoted/best.pt",
+  "model_epoch": 5,
+  "parameters": 23889849,
+  "inference_device": "cpu",
+  "model_bytes": 96200101,
+  "batch_size": 1,
+  "evaluator_source_sha256": "cdc2d7a3a9137bce88154ce5fa56225bf5862ebf89fa675b020a879a8db976a5",
+  "timestamp": 1790481112.323297,
+  "splits": {
+    "eval/A_practical-dev.jsonl": {
+      "metrics": {
+        "all": {
+          "rows": 1321,
+          "action_correct": 1280,
+          "exact_correct": 1274,
+          "action_accuracy": 0.9689629068887207,
+          "exact_accuracy": 0.9644208932626798,
+          "exact_95pct_wilson": [
+            0.9530091537025546,
+            0.9731393992663514
+          ]
+        },
+        "action:set_volume": {
+          "rows": 42,
+          "action_correct": 41,
+          "exact_correct": 41,
+          "action_accuracy": 0.9761904761904762,
+          "exact_accuracy": 0.9761904761904762,
+          "exact_95pct_wilson": [
+            0.8767879842623376,
+            0.9957845958655673
+          ]
+        },
+        "language:None": {
+          "rows": 1321,
+          "action_correct": 1280,
+          "exact_correct": 1274,
+          "action_accuracy": 0.9689629068887207,
+          "exact_accuracy": 0.9644208932626798,
+          "exact_95pct_wilson": [
+            0.9530091537025546,
+            0.9731393992663514
+          ]
+        },
+        "source:A": {
+          "rows": 1321,
+          "action_correct": 1280,
+          "exact_correct": 1274,
+          "action_accuracy": 0.9689629068887207,
+          "exact_accuracy": 0.9644208932626798,
+          "exact_95pct_wilson": [
+            0.9530091537025546,
+            0.9731393992663514
+          ]
+        },
+        "action:volume_up": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:volume_down": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:mute": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:unmute": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_volume": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:set_brightness": {
+          "rows": 42,
+          "action_correct": 41,
+          "exact_correct": 41,
+          "action_accuracy": 0.9761904761904762,
+          "exact_accuracy": 0.9761904761904762,
+          "exact_95pct_wilson": [
+            0.8767879842623376,
+            0.9957845958655673
+          ]
+        },
+        "action:brightness_up": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:brightness_down": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_brightness": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:shutdown": {
+          "rows": 14,
+          "action_correct": 14,
+          "exact_correct": 14,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7846891972623734,
+            0.9999999999999999
+          ]
+        },
+        "action:restart": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:cancel_shutdown": {
+          "rows": 24,
+          "action_correct": 24,
+          "exact_correct": 24,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8620237953250264,
+            1.0
+          ]
+        },
+        "action:sleep": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:hibernate": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:lock_screen": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:sign_out": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:open_app": {
+          "rows": 84,
+          "action_correct": 83,
+          "exact_correct": 78,
+          "action_accuracy": 0.9880952380952381,
+          "exact_accuracy": 0.9285714285714286,
+          "exact_95pct_wilson": [
+            0.852804328437558,
+            0.966854190064164
+          ]
+        },
+        "action:open_settings": {
+          "rows": 24,
+          "action_correct": 24,
+          "exact_correct": 24,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8620237953250264,
+            1.0
+          ]
+        },
+        "action:get_battery": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_cpu_usage": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_ram_usage": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_disk_space": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_uptime": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_hostname": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_system_info": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_time": {
+          "rows": 6,
+          "action_correct": 6,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6096657120978477,
+            1.0
+          ]
+        },
+        "action:get_date": {
+          "rows": 6,
+          "action_correct": 6,
+          "exact_correct": 6,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.6096657120978477,
+            1.0
+          ]
+        },
+        "action:get_current_user": {
+          "rows": 12,
+          "action_correct": 11,
+          "exact_correct": 11,
+          "action_accuracy": 0.9166666666666666,
+          "exact_accuracy": 0.9166666666666666,
+          "exact_95pct_wilson": [
+            0.646120088858892,
+            0.9851349055950824
+          ]
+        },
+        "action:list_processes": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:kill_process": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_ip": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:network_status": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:list_connections": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:ping": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:dns_lookup": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:flush_dns": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:wifi_on": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:wifi_off": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:bluetooth_on": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:bluetooth_off": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:list_files": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:read_file": {
+          "rows": 31,
+          "action_correct": 31,
+          "exact_correct": 31,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8897446045395695,
+            1.0
+          ]
+        },
+        "action:create_folder": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:create_file": {
+          "rows": 28,
+          "action_correct": 28,
+          "exact_correct": 28,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8793566952341603,
+            1.0
+          ]
+        },
+        "action:copy_file": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:move_file": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:rename_file": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:delete_file": {
+          "rows": 29,
+          "action_correct": 29,
+          "exact_correct": 29,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.883030201500265,
+            1.0
+          ]
+        },
+        "action:hash_file": {
+          "rows": 28,
+          "action_correct": 28,
+          "exact_correct": 28,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8793566952341603,
+            1.0
+          ]
+        },
+        "action:list_services": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:service_status": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:service_start": {
+          "rows": 25,
+          "action_correct": 25,
+          "exact_correct": 25,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8668077490609579,
+            1.0
+          ]
+        },
+        "action:service_stop": {
+          "rows": 25,
+          "action_correct": 25,
+          "exact_correct": 25,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8668077490609579,
+            1.0
+          ]
+        },
+        "action:service_restart": {
+          "rows": 13,
+          "action_correct": 13,
+          "exact_correct": 13,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7719046276458112,
+            1.0
+          ]
+        },
+        "action:get_temperature": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_throttle_status": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_cpu_clock": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_voltage": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:get_firmware_version": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:gpio_read": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:gpio_on": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:gpio_off": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:interface_enable": {
+          "rows": 24,
+          "action_correct": 24,
+          "exact_correct": 24,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8620237953250264,
+            1.0
+          ]
+        },
+        "action:interface_disable": {
+          "rows": 24,
+          "action_correct": 24,
+          "exact_correct": 24,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.8620237953250264,
+            1.0
+          ]
+        },
+        "action:list_usb": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:list_pci": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:list_disks": {
+          "rows": 12,
+          "action_correct": 6,
+          "exact_correct": 6,
+          "action_accuracy": 0.5,
+          "exact_accuracy": 0.5,
+          "exact_95pct_wilson": [
+            0.2537815976337112,
+            0.7462184023662888
+          ]
+        },
+        "action:list_cameras": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:firewall_status": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:media_play_pause": {
+          "rows": 11,
+          "action_correct": 11,
+          "exact_correct": 11,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7411670330319788,
+            1.0
+          ]
+        },
+        "action:media_play": {
+          "rows": 1,
+          "action_correct": 1,
+          "exact_correct": 1,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.20654931437724644,
+            0.9999999999999999
+          ]
+        },
+        "action:media_next": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:media_prev": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:format_drive": {
+          "rows": 10,
+          "action_correct": 10,
+          "exact_correct": 10,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7224672001371218,
+            0.9999999999999999
+          ]
+        },
+        "action:unknown": {
+          "rows": 118,
+          "action_correct": 99,
+          "exact_correct": 99,
+          "action_accuracy": 0.8389830508474576,
+          "exact_accuracy": 0.8389830508474576,
+          "exact_95pct_wilson": [
+            0.7621637687060475,
+            0.8944271878888727
+          ]
+        },
+        "action:factory_reset": {
+          "rows": 9,
+          "action_correct": 9,
+          "exact_correct": 9,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7008549515804674,
+            1.0
+          ]
+        },
+        "action:run_script": {
+          "rows": 12,
+          "action_correct": 12,
+          "exact_correct": 12,
+          "action_accuracy": 1.0,
+          "exact_accuracy": 1.0,
+          "exact_95pct_wilson": [
+            0.7575059933447693,
+            1.0
+          ]
+        },
+        "action:clarify": {
+          "rows": 25,
+          "action_correct": 13,
+          "exact_correct": 12,
+          "action_accuracy": 0.52,
+          "exact_accuracy": 0.48,
+          "exact_95pct_wilson": [
+            0.3003128595411339,
+            0.6650148304964278
+          ]
+        }
+      },
+      "seconds": 10.86754900001688,
+      "top_confusions": [
+        {
+          "expected": "list_disks",
+          "predicted": "list_partitions",
+          "count": 6
+        },
+        {
+          "expected": "open_app",
+          "predicted": "open_app",
+          "count": 5
+        },
+        {
+          "expected": "clarify",
+          "predicted": "set_brightness",
+          "count": 4
+        },
+        {
+          "expected": "unknown",
+          "predicted": "factory_reset",
+          "count": 3
+        },
+        {
+          "expected": "unknown",
+          "predicted": "restart",
+          "count": 3
+        },
+        {
+          "expected": "clarify",
+          "predicted": "set_volume",
+          "count": 3
+        },
+        {
+          "expected": "unknown",
+          "predicted": "format_drive",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "open_file",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "search_files",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "get_brightness",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "cancel_shutdown",
+          "count": 2
+        },
+        {
+          "expected": "unknown",
+          "predicted": "set_volume",
+          "count": 2
+        },
+        {
+          "expected": "clarify",
+          "predicted": "volume_down",
+          "count": 2
+        },
+        {
+          "expected": "open_app",
+          "predicted": "switch_window",
+          "count": 1
+        },
+        {
+          "expected": "get_current_user",
+          "predicted": "sign_out",
+          "count": 1
+        },
+        {
+          "expected": "unknown",
+          "predicted": "recent_files",
+          "count": 1
+        },
+        {
+          "expected": "clarify",
+          "predicted": "brightness_down",
+          "count": 1
+        },
+        {
+          "expected": "clarify",
+          "predicted": "read_file",
+          "count": 1
+        },
+        {
+          "expected": "clarify",
+          "predicted": "hash_file",
+          "count": 1
+        },
+        {
+          "expected": "set_volume",
+          "predicted": "volume_up",
+          "count": 1
+        },
+        {
+          "expected": "set_brightness",
+          "predicted": "brightness_down",
+          "count": 1
+        },
+        {
+          "expected": "clarify",
+          "predicted": "clarify",
+          "count": 1
+        }
+      ],
+      "source_sha256": "e367f22afcd4e12f98f9673e7fa119ef28bd6ccf744473cb8f2bc8dbd39c1761"
+    }
+  },
+  "single_request_ms": {
+    "median": 7.049699983326718,
+    "p95": 9.379199997056276,
+    "threads": 2
+  }
+}

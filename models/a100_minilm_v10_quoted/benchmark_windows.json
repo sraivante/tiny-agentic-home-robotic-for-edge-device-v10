@@ -1,0 +1,24 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "machine": "AMD64",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "logical_cpus": 16,
+  "ram_bytes": 33982922752,
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+  "model_bytes": 96200101,
+  "parameters": 23889849,
+  "epoch": 5,
+  "threads": 2,
+  "requests": 371,
+  "quantization": null,
+  "execution": {
+    "backend": "pytorch"
+  },
+  "latency_ms": {
+    "median": 5.547899985685945,
+    "p95": 7.23909999942407,
+    "max": 10.390300012659281
+  },
+  "process_rss_bytes": 615051264,
+  "note": "One warm, single-request inference per action template. No executor operations. Includes Python/PyTorch runtime overhead; not an accuracy evaluation."
+}
