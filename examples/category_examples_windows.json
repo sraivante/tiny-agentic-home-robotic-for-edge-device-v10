@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-09-27T15:01:29+0530",
+  "created_at": "2026-09-27T15:53:47+0530",
   "device": {
     "os": "Windows-11-10.0.26200-SP0",
     "machine": "AMD64",
@@ -12,18 +12,27 @@
   },
   "platform": "windows",
   "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
-  "note": "Illustrative commands written for this demo (not dataset rows). Accuracy numbers come from the held-out test set, not from this table. Only read-only 'safe' commands were executed.",
+  "note": "Illustrative commands written for this demo, each intent in ENGLISH and HINGLISH (not dataset rows). Accuracy numbers come from the held-out test set, not from this table. Only read-only 'safe' commands were executed.",
   "rows": [
     {
       "intended_category": "Audio & media",
-      "command": "volume 40 kar do",
+      "intent": 1,
+      "language": "ENGLISH",
+      "command": "set the volume to 40",
+      "expected": {
+        "action": "set_volume",
+        "args": {
+          "value": 40
+        }
+      },
+      "correct": true,
       "action": "set_volume",
       "args": {
         "value": 40
       },
       "predicted_category": "Audio & media",
       "confidence": 1.0,
-      "latency_ms": 21.805,
+      "latency_ms": 14.089,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.windows)",
@@ -40,12 +49,81 @@
     },
     {
       "intended_category": "Audio & media",
-      "command": "gaana pause karo",
+      "intent": 1,
+      "language": "HINGLISH",
+      "command": "volume 40 kar do",
+      "expected": {
+        "action": "set_volume",
+        "args": {
+          "value": 40
+        }
+      },
+      "correct": true,
+      "action": "set_volume",
+      "args": {
+        "value": 40
+      },
+      "predicted_category": "Audio & media",
+      "confidence": 1.0,
+      "latency_ms": 7.699,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.windows)",
+      "handler_module": "executors.windows",
+      "effect": "Set master volume to an exact percent",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install optional Python module(s): pycaw",
+      "planned_command": "set_volume value=40",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Audio & media",
+      "intent": 2,
+      "language": "ENGLISH",
+      "command": "pause the music",
+      "expected": {
+        "action": "media_pause",
+        "args": {}
+      },
+      "correct": true,
       "action": "media_pause",
       "args": {},
       "predicted_category": "Audio & media",
       "confidence": 1.0,
-      "latency_ms": 9.987,
+      "latency_ms": 8.496,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "executors.common",
+      "effect": "Pause / stop media",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: Add-Type -AssemblyName System.Runtime.WindowsRuntime; function Await-Operation($Operation, $ResultType) { $m=[System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object {$_.Name -eq 'AsTask' -and $_.IsGenericMethod -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].P…",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Audio & media",
+      "intent": 2,
+      "language": "HINGLISH",
+      "command": "gaana pause karo",
+      "expected": {
+        "action": "media_pause",
+        "args": {}
+      },
+      "correct": true,
+      "action": "media_pause",
+      "args": {},
+      "predicted_category": "Audio & media",
+      "confidence": 1.0,
+      "latency_ms": 7.673,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -62,12 +140,19 @@
     },
     {
       "intended_category": "Display & appearance",
-      "command": "brightness thoda kam karo",
+      "intent": 3,
+      "language": "ENGLISH",
+      "command": "lower the brightness a little",
+      "expected": {
+        "action": "brightness_down",
+        "args": {}
+      },
+      "correct": true,
       "action": "brightness_down",
       "args": {},
       "predicted_category": "Display & appearance",
       "confidence": 1.0,
-      "latency_ms": 14.987,
+      "latency_ms": 7.347,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -84,12 +169,77 @@
     },
     {
       "intended_category": "Display & appearance",
-      "command": "dark mode on kar do",
+      "intent": 3,
+      "language": "HINGLISH",
+      "command": "brightness thoda kam karo",
+      "expected": {
+        "action": "brightness_down",
+        "args": {}
+      },
+      "correct": true,
+      "action": "brightness_down",
+      "args": {},
+      "predicted_category": "Display & appearance",
+      "confidence": 1.0,
+      "latency_ms": 11.319,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "executors.common",
+      "effect": "Decrease brightness (default step 10)",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: $b=Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness; $step=10; if($a.step){$step=$a.step}; $v=[byte][math]::Max(0,$b.CurrentBrightness-$step); Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods | Invoke-CimMethod -MethodName WmiSetBrightness -A…",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Display & appearance",
+      "intent": 4,
+      "language": "ENGLISH",
+      "command": "turn on dark mode",
+      "expected": {
+        "action": "dark_mode_on",
+        "args": {}
+      },
+      "correct": true,
       "action": "dark_mode_on",
       "args": {},
       "predicted_category": "Display & appearance",
       "confidence": 1.0,
-      "latency_ms": 13.546,
+      "latency_ms": 13.476,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "executors.common",
+      "effect": "Switch to dark theme",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: $p='HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize'; New-Item $p -Force | Out-Null; Set-ItemProperty $p AppsUseLightTheme 0; Set-ItemProperty $p SystemUsesLightTheme 0; @{light_theme=$false}|ConvertTo-Json",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Display & appearance",
+      "intent": 4,
+      "language": "HINGLISH",
+      "command": "dark mode on kar do",
+      "expected": {
+        "action": "dark_mode_on",
+        "args": {}
+      },
+      "correct": true,
+      "action": "dark_mode_on",
+      "args": {},
+      "predicted_category": "Display & appearance",
+      "confidence": 1.0,
+      "latency_ms": 8.518,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -106,12 +256,19 @@
     },
     {
       "intended_category": "Network & connectivity",
-      "command": "wifi ka signal kitna strong hai",
+      "intent": 5,
+      "language": "ENGLISH",
+      "command": "how strong is the wifi signal",
+      "expected": {
+        "action": "get_wifi_signal",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_wifi_signal",
       "args": {},
       "predicted_category": "Network & connectivity",
       "confidence": 1.0,
-      "latency_ms": 7.756,
+      "latency_ms": 8.087,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: netsh.exe",
@@ -130,7 +287,48 @@
     },
     {
       "intended_category": "Network & connectivity",
+      "intent": 5,
+      "language": "HINGLISH",
+      "command": "wifi ka signal kitna strong hai",
+      "expected": {
+        "action": "get_wifi_signal",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_wifi_signal",
+      "args": {},
+      "predicted_category": "Network & connectivity",
+      "confidence": 1.0,
+      "latency_ms": 12.78,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: netsh.exe",
+      "handler_module": "tinyagent.executor",
+      "effect": "Read Wi-Fi connection and signal status",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "netsh.exe wlan show interfaces",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (output not published: local device details)"
+    },
+    {
+      "intended_category": "Network & connectivity",
+      "intent": 6,
+      "language": "ENGLISH",
       "command": "connect to wifi Redmi Note 12 password hello@123",
+      "expected": {
+        "action": "connect_wifi",
+        "args": {
+          "ssid": "Redmi Note 12",
+          "password": "hello@123"
+        }
+      },
+      "correct": true,
       "action": "connect_wifi",
       "args": {
         "password": "hello@123",
@@ -138,7 +336,42 @@
       },
       "predicted_category": "Network & connectivity",
       "confidence": 1.0,
-      "latency_ms": 17.126,
+      "latency_ms": 11.07,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.windows)",
+      "handler_module": "executors.windows",
+      "effect": "Connect to a Wi-Fi network (optional password)",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "connect_wifi password=\"hello@123\" ssid=\"Redmi Note 12\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Network & connectivity",
+      "intent": 6,
+      "language": "HINGLISH",
+      "command": "Redmi Note 12 wifi se connect karo password hello@123",
+      "expected": {
+        "action": "connect_wifi",
+        "args": {
+          "ssid": "Redmi Note 12",
+          "password": "hello@123"
+        }
+      },
+      "correct": true,
+      "action": "connect_wifi",
+      "args": {
+        "password": "hello@123",
+        "ssid": "Redmi Note 12"
+      },
+      "predicted_category": "Network & connectivity",
+      "confidence": 1.0,
+      "latency_ms": 8.941,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.windows)",
@@ -155,14 +388,23 @@
     },
     {
       "intended_category": "GPIO & I2C",
-      "command": "gpio 17 ko high karo",
+      "intent": 7,
+      "language": "ENGLISH",
+      "command": "set gpio 17 high",
+      "expected": {
+        "action": "gpio_on",
+        "args": {
+          "pin": 17
+        }
+      },
+      "correct": true,
       "action": "gpio_on",
       "args": {
         "pin": 17
       },
       "predicted_category": "GPIO & I2C",
       "confidence": 1.0,
-      "latency_ms": 14.342,
+      "latency_ms": 6.344,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.common)",
@@ -179,7 +421,50 @@
     },
     {
       "intended_category": "GPIO & I2C",
-      "command": "physical pin 11 ki value padho",
+      "intent": 7,
+      "language": "HINGLISH",
+      "command": "gpio 17 ko high karo",
+      "expected": {
+        "action": "gpio_on",
+        "args": {
+          "pin": 17
+        }
+      },
+      "correct": true,
+      "action": "gpio_on",
+      "args": {
+        "pin": 17
+      },
+      "predicted_category": "GPIO & I2C",
+      "confidence": 1.0,
+      "latency_ms": 7.015,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Set a GPIO pin HIGH (e.g. relay / LED on)",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": false,
+      "availability_reason": "Executor requires pi",
+      "planned_command": "gpio_on pin=17",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "GPIO & I2C",
+      "intent": 8,
+      "language": "ENGLISH",
+      "command": "read the value of physical pin 11",
+      "expected": {
+        "action": "gpio_read",
+        "args": {
+          "pin": 11,
+          "numbering": "board"
+        }
+      },
+      "correct": true,
       "action": "gpio_read",
       "args": {
         "numbering": "board",
@@ -187,7 +472,7 @@
       },
       "predicted_category": "GPIO & I2C",
       "confidence": 1.0,
-      "latency_ms": 13.075,
+      "latency_ms": 7.164,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.common)",
@@ -204,12 +489,83 @@
     },
     {
       "intended_category": "GPIO & I2C",
-      "command": "i2c bus scan karo",
+      "intent": 8,
+      "language": "HINGLISH",
+      "command": "physical pin 11 ki value padho",
+      "expected": {
+        "action": "gpio_read",
+        "args": {
+          "pin": 11,
+          "numbering": "board"
+        }
+      },
+      "correct": true,
+      "action": "gpio_read",
+      "args": {
+        "numbering": "board",
+        "pin": 11
+      },
+      "predicted_category": "GPIO & I2C",
+      "confidence": 1.0,
+      "latency_ms": 9.321,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Read GPIO pin state",
+      "effective_risk": "caution",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Executor requires pi",
+      "planned_command": "gpio_read numbering=\"board\" pin=11",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "GPIO & I2C",
+      "intent": 9,
+      "language": "ENGLISH",
+      "command": "scan the i2c bus",
+      "expected": {
+        "action": "i2c_scan",
+        "args": {}
+      },
+      "correct": true,
       "action": "i2c_scan",
       "args": {},
       "predicted_category": "GPIO & I2C",
       "confidence": 1.0,
-      "latency_ms": 8.328,
+      "latency_ms": 6.9,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Scan I2C bus",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Executor requires pi",
+      "planned_command": "i2c_scan",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "GPIO & I2C",
+      "intent": 9,
+      "language": "HINGLISH",
+      "command": "i2c bus scan karo",
+      "expected": {
+        "action": "i2c_scan",
+        "args": {}
+      },
+      "correct": true,
+      "action": "i2c_scan",
+      "args": {},
+      "predicted_category": "GPIO & I2C",
+      "confidence": 1.0,
+      "latency_ms": 8.518,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.common)",
@@ -226,12 +582,19 @@
     },
     {
       "intended_category": "Hardware & Raspberry Pi",
-      "command": "pi ka temperature batao",
+      "intent": 10,
+      "language": "ENGLISH",
+      "command": "what is the pi temperature",
+      "expected": {
+        "action": "get_temperature",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_temperature",
       "args": {},
       "predicted_category": "Hardware & Raspberry Pi",
-      "confidence": 0.8183,
-      "latency_ms": 8.924,
+      "confidence": 1.0,
+      "latency_ms": 8.412,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -250,12 +613,81 @@
     },
     {
       "intended_category": "Hardware & Raspberry Pi",
-      "command": "fan speed kitni hai",
+      "intent": 10,
+      "language": "HINGLISH",
+      "command": "pi ka temperature batao",
+      "expected": {
+        "action": "get_temperature",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_temperature",
+      "args": {},
+      "predicted_category": "Hardware & Raspberry Pi",
+      "confidence": 0.8183,
+      "latency_ms": 11.071,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "executors.common",
+      "effect": "CPU / SoC temperature",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: $t=Get-CimInstance -Namespace root/wmi -ClassName MSAcpi_ThermalZoneTemperature; if (!$t) {throw 'No ACPI thermal sensor is exposed by this hardware'}; $t | Select-Object InstanceName,@{N='Celsius';E={($_.CurrentTemperature/10)-273.15}} | ConvertTo-Json",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "failed",
+      "published_result": "failed: needs administrator rights"
+    },
+    {
+      "intended_category": "Hardware & Raspberry Pi",
+      "intent": 11,
+      "language": "ENGLISH",
+      "command": "what is the fan speed",
+      "expected": {
+        "action": "get_fan_speed",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_fan_speed",
       "args": {},
       "predicted_category": "Hardware & Raspberry Pi",
       "confidence": 1.0,
-      "latency_ms": 6.333,
+      "latency_ms": 7.524,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "executors.common",
+      "effect": "Fan RPM",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: Get-CimInstance Win32_Fan | Select-Object Name,DesiredSpeed,Status | ConvertTo-Json",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (no sensor value reported)"
+    },
+    {
+      "intended_category": "Hardware & Raspberry Pi",
+      "intent": 11,
+      "language": "HINGLISH",
+      "command": "fan speed kitni hai",
+      "expected": {
+        "action": "get_fan_speed",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_fan_speed",
+      "args": {},
+      "predicted_category": "Hardware & Raspberry Pi",
+      "confidence": 1.0,
+      "latency_ms": 11.363,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -274,14 +706,23 @@
     },
     {
       "intended_category": "Files & storage",
+      "intent": 12,
+      "language": "ENGLISH",
       "command": "create file \"notes/todo.txt\"",
+      "expected": {
+        "action": "create_file",
+        "args": {
+          "path": "notes/todo.txt"
+        }
+      },
+      "correct": true,
       "action": "create_file",
       "args": {
         "path": "notes/todo.txt"
       },
       "predicted_category": "Files & storage",
       "confidence": 1.0,
-      "latency_ms": 19.688,
+      "latency_ms": 14.074,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -298,12 +739,83 @@
     },
     {
       "intended_category": "Files & storage",
-      "command": "disk space kitna bacha hai",
+      "intent": 12,
+      "language": "HINGLISH",
+      "command": "file \"notes/todo.txt\" bana do",
+      "expected": {
+        "action": "create_file",
+        "args": {
+          "path": "notes/todo.txt"
+        }
+      },
+      "correct": true,
+      "action": "create_file",
+      "args": {
+        "path": "notes/todo.txt"
+      },
+      "predicted_category": "Files & storage",
+      "confidence": 1.0,
+      "latency_ms": 11.103,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Create a new empty file; existing files are never overwritten",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "create_file path=\"notes/todo.txt\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Files & storage",
+      "intent": 13,
+      "language": "ENGLISH",
+      "command": "how much disk space is left",
+      "expected": {
+        "action": "get_disk_space",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_disk_space",
       "args": {},
       "predicted_category": "Files & storage",
       "confidence": 1.0,
-      "latency_ms": 13.146,
+      "latency_ms": 7.71,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Read free space on the files drive",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "get_disk_space",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "disk 76.2 % used"
+    },
+    {
+      "intended_category": "Files & storage",
+      "intent": 13,
+      "language": "HINGLISH",
+      "command": "disk space kitna bacha hai",
+      "expected": {
+        "action": "get_disk_space",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_disk_space",
+      "args": {},
+      "predicted_category": "Files & storage",
+      "confidence": 1.0,
+      "latency_ms": 7.734,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -322,14 +834,23 @@
     },
     {
       "intended_category": "Apps & windows",
-      "command": "notepad kholo",
+      "intent": 14,
+      "language": "ENGLISH",
+      "command": "open notepad",
+      "expected": {
+        "action": "open_app",
+        "args": {
+          "app": "notepad"
+        }
+      },
+      "correct": true,
       "action": "open_app",
       "args": {
         "app": "notepad"
       },
       "predicted_category": "Apps & windows",
       "confidence": 1.0,
-      "latency_ms": 11.411,
+      "latency_ms": 7.222,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.desktop)",
@@ -346,12 +867,81 @@
     },
     {
       "intended_category": "Apps & windows",
-      "command": "is window ko minimize karo",
+      "intent": 14,
+      "language": "HINGLISH",
+      "command": "notepad kholo",
+      "expected": {
+        "action": "open_app",
+        "args": {
+          "app": "notepad"
+        }
+      },
+      "correct": true,
+      "action": "open_app",
+      "args": {
+        "app": "notepad"
+      },
+      "predicted_category": "Apps & windows",
+      "confidence": 1.0,
+      "latency_ms": 10.967,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Open / launch an application",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install optional Python module(s): pywinauto",
+      "planned_command": "open_app app=\"notepad\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Apps & windows",
+      "intent": 15,
+      "language": "ENGLISH",
+      "command": "minimize this window",
+      "expected": {
+        "action": "minimize_window",
+        "args": {}
+      },
+      "correct": true,
       "action": "minimize_window",
       "args": {},
       "predicted_category": "Apps & windows",
       "confidence": 1.0,
-      "latency_ms": 10.391,
+      "latency_ms": 9.88,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Minimize current window",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install optional Python module(s): pywinauto",
+      "planned_command": "minimize_window",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Apps & windows",
+      "intent": 15,
+      "language": "HINGLISH",
+      "command": "is window ko minimize karo",
+      "expected": {
+        "action": "minimize_window",
+        "args": {}
+      },
+      "correct": true,
+      "action": "minimize_window",
+      "args": {},
+      "predicted_category": "Apps & windows",
+      "confidence": 1.0,
+      "latency_ms": 7.66,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.desktop)",
@@ -368,14 +958,23 @@
     },
     {
       "intended_category": "Browser & web",
-      "command": "youtube pe lofi music search karo",
+      "intent": 16,
+      "language": "ENGLISH",
+      "command": "search youtube for lofi music",
+      "expected": {
+        "action": "youtube_search",
+        "args": {
+          "query": "lofi music"
+        }
+      },
+      "correct": true,
       "action": "youtube_search",
       "args": {
         "query": "lofi music"
       },
       "predicted_category": "Browser & web",
       "confidence": 1.0,
-      "latency_ms": 13.88,
+      "latency_ms": 8.55,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.desktop)",
@@ -392,7 +991,51 @@
     },
     {
       "intended_category": "Browser & web",
+      "intent": 16,
+      "language": "HINGLISH",
+      "command": "youtube pe lofi music search karo",
+      "expected": {
+        "action": "youtube_search",
+        "args": {
+          "query": "lofi music"
+        }
+      },
+      "correct": true,
+      "action": "youtube_search",
+      "args": {
+        "query": "lofi music"
+      },
+      "predicted_category": "Browser & web",
+      "confidence": 1.0,
+      "latency_ms": 11.212,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Search / play something on YouTube",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "youtube_search query=\"lofi music\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Browser & web",
+      "intent": 17,
+      "language": "ENGLISH",
       "command": "login to github username dev_user password Test@123",
+      "expected": {
+        "action": "web_login",
+        "args": {
+          "site": "github",
+          "username": "dev_user",
+          "password": "Test@123"
+        }
+      },
+      "correct": true,
       "action": "web_login",
       "args": {
         "password": "Test@123",
@@ -401,7 +1044,44 @@
       },
       "predicted_category": "Browser & web",
       "confidence": 1.0,
-      "latency_ms": 16.923,
+      "latency_ms": 9.924,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.integrations)",
+      "handler_module": "executors.integrations",
+      "effect": "Open a website and log in with supplied credentials",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Configure executor_config.json → web_login: sites",
+      "planned_command": "web_login password=\"Test@123\" site=\"github\" username=\"dev_user\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Browser & web",
+      "intent": 17,
+      "language": "HINGLISH",
+      "command": "github pe login karo username dev_user password Test@123",
+      "expected": {
+        "action": "web_login",
+        "args": {
+          "site": "github",
+          "username": "dev_user",
+          "password": "Test@123"
+        }
+      },
+      "correct": true,
+      "action": "web_login",
+      "args": {
+        "password": "Test@123",
+        "site": "github",
+        "username": "dev_user"
+      },
+      "predicted_category": "Browser & web",
+      "confidence": 1.0,
+      "latency_ms": 12.704,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.integrations)",
@@ -418,12 +1098,19 @@
     },
     {
       "intended_category": "Keyboard & clipboard",
-      "command": "sab select karo",
+      "intent": 18,
+      "language": "ENGLISH",
+      "command": "select all",
+      "expected": {
+        "action": "select_all",
+        "args": {}
+      },
+      "correct": true,
       "action": "select_all",
       "args": {},
       "predicted_category": "Keyboard & clipboard",
       "confidence": 1.0,
-      "latency_ms": 7.675,
+      "latency_ms": 9.268,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.desktop)",
@@ -440,12 +1127,77 @@
     },
     {
       "intended_category": "Keyboard & clipboard",
-      "command": "clipboard history dikhao",
+      "intent": 18,
+      "language": "HINGLISH",
+      "command": "sab select karo",
+      "expected": {
+        "action": "select_all",
+        "args": {}
+      },
+      "correct": true,
+      "action": "select_all",
+      "args": {},
+      "predicted_category": "Keyboard & clipboard",
+      "confidence": 1.0,
+      "latency_ms": 8.427,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Send ctrl+a to the selected target window",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install optional Python module(s): pywinauto",
+      "planned_command": "select_all",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Keyboard & clipboard",
+      "intent": 19,
+      "language": "ENGLISH",
+      "command": "show clipboard history",
+      "expected": {
+        "action": "clipboard_history",
+        "args": {}
+      },
+      "correct": true,
       "action": "clipboard_history",
       "args": {},
       "predicted_category": "Keyboard & clipboard",
       "confidence": 1.0,
-      "latency_ms": 11.081,
+      "latency_ms": 8.869,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Send win+v to the desktop",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install optional Python module(s): pywinauto",
+      "planned_command": "clipboard_history",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Keyboard & clipboard",
+      "intent": 19,
+      "language": "HINGLISH",
+      "command": "clipboard history dikhao",
+      "expected": {
+        "action": "clipboard_history",
+        "args": {}
+      },
+      "correct": true,
+      "action": "clipboard_history",
+      "args": {},
+      "predicted_category": "Keyboard & clipboard",
+      "confidence": 1.0,
+      "latency_ms": 9.335,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.desktop)",
@@ -462,7 +1214,17 @@
     },
     {
       "intended_category": "Timers & productivity",
-      "command": "5 minute ka timer lagao",
+      "intent": 20,
+      "language": "ENGLISH",
+      "command": "set a timer for 5 minutes",
+      "expected": {
+        "action": "set_timer",
+        "args": {
+          "amount": 5,
+          "unit": "min"
+        }
+      },
+      "correct": true,
       "action": "set_timer",
       "args": {
         "amount": 5,
@@ -470,7 +1232,7 @@
       },
       "predicted_category": "Timers & productivity",
       "confidence": 1.0,
-      "latency_ms": 11.571,
+      "latency_ms": 9.953,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -487,14 +1249,93 @@
     },
     {
       "intended_category": "Timers & productivity",
+      "intent": 20,
+      "language": "HINGLISH",
+      "command": "5 minute ka timer lagao",
+      "expected": {
+        "action": "set_timer",
+        "args": {
+          "amount": 5,
+          "unit": "min"
+        }
+      },
+      "correct": true,
+      "action": "set_timer",
+      "args": {
+        "amount": 5,
+        "unit": "min"
+      },
+      "predicted_category": "Timers & productivity",
+      "confidence": 1.0,
+      "latency_ms": 10.183,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Start a timer in this local server process",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "set_timer amount=5 unit=\"min\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Timers & productivity",
+      "intent": 21,
+      "language": "ENGLISH",
       "command": "calculate 12 + 8",
+      "expected": {
+        "action": "calculate",
+        "args": {
+          "expression": "12 + 8"
+        }
+      },
+      "correct": true,
       "action": "calculate",
       "args": {
         "expression": "12 + 8"
       },
       "predicted_category": "Timers & productivity",
       "confidence": 1.0,
-      "latency_ms": 10.158,
+      "latency_ms": 8.852,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Evaluate bounded arithmetic without Python eval",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "calculate expression=\"12 + 8\"",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "result = 20"
+    },
+    {
+      "intended_category": "Timers & productivity",
+      "intent": 21,
+      "language": "HINGLISH",
+      "command": "12 + 8 calculate karo",
+      "expected": {
+        "action": "calculate",
+        "args": {
+          "expression": "12 + 8"
+        }
+      },
+      "correct": true,
+      "action": "calculate",
+      "args": {
+        "expression": "12 + 8"
+      },
+      "predicted_category": "Timers & productivity",
+      "confidence": 1.0,
+      "latency_ms": 9.776,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -513,12 +1354,19 @@
     },
     {
       "intended_category": "Security & accounts",
-      "command": "firewall ka status batao",
+      "intent": 22,
+      "language": "ENGLISH",
+      "command": "show the firewall status",
+      "expected": {
+        "action": "firewall_status",
+        "args": {}
+      },
+      "correct": true,
       "action": "firewall_status",
       "args": {},
       "predicted_category": "Security & accounts",
       "confidence": 1.0,
-      "latency_ms": 11.255,
+      "latency_ms": 11.151,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -537,14 +1385,87 @@
     },
     {
       "intended_category": "Security & accounts",
-      "command": "firewall mein port 8080 allow karo",
+      "intent": 22,
+      "language": "HINGLISH",
+      "command": "firewall ka status batao",
+      "expected": {
+        "action": "firewall_status",
+        "args": {}
+      },
+      "correct": true,
+      "action": "firewall_status",
+      "args": {},
+      "predicted_category": "Security & accounts",
+      "confidence": 1.0,
+      "latency_ms": 8.935,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "tinyagent.executor",
+      "effect": "show firewall status",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: Get-NetFirewallProfile | Select-Object Name,Enabled | ConvertTo-Json",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (output not published: local device details)"
+    },
+    {
+      "intended_category": "Security & accounts",
+      "intent": 23,
+      "language": "ENGLISH",
+      "command": "allow port 8080 in the firewall",
+      "expected": {
+        "action": "firewall_allow",
+        "args": {
+          "port": 8080
+        }
+      },
+      "correct": true,
       "action": "firewall_allow",
       "args": {
         "port": 8080
       },
       "predicted_category": "Security & accounts",
       "confidence": 1.0,
-      "latency_ms": 20.783,
+      "latency_ms": 10.544,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "executors.common",
+      "effect": "Allow a port",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: New-NetFirewallRule -DisplayName ('CommandLab allow '+$a.port) -Direction Inbound -Action Allow -Protocol TCP -LocalPort ([int]$a.port) | Select-Object Name,Enabled,Action | ConvertTo-Json",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Security & accounts",
+      "intent": 23,
+      "language": "HINGLISH",
+      "command": "firewall mein port 8080 allow karo",
+      "expected": {
+        "action": "firewall_allow",
+        "args": {
+          "port": 8080
+        }
+      },
+      "correct": true,
+      "action": "firewall_allow",
+      "args": {
+        "port": 8080
+      },
+      "predicted_category": "Security & accounts",
+      "confidence": 1.0,
+      "latency_ms": 9.502,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -561,14 +1482,23 @@
     },
     {
       "intended_category": "Services & processes",
-      "command": "ssh service ka status dikhao",
+      "intent": 24,
+      "language": "ENGLISH",
+      "command": "show the status of the ssh service",
+      "expected": {
+        "action": "service_status",
+        "args": {
+          "service": "ssh"
+        }
+      },
+      "correct": true,
       "action": "service_status",
       "args": {
         "service": "ssh"
       },
       "predicted_category": "Services & processes",
       "confidence": 1.0,
-      "latency_ms": 11.51,
+      "latency_ms": 8.069,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -587,14 +1517,91 @@
     },
     {
       "intended_category": "Services & processes",
-      "command": "nginx service restart karo",
+      "intent": 24,
+      "language": "HINGLISH",
+      "command": "ssh service ka status dikhao",
+      "expected": {
+        "action": "service_status",
+        "args": {
+          "service": "ssh"
+        }
+      },
+      "correct": true,
+      "action": "service_status",
+      "args": {
+        "service": "ssh"
+      },
+      "predicted_category": "Services & processes",
+      "confidence": 1.0,
+      "latency_ms": 7.697,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "tinyagent.executor",
+      "effect": "Show a service's status",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: Get-Service -Name $a.service | Select-Object Name,Status,DisplayName | ConvertTo-Json",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "failed",
+      "published_result": "failed: no such service on this OS"
+    },
+    {
+      "intended_category": "Services & processes",
+      "intent": 25,
+      "language": "ENGLISH",
+      "command": "restart the nginx service",
+      "expected": {
+        "action": "service_restart",
+        "args": {
+          "service": "nginx"
+        }
+      },
+      "correct": true,
       "action": "service_restart",
       "args": {
         "service": "nginx"
       },
       "predicted_category": "Services & processes",
       "confidence": 1.0,
-      "latency_ms": 19.957,
+      "latency_ms": 9.644,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "tinyagent.executor",
+      "effect": "Restart a system service",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: Restart-Service -Name $a.service -ErrorAction Stop; Get-Service -Name $a.service | Select-Object Name,Status | ConvertTo-Json",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "Services & processes",
+      "intent": 25,
+      "language": "HINGLISH",
+      "command": "nginx service restart karo",
+      "expected": {
+        "action": "service_restart",
+        "args": {
+          "service": "nginx"
+        }
+      },
+      "correct": true,
+      "action": "service_restart",
+      "args": {
+        "service": "nginx"
+      },
+      "predicted_category": "Services & processes",
+      "confidence": 1.0,
+      "latency_ms": 7.678,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -611,12 +1618,19 @@
     },
     {
       "intended_category": "Software & development",
-      "command": "docker containers list karo",
+      "intent": 26,
+      "language": "ENGLISH",
+      "command": "list docker containers",
+      "expected": {
+        "action": "docker_list",
+        "args": {}
+      },
+      "correct": true,
       "action": "docker_list",
       "args": {},
       "predicted_category": "Software & development",
       "confidence": 1.0,
-      "latency_ms": 13.037,
+      "latency_ms": 7.384,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: docker.EXE",
@@ -635,14 +1649,87 @@
     },
     {
       "intended_category": "Software & development",
-      "command": "numpy python package install karo",
+      "intent": 26,
+      "language": "HINGLISH",
+      "command": "docker containers list karo",
+      "expected": {
+        "action": "docker_list",
+        "args": {}
+      },
+      "correct": true,
+      "action": "docker_list",
+      "args": {},
+      "predicted_category": "Software & development",
+      "confidence": 1.0,
+      "latency_ms": 8.245,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: docker.EXE",
+      "handler_module": "executors.common",
+      "effect": "List containers",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "docker.EXE ps -a",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (output not published: local device details)"
+    },
+    {
+      "intended_category": "Software & development",
+      "intent": 27,
+      "language": "ENGLISH",
+      "command": "install the numpy python package",
+      "expected": {
+        "action": "install_python_package",
+        "args": {
+          "name": "numpy"
+        }
+      },
+      "correct": true,
       "action": "install_python_package",
       "args": {
         "name": "numpy"
       },
       "predicted_category": "Software & development",
       "confidence": 1.0,
-      "latency_ms": 14.646,
+      "latency_ms": 10.225,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: python.exe",
+      "handler_module": "executors.common",
+      "effect": "pip-install a Python package",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "python.exe -m pip install -- numpy",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Software & development",
+      "intent": 27,
+      "language": "HINGLISH",
+      "command": "numpy python package install karo",
+      "expected": {
+        "action": "install_python_package",
+        "args": {
+          "name": "numpy"
+        }
+      },
+      "correct": true,
+      "action": "install_python_package",
+      "args": {
+        "name": "numpy"
+      },
+      "predicted_category": "Software & development",
+      "confidence": 1.0,
+      "latency_ms": 7.467,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: python.exe",
@@ -659,12 +1746,19 @@
     },
     {
       "intended_category": "AI & models",
-      "command": "ollama pe kaunse models hain",
+      "intent": 28,
+      "language": "ENGLISH",
+      "command": "which models are available in ollama",
+      "expected": {
+        "action": "list_llm_models",
+        "args": {}
+      },
+      "correct": true,
       "action": "list_llm_models",
       "args": {},
       "predicted_category": "AI & models",
       "confidence": 1.0,
-      "latency_ms": 12.533,
+      "latency_ms": 8.098,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: ollama.EXE",
@@ -683,14 +1777,87 @@
     },
     {
       "intended_category": "AI & models",
+      "intent": 28,
+      "language": "HINGLISH",
+      "command": "ollama pe kaunse models hain",
+      "expected": {
+        "action": "list_llm_models",
+        "args": {}
+      },
+      "correct": true,
+      "action": "list_llm_models",
+      "args": {},
+      "predicted_category": "AI & models",
+      "confidence": 1.0,
+      "latency_ms": 18.566,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: ollama.EXE",
+      "handler_module": "executors.common",
+      "effect": "List local LLM models",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "ollama.EXE list",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (output not published: local device details)"
+    },
+    {
+      "intended_category": "AI & models",
+      "intent": 29,
+      "language": "ENGLISH",
+      "command": "run the llama3 model",
+      "expected": {
+        "action": "run_llm",
+        "args": {
+          "model": "llama3"
+        }
+      },
+      "correct": true,
+      "action": "run_llm",
+      "args": {
+        "model": "llama3"
+      },
+      "predicted_category": "AI & models",
+      "confidence": 1.0,
+      "latency_ms": 10.81,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.integrations)",
+      "handler_module": "executors.integrations",
+      "effect": "Run a local LLM",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "run_llm model=\"llama3\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "AI & models",
+      "intent": 29,
+      "language": "HINGLISH",
       "command": "llama3 model chalao",
+      "expected": {
+        "action": "run_llm",
+        "args": {
+          "model": "llama3"
+        }
+      },
+      "correct": true,
       "action": "run_llm",
       "args": {
         "model": "llama3"
       },
       "predicted_category": "AI & models",
       "confidence": 0.9998,
-      "latency_ms": 17.032,
+      "latency_ms": 10.354,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.integrations)",
@@ -707,12 +1874,19 @@
     },
     {
       "intended_category": "Terminal & sessions",
-      "command": "tmux sessions dikhao",
+      "intent": 30,
+      "language": "ENGLISH",
+      "command": "show tmux sessions",
+      "expected": {
+        "action": "list_sessions",
+        "args": {}
+      },
+      "correct": true,
       "action": "list_sessions",
       "args": {},
       "predicted_category": "Terminal & sessions",
       "confidence": 1.0,
-      "latency_ms": 10.984,
+      "latency_ms": 7.571,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.common)",
@@ -729,14 +1903,85 @@
     },
     {
       "intended_category": "Terminal & sessions",
+      "intent": 30,
+      "language": "HINGLISH",
+      "command": "tmux sessions dikhao",
+      "expected": {
+        "action": "list_sessions",
+        "args": {}
+      },
+      "correct": true,
+      "action": "list_sessions",
+      "args": {},
+      "predicted_category": "Terminal & sessions",
+      "confidence": 1.0,
+      "latency_ms": 8.968,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "List sessions",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Executor requires pi",
+      "planned_command": "list_sessions",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Terminal & sessions",
+      "intent": 31,
+      "language": "ENGLISH",
       "command": "run command \"ls -la\"",
+      "expected": {
+        "action": "run_command",
+        "args": {
+          "command": "ls -la"
+        }
+      },
+      "correct": false,
       "action": "run_command",
       "args": {
         "command": "command \"ls -la"
       },
       "predicted_category": "Terminal & sessions",
       "confidence": 0.9992,
-      "latency_ms": 10.655,
+      "latency_ms": 6.585,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: powershell.exe",
+      "handler_module": "tinyagent.executor",
+      "effect": "Execute the exact reviewed shell command with your account permissions (20-second timeout)",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "powershell: command \"ls -la",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "Terminal & sessions",
+      "intent": 31,
+      "language": "HINGLISH",
+      "command": "command \"ls -la\" chalao",
+      "expected": {
+        "action": "run_command",
+        "args": {
+          "command": "ls -la"
+        }
+      },
+      "correct": false,
+      "action": "run_command",
+      "args": {
+        "command": "command \"ls -la"
+      },
+      "predicted_category": "Terminal & sessions",
+      "confidence": 0.9994,
+      "latency_ms": 10.07,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: powershell.exe",
@@ -753,12 +1998,19 @@
     },
     {
       "intended_category": "System & power",
-      "command": "cpu usage batao",
+      "intent": 32,
+      "language": "ENGLISH",
+      "command": "what is the cpu usage",
+      "expected": {
+        "action": "get_cpu_usage",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_cpu_usage",
       "args": {},
       "predicted_category": "System & power",
       "confidence": 1.0,
-      "latency_ms": 9.57,
+      "latency_ms": 6.686,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -773,11 +2025,52 @@
       "default_gate": "allowed",
       "executed": true,
       "execution_status": "completed",
-      "published_result": "CPU 14.6 %"
+      "published_result": "CPU 7.5 %"
     },
     {
       "intended_category": "System & power",
-      "command": "10 min baad shutdown kar dena",
+      "intent": 32,
+      "language": "HINGLISH",
+      "command": "cpu usage batao",
+      "expected": {
+        "action": "get_cpu_usage",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_cpu_usage",
+      "args": {},
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 17.732,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Measure CPU use over 200 milliseconds",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "get_cpu_usage",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "CPU 6.7 %"
+    },
+    {
+      "intended_category": "System & power",
+      "intent": 33,
+      "language": "ENGLISH",
+      "command": "shut down in 10 minutes",
+      "expected": {
+        "action": "shutdown",
+        "args": {
+          "amount": 10,
+          "unit": "min"
+        }
+      },
+      "correct": true,
       "action": "shutdown",
       "args": {
         "amount": 10,
@@ -785,7 +2078,7 @@
       },
       "predicted_category": "System & power",
       "confidence": 1.0,
-      "latency_ms": 10.206,
+      "latency_ms": 19.838,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "native process: shutdown.exe",
@@ -801,13 +2094,113 @@
       "executed": false
     },
     {
+      "intended_category": "System & power",
+      "intent": 33,
+      "language": "HINGLISH",
+      "command": "10 min baad shutdown kar dena",
+      "expected": {
+        "action": "shutdown",
+        "args": {
+          "amount": 10,
+          "unit": "min"
+        }
+      },
+      "correct": true,
+      "action": "shutdown",
+      "args": {
+        "amount": 10,
+        "unit": "min"
+      },
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 13.418,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: shutdown.exe",
+      "handler_module": "tinyagent.executor",
+      "effect": "Shut down Windows at the reviewed time",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "shutdown.exe /s /t 600",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "System & power",
+      "intent": 34,
+      "language": "ENGLISH",
+      "command": "don't shut down the laptop",
+      "expected": {
+        "action": "cancel_shutdown",
+        "args": {}
+      },
+      "correct": true,
+      "action": "cancel_shutdown",
+      "args": {},
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 14.129,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: shutdown.exe",
+      "handler_module": "executors.common",
+      "effect": "Cancel a scheduled shutdown/restart",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "shutdown.exe /a",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "System & power",
+      "intent": 34,
+      "language": "HINGLISH",
+      "command": "shutdown mat karo",
+      "expected": {
+        "action": "cancel_shutdown",
+        "args": {}
+      },
+      "correct": true,
+      "action": "cancel_shutdown",
+      "args": {},
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 8.771,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "native process: shutdown.exe",
+      "handler_module": "executors.common",
+      "effect": "Cancel a scheduled shutdown/restart",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "shutdown.exe /a",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
       "intended_category": "Help & intent handling",
-      "command": "tum kya kya kar sakte ho",
+      "intent": 35,
+      "language": "ENGLISH",
+      "command": "what can you do",
+      "expected": {
+        "action": "help",
+        "args": {}
+      },
+      "correct": true,
       "action": "help",
       "args": {},
       "predicted_category": "Help & intent handling",
-      "confidence": 1.0,
-      "latency_ms": 8.043,
+      "confidence": 0.9949,
+      "latency_ms": 10.753,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -826,12 +2219,50 @@
     },
     {
       "intended_category": "Help & intent handling",
+      "intent": 35,
+      "language": "HINGLISH",
+      "command": "tum kya kya kar sakte ho",
+      "expected": {
+        "action": "help",
+        "args": {}
+      },
+      "correct": true,
+      "action": "help",
+      "args": {},
+      "predicted_category": "Help & intent handling",
+      "confidence": 1.0,
+      "latency_ms": 10.583,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Show action and adapter coverage",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "help",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "371 actions, 221 live adapters here"
+    },
+    {
+      "intended_category": "Help & intent handling",
+      "intent": 36,
+      "language": "ENGLISH",
       "command": "turn it off",
+      "expected": {
+        "action": "clarify",
+        "args": {}
+      },
+      "correct": true,
       "action": "clarify",
       "args": {},
       "predicted_category": "Help & intent handling",
       "confidence": 1.0,
-      "latency_ms": 7.564,
+      "latency_ms": 9.81,
       "validation_errors": [],
       "platform": "windows",
       "executor_tool": "python adapter (executors.portable)",
@@ -847,6 +2278,35 @@
       "executed": true,
       "execution_status": "needs_input",
       "published_result": "failed: {\"status\": \"needs_input\", \"message\": \"The model needs a complete reque"
+    },
+    {
+      "intended_category": "Help & intent handling",
+      "intent": 36,
+      "language": "HINGLISH",
+      "command": "ise band kar do",
+      "expected": {
+        "action": "clarify",
+        "args": {}
+      },
+      "correct": false,
+      "action": "close_window",
+      "args": {},
+      "predicted_category": "Apps & windows",
+      "confidence": 0.9988,
+      "latency_ms": 6.808,
+      "validation_errors": [],
+      "platform": "windows",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Send alt+f4 to the selected target window",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install optional Python module(s): pywinauto",
+      "planned_command": "close_window",
+      "default_gate": "allowed",
+      "executed": false
     }
   ],
   "published_output_policy": "Raw executor output is replaced by a short summary; outputs that could reveal local device details are not published."

@@ -19,11 +19,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from categories import category_for  # noqa: E402
 
-HF_REPO = "sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10"
+HF_REPO = "sraivante/tiny-agentic-home-robotic-for-edge-device-v10"
 HF_URL = f"https://huggingface.co/{HF_REPO}"
-GH_REPO = "sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10"
+GH_REPO = "sraivante/tiny-agentic-home-robotic-for-edge-device-v10"
 GH_URL = f"https://github.com/{GH_REPO}"
-PAGES_URL = "https://sraivante.github.io/tiny-agentic-home-robotic-v10-for-edge-device-v10/"
+PAGES_URL = "https://sraivante.github.io/tiny-agentic-home-robotic-for-edge-device-v10/"
 ZIP_URL = f"{GH_URL}/archive/refs/heads/main.zip"
 WEIGHTS_URL = f"{HF_URL}/resolve/main/models/a100_minilm_v10_quoted/best.pt"
 SHA256 = "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b"
@@ -33,8 +33,23 @@ CATEGORY_ORDER = ["Audio & media", "Display & appearance", "Network & connectivi
                   "Keyboard & clipboard", "Timers & productivity", "Security & accounts",
                   "Services & processes", "Software & development", "AI & models", "Terminal & sessions",
                   "System & power", "Help & intent handling"]
-LANG_NAMES = {"en": "English", "hi": "Hinglish (Roman, incl. small Devanagari slice)", "mix": "Code-mixed",
+LANG_NAMES = {"en": "ENGLISH", "hi": "HINGLISH (Roman script, incl. a small Devanagari slice)", "mix": "Code-mixed",
               "None": "Unlabelled (project A rows, mostly English/Hinglish)"}
+TOP_ACTIONS = ["set_volume", "gpio_on", "shutdown"]
+LANG_ORDER = {"ENGLISH": 0, "HINGLISH": 1}
+
+
+def english_first(items, language=lambda item: item["language"]):
+    """Stable sort: every ENGLISH item on top, then HINGLISH, each keeping its original order."""
+    return sorted(items, key=lambda item: LANG_ORDER.get(language(item), 2))
+USE_CASES = [("Offline voice assistant for a laptop or home", "set_volume"),
+             ("Raspberry Pi GPIO / I2C by voice or chat", "gpio_read"),
+             ("Device diagnostics chat-ops", "get_temperature"),
+             ("Cheap first-stage router for an LLM agent", "docker_list"),
+             ("Hands-free desktop and accessibility", "open_app"),
+             ("Edge DevOps", "service_restart"),
+             ("Credentials copied verbatim", "connect_wifi"),
+             ("Negated requests", "cancel_shutdown")]
 FILE_NAMES = {"union_test.jsonl": "Held-out test (unseen templates)", "A_practical-dev.jsonl": "Practical dev (A)",
               "B_golden_dev.jsonl": "Golden dev (B)"}
 FILE_NOTES = {"union_test.jsonl": "24,498 rows · all 371 actions · template families never seen in training",
@@ -141,8 +156,9 @@ def pair_examples():
     rows = []
     for w in win["rows"]:
         p = pi_rows.get(w["command"])
-        rows.append({"category": w["intended_category"], "command": w["command"], "action": w["action"],
-                     "args": w["args"], "confidence": w["confidence"], "win": w, "pi": p,
+        rows.append({"category": w["intended_category"], "language": w.get("language", ""), "intent": w.get("intent"),
+                     "command": w["command"], "action": w["action"], "args": w["args"],
+                     "confidence": w["confidence"], "expected": w.get("expected"), "win": w, "pi": p,
                      "gate": w.get("default_gate", "—")})
     return rows, win, pi
 
@@ -173,9 +189,9 @@ def code(s):
 def build(results):
     lap_eval, lap_bench, pi_eval, pi_bench = results
     examples, win, pi = pair_examples()
-    primary = {}
+    first_intent = {}
     for row in examples:
-        primary.setdefault(row["category"], row)
+        first_intent.setdefault(row["category"], row["intent"])
 
     # --- accuracy
     acc_rows = []
@@ -241,9 +257,7 @@ def build(results):
     # --- categories
     cat_table = []
     for category in CATEGORY_ORDER:
-        row = primary.get(category)
-        if not row:
-            continue
+      for row in [r for r in examples if r["category"] == category and r["intent"] == first_intent.get(category)]:
         win_result, pi_result = display_result(row["win"]), display_result(row["pi"])
         if row["gate"].startswith("blocked"):
             result = "blocked by default gate"
@@ -252,11 +266,11 @@ def build(results):
                                                   f"Pi: {pi_result}" if pi_result else "") if part)
         else:
             result = "plan only (not executed in this demo)"
-        cat_table.append([category, row["command"], output_text(row), tool_short(row["win"]) + f" [{ready_text(row['win'])}]",
+        cat_table.append([category, row["language"], row["command"], output_text(row), tool_short(row["win"]) + f" [{ready_text(row['win'])}]",
                           (tool_short(row["pi"]) + f" [{ready_text(row['pi'])}]") if row["pi"] else ("not measured (Pi went offline)" if NOTES.get("status") == "partial" else "not measured"),
                           row["gate"].split(" (")[0], result])
-    all_examples = [[row["category"], row["command"], output_text(row), f"{row['confidence']:.0%}",
-                     "✓" if row.get("expected_ok", True) else "✗"] for row in examples]
+    cat_table = english_first(cat_table, language=lambda r: r[1])
+    all_examples = []
     return dict(acc_rows=acc_rows, lang_rows=lang_rows, cat_rows=cat_rows, confusions=confusions, speed=speed,
                 eval_speed=eval_speed, temps=temps, cat_table=cat_table, examples=examples, test=test,
                 lap_eval=lap_eval, lap_bench=lap_bench, pi_eval=pi_eval, pi_bench=pi_bench, win=win, pi=pi,
@@ -272,15 +286,27 @@ def expected_labels():
 def mark_examples(data):
     expected = expected_labels()
     wrong = []
+    counts = {"ENGLISH": [0, 0], "HINGLISH": [0, 0]}
     for row in data["examples"]:
         want = expected.get(row["command"])
         ok = want is not None and want[0] == row["action"] and want[1] == row["args"]
         row["expected_ok"] = ok
+        row["expected_action"] = want[0] if want else None
+        counts.setdefault(row["language"], [0, 0])
+        counts[row["language"]][0] += ok
+        counts[row["language"]][1] += 1
         if not ok:
             wrong.append((row, want))
-    data["all_examples"] = [[r["category"], r["command"], output_text(r), f"{r['confidence']:.0%}",
-                             "✓" if r["expected_ok"] else "✗ (see note)"] for r in data["examples"]]
-    data["wrong"] = wrong
+    data["all_examples"] = [[r["category"], r["language"], r["command"], output_text(r), f"{r['confidence']:.0%}",
+                             "✓" if r["expected_ok"] else "✗ (see note)"] for r in english_first(data["examples"])]
+    data["wrong"] = english_first(wrong, language=lambda pair: pair[0]["language"])
+    data["lang_counts"] = counts
+    by_action = {}
+    for row in data["examples"]:
+        by_action.setdefault(row["expected_action"], []).append(row)
+    data["top_pairs"] = english_first([row for action in TOP_ACTIONS for row in by_action.get(action, [])])
+    data["use_case_rows"] = english_first([(title, row) for title, action in USE_CASES for row in by_action.get(action, [])],
+                                          language=lambda pair: pair[1]["language"])
     return data
 
 
@@ -291,12 +317,22 @@ def readme(d):
     lap2 = next(r for r in d["lap_bench"]["runs"] if r["threads"] == 2)
     pi2 = next((r for r in pi_bench["runs"] if r["threads"] == 2), None) if pi_bench else None
     pi_test = pi_eval["files"][0] if pi_eval else None
-    wrong_note = "\n".join(f"- `{r['command']}` gave `{output_text(r)}`; expected `{w[0]} {json.dumps(w[1], ensure_ascii=False)}`."
+    wrong_note = "\n".join(f"- {r['language']} `{r['command']}` gave `{output_text(r)}`; expected `{w[0]} {json.dumps(w[1], ensure_ascii=False)}`."
                            for r, w in d["wrong"]) or "- None in this sample."
     pi_speed_line = (f"**{pi2['latency_ms']['median']:.0f} ms** median per command on a Raspberry Pi 5 (2 threads)"
                      if pi2 else (f"about **{sum(NOTES['measurements']['warm_request_ms_2_threads']) / 2:.0f} ms** on a Raspberry Pi 5 (2 threads, partial run, see below)"
                                   if NOTES.get("status") == "partial" else "Raspberry Pi 5 latency: see the Pi section below"))
     pi_acc = (f"{pct(pi_test['exact_accuracy'])} on the Pi (identical predictions)" if pi_test else "Pi run: see below")
+    width = max(len(r["command"]) for r in d["top_pairs"]) + 2
+    top_block = "\n".join(f'{r["language"]:<9} {chr(34) + r["command"] + chr(34):<{width}} ->  {output_text(r)}'
+                           for r in d["top_pairs"])
+    en_test, hi_test = test["by_language"].get("en"), test["by_language"].get("hi")
+    lang_line = (f"ENGLISH **{pct(en_test['exact_accuracy'])}** · HINGLISH **{pct(hi_test['exact_accuracy'])}** exact "
+                 f"({en_test['rows']:,} and {hi_test['rows']:,} held-out commands)") if en_test and hi_test else "see below"
+    use_rows = [[title, row["language"], f"`{row['command']}`", f"`{output_text(row)}`"] for title, row in d["use_case_rows"]]
+    all_rows = [[c[0], c[1], f"`{c[2]}`", f"`{c[3]}`", c[4], c[5]] for c in d["all_examples"]]
+    counts = d["lang_counts"]
+    count_line = ", ".join(f"{lang} {ok} of {total}" for lang, (ok, total) in counts.items() if total)
     s = []
     s.append(f"""# Union Command v10: offline Hinglish/English command parser for laptop and Raspberry Pi agents
 
@@ -306,9 +342,7 @@ and covers **371 actions** in **17 categories**: audio, display, Wi-Fi, files, a
 Docker, local LLMs, Raspberry Pi GPIO/I2C and more.
 
 ```text
-"volume 40 kar do"          ->  set_volume   {{"value": 40}}
-"gpio 17 ko high karo"      ->  gpio_on      {{"pin": 17}}
-"10 min baad shutdown kar dena" -> shutdown  {{"amount": 10, "unit": "min"}}
+{top_block}
 ```
 
 | | |
@@ -316,6 +350,7 @@ Docker, local LLMs, Raspberry Pi GPIO/I2C and more.
 | Model file | 96.2 MB, FP32 PyTorch, 23,889,849 parameters |
 | Runs on | CPU only, fully offline after download (Windows, Linux, Raspberry Pi 5) |
 | Held-out test accuracy | **{pct(test['exact_accuracy'])} exact** (action + every argument) on {test['rows']:,} unseen-template commands; {pct(test['action_accuracy'])} action-only |
+| Accuracy by language | {lang_line} |
 | Speed | **{lap2['latency_ms']['median']:.1f} ms** median per command on a laptop i7-1360P (2 threads); {pi_speed_line} |
 | Links | [GitHub code]({GH_URL}) · [HTML test guide]({PAGES_URL}) · [Hugging Face model]({HF_URL}) |
 
@@ -330,16 +365,12 @@ The model is the "understanding" step of an on-device agent:
 speech-to-text (for example Whisper) → **Union Command v10** → validator/risk gate → executor (tool call).
 It replaces a large LLM for the common, well-defined device commands, so the reply is instant, private and free.
 
-| Use case | Example command | Model output |
-|---|---|---|
-| Offline voice assistant for a laptop or home | `volume 40 kar do` | `set_volume {{"value": 40}}` |
-| Raspberry Pi GPIO / I2C by voice or chat | `physical pin 11 ki value padho` | `gpio_read {{"numbering": "board", "pin": 11}}` |
-| Device diagnostics chat-ops | `pi ka temperature batao` | `get_temperature {{}}` |
-| Cheap first-stage router for an LLM agent | `docker containers list karo` | `docker_list {{}}`, and send `unknown`/low-confidence text to the LLM |
-| Hands-free desktop and accessibility | `notepad kholo` | `open_app {{"app": "notepad"}}` |
-| Edge DevOps | `nginx service restart karo` | `service_restart {{"service": "nginx"}}` |
-| Credentials copied verbatim | `connect to wifi Redmi Note 12 password hello@123` | `connect_wifi {{"ssid": "Redmi Note 12", "password": "hello@123"}}` |
-| Safe handling of vague or negated requests | `turn it off` / `shutdown mat karo` | `clarify {{}}` / `cancel_shutdown {{}}` |
+Every use case is shown in ENGLISH first, then the same command in HINGLISH. The outputs are the real predictions of v10.
+
+{md_table(["Use case", "Language", "Example command", "Model output"], use_rows)}
+
+For an LLM agent, send `unknown` or low-confidence text on to the bigger model. Vague commands such as `turn it off`
+come back as `clarify`, so the agent can ask the user what to switch off.
 
 Every prediction returns JSON with the action, typed arguments, a confidence score, the top-3 alternative actions and
 schema validation errors:
@@ -354,17 +385,24 @@ action is `clarify`, and hand `unknown` or low-confidence text to a bigger model
 
 ## Categories, sample commands, outputs and executor tools
 
-One sample per category. "Model output" is the real prediction of v10. "Executor tool" is what the sample executor
+One intent per category: all ENGLISH commands first, then the same commands in HINGLISH. "Model output" is the real prediction of v10. "Executor tool" is what the sample executor
 would run for that output on each platform; the tag in brackets shows whether that adapter was ready on the test
 machine. "Result" is shown only for read-only commands that were actually executed; other rows were planned, not run.
 
-{md_table(["Category", "Sample command", "Model output", "Executor tool: Windows 11", "Executor tool: Raspberry Pi 5", "Default gate", "Result"], d["cat_table"])}
+{md_table(["Category", "Language", "Sample command", "Model output", "Executor tool: Windows 11", "Executor tool: Raspberry Pi 5", "Default gate", "Result"], d["cat_table"])}
 
-All {len(d['examples'])} illustrative commands (two per category) are in
+<details>
+<summary>All {len(d['examples'])} example commands: {len(d['examples']) // 2} intents, each in ENGLISH and HINGLISH</summary>
+
+{md_table(["Category", "Language", "Command", "Model output", "Confidence", "Correct"], all_rows)}
+
+</details>
+
+All {len(d['examples'])} illustrative commands are in
 [`examples/sample_commands.jsonl`](examples/sample_commands.jsonl), with per-platform executor plans in
 [`examples/category_examples_windows.json`](examples/category_examples_windows.json)
 and [`examples/category_examples_pi.json`](examples/category_examples_pi.json).
-v10 got {sum(r['expected_ok'] for r in d['examples'])} of {len(d['examples'])} exactly right. The miss:
+v10 got {sum(r['expected_ok'] for r in d['examples'])} of {len(d['examples'])} exactly right ({count_line}). The misses:
 
 {wrong_note}
 
@@ -424,7 +462,7 @@ Full accuracy run speed (batched, held-out test):
 
 ```bash
 git clone {GH_URL}.git
-cd tiny-agentic-home-robotic-v10-for-edge-device-v10
+cd tiny-agentic-home-robotic-for-edge-device-v10
 python download_model.py      # 96.2 MB from Hugging Face, SHA-256 verified
 ```
 
@@ -454,9 +492,9 @@ pip install -r requirements.txt
 ### 3. Parse commands (nothing is executed)
 
 ```bash
-python quickstart.py                                  # demo commands
-python quickstart.py "wifi band karo" "pin 17 ki value padho"
-python quickstart.py --json "5 minute ka timer lagao"
+python quickstart.py                                  # demo: ENGLISH first, then HINGLISH
+python quickstart.py "turn off the wifi" "wifi band karo"
+python quickstart.py --json "set a timer for 5 minutes"
 ```
 
 From Python:
@@ -464,7 +502,8 @@ From Python:
 ```python
 from tinyagent.runtime import Predictor
 model = Predictor("models/a100_minilm_v10_quoted/best.pt", threads=2)
-print(model.predict("volume 40 kar do"))
+print(model.predict("set the volume to 40"))    # ENGLISH
+print(model.predict("volume 40 kar do"))        # HINGLISH
 ```
 
 ### 4. Reproduce the tests on your device
@@ -563,7 +602,7 @@ def page(d, readme_text):
     lap2 = next(r for r in d["lap_bench"]["runs"] if r["threads"] == 2)
     pi2 = next((r for r in d["pi_bench"]["runs"] if r["threads"] == 2), None) if d["pi_bench"] else None
     pi_test = d["pi_eval"]["files"][0] if d["pi_eval"] else None
-    wrong = "".join(f"<li><code>{html.escape(r['command'])}</code> gave <code>{html.escape(output_text(r))}</code>; "
+    wrong = "".join(f"<li>{html.escape(r['language'])} <code>{html.escape(r['command'])}</code> gave <code>{html.escape(output_text(r))}</code>; "
                     f"expected <code>{html.escape(w[0] + ' ' + json.dumps(w[1], ensure_ascii=False))}</code>.</li>"
                     for r, w in d["wrong"])
     stat = lambda value, label: f'<div class="stat"><strong>{html.escape(value)}</strong><span>{html.escape(label)}</span></div>'
@@ -572,22 +611,19 @@ def page(d, readme_text):
         stat(f"{lap2['latency_ms']['median']:.1f} ms", "per command, laptop i7-1360P, 2 threads"),
         stat(f"{pi2['latency_ms']['median']:.0f} ms" if pi2 else (f"~{sum(NOTES['measurements']['warm_request_ms_2_threads']) / 2:.0f} ms" if NOTES.get("status") == "partial" else "see below"),
              "per command, Raspberry Pi 5, 2 threads" + ("" if pi2 else " (partial run)")),
+        stat(f"{pct(test['by_language']['en']['exact_accuracy'], 1)} / {pct(test['by_language']['hi']['exact_accuracy'], 1)}",
+             "exact match ENGLISH / HINGLISH, held-out test"),
         stat("371", "actions in 17 categories"),
         stat("96.2 MB", "FP32 model, CPU only, offline"),
     ])
-    use_cases = [
-        ("Offline voice assistant", "volume 40 kar do", 'set_volume {"value": 40}'),
-        ("Raspberry Pi GPIO / I2C", "physical pin 11 ki value padho", 'gpio_read {"numbering": "board", "pin": 11}'),
-        ("Device diagnostics", "pi ka temperature batao", "get_temperature {}"),
-        ("First-stage router for LLM agents", "docker containers list karo", "docker_list {}"),
-        ("Hands-free desktop", "notepad kholo", 'open_app {"app": "notepad"}'),
-        ("Edge DevOps", "nginx service restart karo", 'service_restart {"service": "nginx"}'),
-        ("Credentials copied verbatim", "connect to wifi Redmi Note 12 password hello@123",
-         'connect_wifi {"ssid": "Redmi Note 12", "password": "hello@123"}'),
-        ("Vague or negated requests", "turn it off  ·  shutdown mat karo", "clarify {}  ·  cancel_shutdown {}"),
-    ]
-    cards = "".join(f'<div class="card"><h3>{html.escape(t)}</h3><p class="say">“{html.escape(c)}”</p>'
-                    f'<p class="out"><code>{html.escape(o)}</code></p></div>' for t, c, o in use_cases)
+    cards_by_title = {}
+    for title, row in d["use_case_rows"]:
+        cards_by_title.setdefault(title, []).append(row)
+    cards = "".join(
+        f'<div class="card"><h3>{html.escape(title)}</h3>' + "".join(
+            f'<p class="say"><span class="lang">{html.escape(r["language"])}</span> “{html.escape(r["command"])}”</p>'
+            f'<p class="out"><code>{html.escape(output_text(r))}</code></p>' for r in rows) + '</div>'
+        for title, rows in cards_by_title.items())
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -623,7 +659,9 @@ p.lede {{ font-size:1.12rem; color:var(--muted); max-width:760px; }}
 .cards {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }}
 .card {{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; }}
 .card .say {{ margin:.4em 0; font-style:italic; }}
-.card .out {{ margin:0; font-size:.88rem; }}
+.card .out {{ margin:0 0 .5em; font-size:.88rem; }}
+.lang {{ display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.06em; padding:1px 6px; margin-right:4px;
+  border-radius:4px; background:var(--accent-soft); color:var(--accent); font-style:normal; vertical-align:1px; }}
 .pipeline {{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:12px 0; }}
 .pipeline span {{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:6px 10px; font-size:.9rem; }}
 .pipeline .model {{ border-color:var(--accent); color:var(--accent); font-weight:600; }}
@@ -660,14 +698,14 @@ footer {{ margin-top:48px; color:var(--muted); font-size:.88rem; }}
 <p>It covers 371 actions across 17 categories. Every prediction includes a confidence score, the top-3 alternatives and schema validation errors, so an agent can execute, ask the user (<code>clarify</code>) or hand the text to a larger LLM (<code>unknown</code> or low confidence).</p>
 <pre><code>{html.escape('{"action": "set_timer", "args": {"amount": 5, "unit": "min"}, "confidence": 0.9998,\n "alternatives": [...], "validation_errors": [], "latency_ms": 6.1}')}</code></pre>
 
-<h2>Uses, with examples</h2>
+<h2>Uses, with examples in ENGLISH and HINGLISH</h2>
 <div class="cards">{cards}</div>
 
 <h2>Categories, sample commands, outputs and executor tools</h2>
-<p>One sample per category. <em>Model output</em> is the real v10 prediction. <em>Executor tool</em> is what the sample executor would run on each platform; the bracket shows whether that adapter was ready on the test machine. <em>Result</em> appears only for read-only commands that were actually executed.</p>
-{html_table(["Category", "Sample command", "Model output", "Executor tool: Windows 11", "Executor tool: Raspberry Pi 5", "Default gate", "Result"], d["cat_table"])}
-<details><summary>All {len(d['examples'])} illustrative commands ({sum(r['expected_ok'] for r in d['examples'])} exactly right)</summary>
-{html_table(["Category", "Command", "Model output", "Confidence", "Correct"], d["all_examples"])}
+<p>One intent per category: all ENGLISH commands first, then the same commands in HINGLISH. <em>Model output</em> is the real v10 prediction. <em>Executor tool</em> is what the sample executor would run on each platform; the bracket shows whether that adapter was ready on the test machine. <em>Result</em> appears only for read-only commands that were actually executed.</p>
+{html_table(["Category", "Language", "Sample command", "Model output", "Executor tool: Windows 11", "Executor tool: Raspberry Pi 5", "Default gate", "Result"], d["cat_table"])}
+<details><summary>All {len(d['examples'])} example commands, {len(d['examples']) // 2} intents in ENGLISH and HINGLISH ({sum(r['expected_ok'] for r in d['examples'])} exactly right)</summary>
+{html_table(["Category", "Language", "Command", "Model output", "Confidence", "Correct"], d["all_examples"])}
 <ul>{wrong}</ul>
 </details>
 
@@ -693,7 +731,7 @@ footer {{ margin-top:48px; color:var(--muted); font-size:.88rem; }}
 <div class="steps">
 <div><h3>1 · Get the code and model</h3>
 <pre><code>git clone {GH_URL}.git
-cd tiny-agentic-home-robotic-v10-for-edge-device-v10
+cd tiny-agentic-home-robotic-for-edge-device-v10
 python download_model.py</code></pre>
 <p class="muted">The downloader fetches the 96.2 MB model from Hugging Face and verifies its SHA-256.</p></div>
 <div><h3>2 · Install (Python 3.11–3.13, CPU)</h3>
@@ -704,8 +742,8 @@ pip install torch --index-url https://download.pytorch.org/whl/cpu
 pip install -r requirements.txt</code></pre></div>
 <div><h3>3 · Parse commands (no execution)</h3>
 <pre><code>python quickstart.py
-python quickstart.py "wifi band karo"
-python quickstart.py --json "5 minute ka timer lagao"</code></pre></div>
+python quickstart.py "turn off the wifi" "wifi band karo"
+python quickstart.py --json "set a timer for 5 minutes"</code></pre></div>
 <div><h3>4 · Reproduce the tests</h3>
 <pre><code>python scripts/evaluate.py --data examples/sample_commands.jsonl
 python scripts/benchmark.py --threads 1,2,4</code></pre></div>
@@ -717,6 +755,7 @@ bash run.sh      # Linux / Raspberry Pi
 <div><h3>Python API</h3>
 <pre><code>from tinyagent.runtime import Predictor
 m = Predictor("models/a100_minilm_v10_quoted/best.pt", threads=2)
+print(m.predict("set the volume to 40"))
 print(m.predict("volume 40 kar do"))</code></pre></div>
 </div>
 

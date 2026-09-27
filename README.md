@@ -6,9 +6,12 @@ and covers **371 actions** in **17 categories**: audio, display, Wi-Fi, files, a
 Docker, local LLMs, Raspberry Pi GPIO/I2C and more.
 
 ```text
-"volume 40 kar do"          ->  set_volume   {"value": 40}
-"gpio 17 ko high karo"      ->  gpio_on      {"pin": 17}
-"10 min baad shutdown kar dena" -> shutdown  {"amount": 10, "unit": "min"}
+ENGLISH   "set the volume to 40"          ->  set_volume {"value": 40}
+ENGLISH   "set gpio 17 high"              ->  gpio_on {"pin": 17}
+ENGLISH   "shut down in 10 minutes"       ->  shutdown {"amount": 10, "unit": "min"}
+HINGLISH  "volume 40 kar do"              ->  set_volume {"value": 40}
+HINGLISH  "gpio 17 ko high karo"          ->  gpio_on {"pin": 17}
+HINGLISH  "10 min baad shutdown kar dena" ->  shutdown {"amount": 10, "unit": "min"}
 ```
 
 | | |
@@ -16,8 +19,9 @@ Docker, local LLMs, Raspberry Pi GPIO/I2C and more.
 | Model file | 96.2 MB, FP32 PyTorch, 23,889,849 parameters |
 | Runs on | CPU only, fully offline after download (Windows, Linux, Raspberry Pi 5) |
 | Held-out test accuracy | **94.87% exact** (action + every argument) on 24,498 unseen-template commands; 96.05% action-only |
+| Accuracy by language | ENGLISH **92.56%** · HINGLISH **95.43%** exact (8,038 and 9,958 held-out commands) |
 | Speed | **5.9 ms** median per command on a laptop i7-1360P (2 threads); **40 ms** median per command on a Raspberry Pi 5 (2 threads) |
-| Links | [GitHub code](https://github.com/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10) · [HTML test guide](https://sraivante.github.io/tiny-agentic-home-robotic-v10-for-edge-device-v10/) · [Hugging Face model](https://huggingface.co/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10) |
+| Links | [GitHub code](https://github.com/sraivante/tiny-agentic-home-robotic-for-edge-device-v10) · [HTML test guide](https://sraivante.github.io/tiny-agentic-home-robotic-for-edge-device-v10/) · [Hugging Face model](https://huggingface.co/sraivante/tiny-agentic-home-robotic-for-edge-device-v10) |
 
 > **Executor notice.** The model only *parses* commands. The executor included in this repository is a **sample
 > for testing, not a fully developed product**. It is there so you can see a parsed command turn into a real
@@ -30,16 +34,29 @@ The model is the "understanding" step of an on-device agent:
 speech-to-text (for example Whisper) → **Union Command v10** → validator/risk gate → executor (tool call).
 It replaces a large LLM for the common, well-defined device commands, so the reply is instant, private and free.
 
-| Use case | Example command | Model output |
-|---|---|---|
-| Offline voice assistant for a laptop or home | `volume 40 kar do` | `set_volume {"value": 40}` |
-| Raspberry Pi GPIO / I2C by voice or chat | `physical pin 11 ki value padho` | `gpio_read {"numbering": "board", "pin": 11}` |
-| Device diagnostics chat-ops | `pi ka temperature batao` | `get_temperature {}` |
-| Cheap first-stage router for an LLM agent | `docker containers list karo` | `docker_list {}`, and send `unknown`/low-confidence text to the LLM |
-| Hands-free desktop and accessibility | `notepad kholo` | `open_app {"app": "notepad"}` |
-| Edge DevOps | `nginx service restart karo` | `service_restart {"service": "nginx"}` |
-| Credentials copied verbatim | `connect to wifi Redmi Note 12 password hello@123` | `connect_wifi {"ssid": "Redmi Note 12", "password": "hello@123"}` |
-| Safe handling of vague or negated requests | `turn it off` / `shutdown mat karo` | `clarify {}` / `cancel_shutdown {}` |
+Every use case is shown in ENGLISH first, then the same command in HINGLISH. The outputs are the real predictions of v10.
+
+| Use case | Language | Example command | Model output |
+|---|---|---|---|
+| Offline voice assistant for a laptop or home | ENGLISH | `set the volume to 40` | `set_volume {"value": 40}` |
+| Raspberry Pi GPIO / I2C by voice or chat | ENGLISH | `read the value of physical pin 11` | `gpio_read {"numbering": "board", "pin": 11}` |
+| Device diagnostics chat-ops | ENGLISH | `what is the pi temperature` | `get_temperature {}` |
+| Cheap first-stage router for an LLM agent | ENGLISH | `list docker containers` | `docker_list {}` |
+| Hands-free desktop and accessibility | ENGLISH | `open notepad` | `open_app {"app": "notepad"}` |
+| Edge DevOps | ENGLISH | `restart the nginx service` | `service_restart {"service": "nginx"}` |
+| Credentials copied verbatim | ENGLISH | `connect to wifi Redmi Note 12 password hello@123` | `connect_wifi {"password": "hello@123", "ssid": "Redmi Note 12"}` |
+| Negated requests | ENGLISH | `don't shut down the laptop` | `cancel_shutdown {}` |
+| Offline voice assistant for a laptop or home | HINGLISH | `volume 40 kar do` | `set_volume {"value": 40}` |
+| Raspberry Pi GPIO / I2C by voice or chat | HINGLISH | `physical pin 11 ki value padho` | `gpio_read {"numbering": "board", "pin": 11}` |
+| Device diagnostics chat-ops | HINGLISH | `pi ka temperature batao` | `get_temperature {}` |
+| Cheap first-stage router for an LLM agent | HINGLISH | `docker containers list karo` | `docker_list {}` |
+| Hands-free desktop and accessibility | HINGLISH | `notepad kholo` | `open_app {"app": "notepad"}` |
+| Edge DevOps | HINGLISH | `nginx service restart karo` | `service_restart {"service": "nginx"}` |
+| Credentials copied verbatim | HINGLISH | `Redmi Note 12 wifi se connect karo password hello@123` | `connect_wifi {"password": "hello@123", "ssid": "Redmi Note 12"}` |
+| Negated requests | HINGLISH | `shutdown mat karo` | `cancel_shutdown {}` |
+
+For an LLM agent, send `unknown` or low-confidence text on to the bigger model. Vague commands such as `turn it off`
+come back as `clarify`, so the agent can ask the user what to switch off.
 
 Every prediction returns JSON with the action, typed arguments, a confidence score, the top-3 alternative actions and
 schema validation errors:
@@ -54,37 +71,136 @@ action is `clarify`, and hand `unknown` or low-confidence text to a bigger model
 
 ## Categories, sample commands, outputs and executor tools
 
-One sample per category. "Model output" is the real prediction of v10. "Executor tool" is what the sample executor
+One intent per category: all ENGLISH commands first, then the same commands in HINGLISH. "Model output" is the real prediction of v10. "Executor tool" is what the sample executor
 would run for that output on each platform; the tag in brackets shows whether that adapter was ready on the test
 machine. "Result" is shown only for read-only commands that were actually executed; other rows were planned, not run.
 
-| Category | Sample command | Model output | Executor tool: Windows 11 | Executor tool: Raspberry Pi 5 | Default gate | Result |
-|---|---|---|---|---|---|---|
-| Audio & media | volume 40 kar do | set_volume {"value": 40} | Python adapter executors/windows.py: Set master volume to an exact percent [needs pycaw] | Python adapter executors/common.py: Set master volume to an exact percent [needs pactl] | allowed | plan only (not executed in this demo) |
-| Display & appearance | brightness thoda kam karo | brightness_down {} | PowerShell: $b=Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness… [ready] | Python adapter executors/common.py: Decrease brightness (default step 10) [needs brightnessctl] | allowed | plan only (not executed in this demo) |
-| Network & connectivity | wifi ka signal kitna strong hai | get_wifi_signal {} | netsh.exe wlan show interfaces [ready] | nmcli device wifi list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
-| GPIO & I2C | gpio 17 ko high karo | gpio_on {"pin": 17} | Python adapter executors/common.py: Set a GPIO pin HIGH (e.g. relay / LED on) [Pi only] | pinctrl set 17 op dh [ready] | blocked | blocked by default gate |
-| Hardware & Raspberry Pi | pi ka temperature batao | get_temperature {} | PowerShell: $t=Get-CimInstance -Namespace root/wmi -ClassName MSAcpi_ThermalZoneTe… [ready] | vcgencmd measure_temp [ready] | allowed | Windows: failed: needs administrator rights; Pi: temp=43.9'C |
-| Files & storage | create file "notes/todo.txt" | create_file {"path": "notes/todo.txt"} | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | allowed | plan only (not executed in this demo) |
-| Apps & windows | notepad kholo | open_app {"app": "notepad"} | Python adapter executors/desktop.py: Open / launch an application [needs pywinauto] | Python adapter executors/desktop.py: Open / launch an application [ready] | allowed | plan only (not executed in this demo) |
-| Browser & web | youtube pe lofi music search karo | youtube_search {"query": "lofi music"} | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | allowed | plan only (not executed in this demo) |
-| Keyboard & clipboard | sab select karo | select_all {} | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs pywinauto] | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs wmctrl] | allowed | plan only (not executed in this demo) |
-| Timers & productivity | 5 minute ka timer lagao | set_timer {"amount": 5, "unit": "min"} | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | allowed | plan only (not executed in this demo) |
-| Security & accounts | firewall ka status batao | firewall_status {} | PowerShell: Get-NetFirewallProfile \| Select-Object Name,Enabled \| ConvertTo-Json [ready] | Python adapter executors/common.py: show firewall status [needs ufw] | allowed | Windows: completed (output not published: local device details) |
-| Services & processes | ssh service ka status dikhao | service_status {"service": "ssh"} | PowerShell: Get-Service -Name $a.service \| Select-Object Name,Status,DisplayName \|… [ready] | systemctl status --no-pager -- ssh [ready] | allowed | Windows: failed: no such service on this OS |
-| Software & development | docker containers list karo | docker_list {} | docker.EXE ps -a [ready] | docker ps -a [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
-| AI & models | ollama pe kaunse models hain | list_llm_models {} | ollama.EXE list [ready] | ollama list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
-| Terminal & sessions | tmux sessions dikhao | list_sessions {} | Python adapter executors/common.py: List sessions [Pi only] | Python adapter executors/common.py: List sessions [needs tmux] | allowed | plan only (not executed in this demo) |
-| System & power | cpu usage batao | get_cpu_usage {} | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | allowed | Windows: CPU 14.6 %; Pi: CPU 0.0 % |
-| Help & intent handling | tum kya kya kar sakte ho | help {} | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | allowed | Windows: 371 actions, 221 live adapters here; Pi: 371 actions, 251 live adapters here |
+| Category | Language | Sample command | Model output | Executor tool: Windows 11 | Executor tool: Raspberry Pi 5 | Default gate | Result |
+|---|---|---|---|---|---|---|---|
+| Audio & media | ENGLISH | set the volume to 40 | set_volume {"value": 40} | Python adapter executors/windows.py: Set master volume to an exact percent [needs pycaw] | Python adapter executors/common.py: Set master volume to an exact percent [needs pactl] | allowed | plan only (not executed in this demo) |
+| Display & appearance | ENGLISH | lower the brightness a little | brightness_down {} | PowerShell: $b=Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness… [ready] | Python adapter executors/common.py: Decrease brightness (default step 10) [needs brightnessctl] | allowed | plan only (not executed in this demo) |
+| Network & connectivity | ENGLISH | how strong is the wifi signal | get_wifi_signal {} | netsh.exe wlan show interfaces [ready] | nmcli device wifi list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| GPIO & I2C | ENGLISH | set gpio 17 high | gpio_on {"pin": 17} | Python adapter executors/common.py: Set a GPIO pin HIGH (e.g. relay / LED on) [Pi only] | pinctrl set 17 op dh [ready] | blocked | blocked by default gate |
+| Hardware & Raspberry Pi | ENGLISH | what is the pi temperature | get_temperature {} | PowerShell: $t=Get-CimInstance -Namespace root/wmi -ClassName MSAcpi_ThermalZoneTe… [ready] | vcgencmd measure_temp [ready] | allowed | Windows: failed: needs administrator rights; Pi: temp=43.9'C |
+| Files & storage | ENGLISH | create file "notes/todo.txt" | create_file {"path": "notes/todo.txt"} | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | allowed | plan only (not executed in this demo) |
+| Apps & windows | ENGLISH | open notepad | open_app {"app": "notepad"} | Python adapter executors/desktop.py: Open / launch an application [needs pywinauto] | Python adapter executors/desktop.py: Open / launch an application [ready] | allowed | plan only (not executed in this demo) |
+| Browser & web | ENGLISH | search youtube for lofi music | youtube_search {"query": "lofi music"} | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | allowed | plan only (not executed in this demo) |
+| Keyboard & clipboard | ENGLISH | select all | select_all {} | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs pywinauto] | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs wmctrl] | allowed | plan only (not executed in this demo) |
+| Timers & productivity | ENGLISH | set a timer for 5 minutes | set_timer {"amount": 5, "unit": "min"} | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | allowed | plan only (not executed in this demo) |
+| Security & accounts | ENGLISH | show the firewall status | firewall_status {} | PowerShell: Get-NetFirewallProfile \| Select-Object Name,Enabled \| ConvertTo-Json [ready] | Python adapter executors/common.py: show firewall status [needs ufw] | allowed | Windows: completed (output not published: local device details) |
+| Services & processes | ENGLISH | show the status of the ssh service | service_status {"service": "ssh"} | PowerShell: Get-Service -Name $a.service \| Select-Object Name,Status,DisplayName \|… [ready] | systemctl status --no-pager -- ssh [ready] | allowed | Windows: failed: no such service on this OS |
+| Software & development | ENGLISH | list docker containers | docker_list {} | docker.EXE ps -a [ready] | docker ps -a [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| AI & models | ENGLISH | which models are available in ollama | list_llm_models {} | ollama.EXE list [ready] | ollama list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| Terminal & sessions | ENGLISH | show tmux sessions | list_sessions {} | Python adapter executors/common.py: List sessions [Pi only] | Python adapter executors/common.py: List sessions [needs tmux] | allowed | plan only (not executed in this demo) |
+| System & power | ENGLISH | what is the cpu usage | get_cpu_usage {} | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | allowed | Windows: CPU 7.5 %; Pi: CPU 0.0 % |
+| Help & intent handling | ENGLISH | what can you do | help {} | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | allowed | Windows: 371 actions, 221 live adapters here; Pi: 371 actions, 251 live adapters here |
+| Audio & media | HINGLISH | volume 40 kar do | set_volume {"value": 40} | Python adapter executors/windows.py: Set master volume to an exact percent [needs pycaw] | Python adapter executors/common.py: Set master volume to an exact percent [needs pactl] | allowed | plan only (not executed in this demo) |
+| Display & appearance | HINGLISH | brightness thoda kam karo | brightness_down {} | PowerShell: $b=Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness… [ready] | Python adapter executors/common.py: Decrease brightness (default step 10) [needs brightnessctl] | allowed | plan only (not executed in this demo) |
+| Network & connectivity | HINGLISH | wifi ka signal kitna strong hai | get_wifi_signal {} | netsh.exe wlan show interfaces [ready] | nmcli device wifi list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| GPIO & I2C | HINGLISH | gpio 17 ko high karo | gpio_on {"pin": 17} | Python adapter executors/common.py: Set a GPIO pin HIGH (e.g. relay / LED on) [Pi only] | pinctrl set 17 op dh [ready] | blocked | blocked by default gate |
+| Hardware & Raspberry Pi | HINGLISH | pi ka temperature batao | get_temperature {} | PowerShell: $t=Get-CimInstance -Namespace root/wmi -ClassName MSAcpi_ThermalZoneTe… [ready] | vcgencmd measure_temp [ready] | allowed | Windows: failed: needs administrator rights; Pi: temp=43.3'C |
+| Files & storage | HINGLISH | file "notes/todo.txt" bana do | create_file {"path": "notes/todo.txt"} | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | allowed | plan only (not executed in this demo) |
+| Apps & windows | HINGLISH | notepad kholo | open_app {"app": "notepad"} | Python adapter executors/desktop.py: Open / launch an application [needs pywinauto] | Python adapter executors/desktop.py: Open / launch an application [ready] | allowed | plan only (not executed in this demo) |
+| Browser & web | HINGLISH | youtube pe lofi music search karo | youtube_search {"query": "lofi music"} | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | allowed | plan only (not executed in this demo) |
+| Keyboard & clipboard | HINGLISH | sab select karo | select_all {} | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs pywinauto] | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs wmctrl] | allowed | plan only (not executed in this demo) |
+| Timers & productivity | HINGLISH | 5 minute ka timer lagao | set_timer {"amount": 5, "unit": "min"} | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | allowed | plan only (not executed in this demo) |
+| Security & accounts | HINGLISH | firewall ka status batao | firewall_status {} | PowerShell: Get-NetFirewallProfile \| Select-Object Name,Enabled \| ConvertTo-Json [ready] | Python adapter executors/common.py: show firewall status [needs ufw] | allowed | Windows: completed (output not published: local device details) |
+| Services & processes | HINGLISH | ssh service ka status dikhao | service_status {"service": "ssh"} | PowerShell: Get-Service -Name $a.service \| Select-Object Name,Status,DisplayName \|… [ready] | systemctl status --no-pager -- ssh [ready] | allowed | Windows: failed: no such service on this OS |
+| Software & development | HINGLISH | docker containers list karo | docker_list {} | docker.EXE ps -a [ready] | docker ps -a [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| AI & models | HINGLISH | ollama pe kaunse models hain | list_llm_models {} | ollama.EXE list [ready] | ollama list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| Terminal & sessions | HINGLISH | tmux sessions dikhao | list_sessions {} | Python adapter executors/common.py: List sessions [Pi only] | Python adapter executors/common.py: List sessions [needs tmux] | allowed | plan only (not executed in this demo) |
+| System & power | HINGLISH | cpu usage batao | get_cpu_usage {} | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | allowed | Windows: CPU 6.7 %; Pi: CPU 3.7 % |
+| Help & intent handling | HINGLISH | tum kya kya kar sakte ho | help {} | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | allowed | Windows: 371 actions, 221 live adapters here; Pi: 371 actions, 251 live adapters here |
 
-All 35 illustrative commands (two per category) are in
+<details>
+<summary>All 72 example commands: 36 intents, each in ENGLISH and HINGLISH</summary>
+
+| Category | Language | Command | Model output | Confidence | Correct |
+|---|---|---|---|---|---|
+| Audio & media | ENGLISH | `set the volume to 40` | `set_volume {"value": 40}` | 100% | ✓ |
+| Audio & media | ENGLISH | `pause the music` | `media_pause {}` | 100% | ✓ |
+| Display & appearance | ENGLISH | `lower the brightness a little` | `brightness_down {}` | 100% | ✓ |
+| Display & appearance | ENGLISH | `turn on dark mode` | `dark_mode_on {}` | 100% | ✓ |
+| Network & connectivity | ENGLISH | `how strong is the wifi signal` | `get_wifi_signal {}` | 100% | ✓ |
+| Network & connectivity | ENGLISH | `connect to wifi Redmi Note 12 password hello@123` | `connect_wifi {"password": "hello@123", "ssid": "Redmi Note 12"}` | 100% | ✓ |
+| GPIO & I2C | ENGLISH | `set gpio 17 high` | `gpio_on {"pin": 17}` | 100% | ✓ |
+| GPIO & I2C | ENGLISH | `read the value of physical pin 11` | `gpio_read {"numbering": "board", "pin": 11}` | 100% | ✓ |
+| GPIO & I2C | ENGLISH | `scan the i2c bus` | `i2c_scan {}` | 100% | ✓ |
+| Hardware & Raspberry Pi | ENGLISH | `what is the pi temperature` | `get_temperature {}` | 100% | ✓ |
+| Hardware & Raspberry Pi | ENGLISH | `what is the fan speed` | `get_fan_speed {}` | 100% | ✓ |
+| Files & storage | ENGLISH | `create file "notes/todo.txt"` | `create_file {"path": "notes/todo.txt"}` | 100% | ✓ |
+| Files & storage | ENGLISH | `how much disk space is left` | `get_disk_space {}` | 100% | ✓ |
+| Apps & windows | ENGLISH | `open notepad` | `open_app {"app": "notepad"}` | 100% | ✓ |
+| Apps & windows | ENGLISH | `minimize this window` | `minimize_window {}` | 100% | ✓ |
+| Browser & web | ENGLISH | `search youtube for lofi music` | `youtube_search {"query": "lofi music"}` | 100% | ✓ |
+| Browser & web | ENGLISH | `login to github username dev_user password Test@123` | `web_login {"password": "Test@123", "site": "github", "username": "dev_user"}` | 100% | ✓ |
+| Keyboard & clipboard | ENGLISH | `select all` | `select_all {}` | 100% | ✓ |
+| Keyboard & clipboard | ENGLISH | `show clipboard history` | `clipboard_history {}` | 100% | ✓ |
+| Timers & productivity | ENGLISH | `set a timer for 5 minutes` | `set_timer {"amount": 5, "unit": "min"}` | 100% | ✓ |
+| Timers & productivity | ENGLISH | `calculate 12 + 8` | `calculate {"expression": "12 + 8"}` | 100% | ✓ |
+| Security & accounts | ENGLISH | `show the firewall status` | `firewall_status {}` | 100% | ✓ |
+| Security & accounts | ENGLISH | `allow port 8080 in the firewall` | `firewall_allow {"port": 8080}` | 100% | ✓ |
+| Services & processes | ENGLISH | `show the status of the ssh service` | `service_status {"service": "ssh"}` | 100% | ✓ |
+| Services & processes | ENGLISH | `restart the nginx service` | `service_restart {"service": "nginx"}` | 100% | ✓ |
+| Software & development | ENGLISH | `list docker containers` | `docker_list {}` | 100% | ✓ |
+| Software & development | ENGLISH | `install the numpy python package` | `install_python_package {"name": "numpy"}` | 100% | ✓ |
+| AI & models | ENGLISH | `which models are available in ollama` | `list_llm_models {}` | 100% | ✓ |
+| AI & models | ENGLISH | `run the llama3 model` | `run_llm {"model": "llama3"}` | 100% | ✓ |
+| Terminal & sessions | ENGLISH | `show tmux sessions` | `list_sessions {}` | 100% | ✓ |
+| Terminal & sessions | ENGLISH | `run command "ls -la"` | `run_command {"command": "command \"ls -la"}` | 100% | ✗ (see note) |
+| System & power | ENGLISH | `what is the cpu usage` | `get_cpu_usage {}` | 100% | ✓ |
+| System & power | ENGLISH | `shut down in 10 minutes` | `shutdown {"amount": 10, "unit": "min"}` | 100% | ✓ |
+| System & power | ENGLISH | `don't shut down the laptop` | `cancel_shutdown {}` | 100% | ✓ |
+| Help & intent handling | ENGLISH | `what can you do` | `help {}` | 99% | ✓ |
+| Help & intent handling | ENGLISH | `turn it off` | `clarify {}` | 100% | ✓ |
+| Audio & media | HINGLISH | `volume 40 kar do` | `set_volume {"value": 40}` | 100% | ✓ |
+| Audio & media | HINGLISH | `gaana pause karo` | `media_pause {}` | 100% | ✓ |
+| Display & appearance | HINGLISH | `brightness thoda kam karo` | `brightness_down {}` | 100% | ✓ |
+| Display & appearance | HINGLISH | `dark mode on kar do` | `dark_mode_on {}` | 100% | ✓ |
+| Network & connectivity | HINGLISH | `wifi ka signal kitna strong hai` | `get_wifi_signal {}` | 100% | ✓ |
+| Network & connectivity | HINGLISH | `Redmi Note 12 wifi se connect karo password hello@123` | `connect_wifi {"password": "hello@123", "ssid": "Redmi Note 12"}` | 100% | ✓ |
+| GPIO & I2C | HINGLISH | `gpio 17 ko high karo` | `gpio_on {"pin": 17}` | 100% | ✓ |
+| GPIO & I2C | HINGLISH | `physical pin 11 ki value padho` | `gpio_read {"numbering": "board", "pin": 11}` | 100% | ✓ |
+| GPIO & I2C | HINGLISH | `i2c bus scan karo` | `i2c_scan {}` | 100% | ✓ |
+| Hardware & Raspberry Pi | HINGLISH | `pi ka temperature batao` | `get_temperature {}` | 82% | ✓ |
+| Hardware & Raspberry Pi | HINGLISH | `fan speed kitni hai` | `get_fan_speed {}` | 100% | ✓ |
+| Files & storage | HINGLISH | `file "notes/todo.txt" bana do` | `create_file {"path": "notes/todo.txt"}` | 100% | ✓ |
+| Files & storage | HINGLISH | `disk space kitna bacha hai` | `get_disk_space {}` | 100% | ✓ |
+| Apps & windows | HINGLISH | `notepad kholo` | `open_app {"app": "notepad"}` | 100% | ✓ |
+| Apps & windows | HINGLISH | `is window ko minimize karo` | `minimize_window {}` | 100% | ✓ |
+| Browser & web | HINGLISH | `youtube pe lofi music search karo` | `youtube_search {"query": "lofi music"}` | 100% | ✓ |
+| Browser & web | HINGLISH | `github pe login karo username dev_user password Test@123` | `web_login {"password": "Test@123", "site": "github", "username": "dev_user"}` | 100% | ✓ |
+| Keyboard & clipboard | HINGLISH | `sab select karo` | `select_all {}` | 100% | ✓ |
+| Keyboard & clipboard | HINGLISH | `clipboard history dikhao` | `clipboard_history {}` | 100% | ✓ |
+| Timers & productivity | HINGLISH | `5 minute ka timer lagao` | `set_timer {"amount": 5, "unit": "min"}` | 100% | ✓ |
+| Timers & productivity | HINGLISH | `12 + 8 calculate karo` | `calculate {"expression": "12 + 8"}` | 100% | ✓ |
+| Security & accounts | HINGLISH | `firewall ka status batao` | `firewall_status {}` | 100% | ✓ |
+| Security & accounts | HINGLISH | `firewall mein port 8080 allow karo` | `firewall_allow {"port": 8080}` | 100% | ✓ |
+| Services & processes | HINGLISH | `ssh service ka status dikhao` | `service_status {"service": "ssh"}` | 100% | ✓ |
+| Services & processes | HINGLISH | `nginx service restart karo` | `service_restart {"service": "nginx"}` | 100% | ✓ |
+| Software & development | HINGLISH | `docker containers list karo` | `docker_list {}` | 100% | ✓ |
+| Software & development | HINGLISH | `numpy python package install karo` | `install_python_package {"name": "numpy"}` | 100% | ✓ |
+| AI & models | HINGLISH | `ollama pe kaunse models hain` | `list_llm_models {}` | 100% | ✓ |
+| AI & models | HINGLISH | `llama3 model chalao` | `run_llm {"model": "llama3"}` | 100% | ✓ |
+| Terminal & sessions | HINGLISH | `tmux sessions dikhao` | `list_sessions {}` | 100% | ✓ |
+| Terminal & sessions | HINGLISH | `command "ls -la" chalao` | `run_command {"command": "command \"ls -la"}` | 100% | ✗ (see note) |
+| System & power | HINGLISH | `cpu usage batao` | `get_cpu_usage {}` | 100% | ✓ |
+| System & power | HINGLISH | `10 min baad shutdown kar dena` | `shutdown {"amount": 10, "unit": "min"}` | 100% | ✓ |
+| System & power | HINGLISH | `shutdown mat karo` | `cancel_shutdown {}` | 100% | ✓ |
+| Help & intent handling | HINGLISH | `tum kya kya kar sakte ho` | `help {}` | 100% | ✓ |
+| Help & intent handling | HINGLISH | `ise band kar do` | `close_window {}` | 100% | ✗ (see note) |
+
+</details>
+
+All 72 illustrative commands are in
 [`examples/sample_commands.jsonl`](examples/sample_commands.jsonl), with per-platform executor plans in
 [`examples/category_examples_windows.json`](examples/category_examples_windows.json)
 and [`examples/category_examples_pi.json`](examples/category_examples_pi.json).
-v10 got 34 of 35 exactly right. The miss:
+v10 got 69 of 72 exactly right (ENGLISH 35 of 36, HINGLISH 34 of 36). The misses:
 
-- `run command "ls -la"` gave `run_command {"command": "command \"ls -la"}`; expected `run_command {"command": "ls -la"}`.
+- ENGLISH `run command "ls -la"` gave `run_command {"command": "command \"ls -la"}`; expected `run_command {"command": "ls -la"}`.
+- HINGLISH `command "ls -la" chalao` gave `run_command {"command": "command \"ls -la"}`; expected `run_command {"command": "ls -la"}`.
+- HINGLISH `ise band kar do` gave `close_window {}`; expected `clarify {}`.
 
 These commands were written for this demo, so they are illustrative. The accuracy numbers below come from the
 held-out test set.
@@ -111,8 +227,8 @@ Held-out test by language:
 
 | Language | Rows | Exact | Action-only |
 |---|---|---|---|
-| Hinglish (Roman, incl. small Devanagari slice) | 9,958 | 95.43% | 96.37% |
-| English | 8,038 | 92.56% | 94.31% |
+| HINGLISH (Roman script, incl. a small Devanagari slice) | 9,958 | 95.43% | 96.37% |
+| ENGLISH | 8,038 | 92.56% | 94.31% |
 | Unlabelled (project A rows, mostly English/Hinglish) | 4,884 | 98.73% | 99.45% |
 | Code-mixed | 1,618 | 91.22% | 92.46% |
 
@@ -195,13 +311,13 @@ Raspberry Pi 5 notes. The first attempt ran the held-out test in one go with 4 t
 ### 1. Get the code and the model
 
 ```bash
-git clone https://github.com/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10.git
-cd tiny-agentic-home-robotic-v10-for-edge-device-v10
+git clone https://github.com/sraivante/tiny-agentic-home-robotic-for-edge-device-v10.git
+cd tiny-agentic-home-robotic-for-edge-device-v10
 python download_model.py      # 96.2 MB from Hugging Face, SHA-256 verified
 ```
 
-Or download the [ZIP of the repository](https://github.com/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10/archive/refs/heads/main.zip). The model file alone is at
-[sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10](https://huggingface.co/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10/resolve/main/models/a100_minilm_v10_quoted/best.pt).
+Or download the [ZIP of the repository](https://github.com/sraivante/tiny-agentic-home-robotic-for-edge-device-v10/archive/refs/heads/main.zip). The model file alone is at
+[sraivante/tiny-agentic-home-robotic-for-edge-device-v10](https://huggingface.co/sraivante/tiny-agentic-home-robotic-for-edge-device-v10/resolve/main/models/a100_minilm_v10_quoted/best.pt).
 
 ### 2. Install (Python 3.11 to 3.13, CPU only)
 
@@ -226,9 +342,9 @@ pip install -r requirements.txt
 ### 3. Parse commands (nothing is executed)
 
 ```bash
-python quickstart.py                                  # demo commands
-python quickstart.py "wifi band karo" "pin 17 ki value padho"
-python quickstart.py --json "5 minute ka timer lagao"
+python quickstart.py                                  # demo: ENGLISH first, then HINGLISH
+python quickstart.py "turn off the wifi" "wifi band karo"
+python quickstart.py --json "set a timer for 5 minutes"
 ```
 
 From Python:
@@ -236,7 +352,8 @@ From Python:
 ```python
 from tinyagent.runtime import Predictor
 model = Predictor("models/a100_minilm_v10_quoted/best.pt", threads=2)
-print(model.predict("volume 40 kar do"))
+print(model.predict("set the volume to 40"))    # ENGLISH
+print(model.predict("volume 40 kar do"))        # HINGLISH
 ```
 
 ### 4. Reproduce the tests on your device
@@ -306,7 +423,7 @@ security hardening are incomplete. Do not expose it to a network or run it unatt
 | `app.py`, `lab_executor.py`, `executors/`, `web/` | The sample executor lab |
 | `test_results/` | Accuracy, speed and temperature reports for the laptop and the Raspberry Pi 5 |
 | `examples/` | Illustrative commands and per-platform executor plans |
-| `docs/index.html` | The HTML test guide ([online](https://sraivante.github.io/tiny-agentic-home-robotic-v10-for-edge-device-v10/)) |
+| `docs/index.html` | The HTML test guide ([online](https://sraivante.github.io/tiny-agentic-home-robotic-for-edge-device-v10/)) |
 
 ## License and credits
 

@@ -21,21 +21,22 @@ sys.path.insert(0, str(ROOT))
 
 from download_model import ensure_model  # noqa: E402
 
+# The same seven intents in ENGLISH first, then in HINGLISH.
 DEMO = [
-    "volume 40 kar do",
-    "brightness thoda kam karo",
-    "what is the cpu temperature",
-    "gpio 17 ko high karo",
-    "physical pin 11 ki value padho",
-    'create file "notes/todo.txt"',
-    "notepad kholo",
-    "youtube pe lofi music search karo",
-    "5 minute ka timer lagao",
-    "calculate 12 + 8",
-    "10 min baad shutdown kar dena",
-    "shutdown mat karo",
-    "connect to wifi Redmi Note 12 password hello@123",
-    "turn it off",
+    ("ENGLISH", "set the volume to 40"),
+    ("ENGLISH", "what is the pi temperature"),
+    ("ENGLISH", "set gpio 17 high"),
+    ("ENGLISH", "read the value of physical pin 11"),
+    ("ENGLISH", "set a timer for 5 minutes"),
+    ("ENGLISH", "shut down in 10 minutes"),
+    ("ENGLISH", "don't shut down the laptop"),
+    ("HINGLISH", "volume 40 kar do"),
+    ("HINGLISH", "pi ka temperature batao"),
+    ("HINGLISH", "gpio 17 ko high karo"),
+    ("HINGLISH", "physical pin 11 ki value padho"),
+    ("HINGLISH", "5 minute ka timer lagao"),
+    ("HINGLISH", "10 min baad shutdown kar dena"),
+    ("HINGLISH", "shutdown mat karo"),
 ]
 
 
@@ -51,14 +52,15 @@ def main() -> None:
     model = Predictor(checkpoint, threads=args.threads)
     print(f"Loaded Union Command v10 in {time.perf_counter() - start:.1f}s "
           f"({model.parameters:,} parameters, {model.model_bytes / 1e6:.1f} MB, {args.threads} CPU threads)\n")
-    for text in args.commands or DEMO:
+    for language, text in ([("", c) for c in args.commands] or DEMO):
         result = model.predict(text)
         if args.json:
             print(json.dumps({"text": text, **result}, ensure_ascii=False, indent=2))
             continue
         arguments = json.dumps(result["args"], ensure_ascii=False)
         flag = "" if not result["validation_errors"] else "  [invalid: " + "; ".join(result["validation_errors"]) + "]"
-        print(f"{text!r:52} -> {result['action']} {arguments}  "
+        tag = f"{language:<9}" if language else ""
+        print(f"{tag}{text!r:40} -> {result['action']} {arguments}  "
               f"({result['confidence']:.0%}, {result['latency_ms']:.1f} ms){flag}")
 
 

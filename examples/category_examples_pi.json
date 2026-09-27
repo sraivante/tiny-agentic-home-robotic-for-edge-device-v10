@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-09-27T15:33:20+0530",
+  "created_at": "2026-09-27T15:54:22+0530",
   "device": {
     "os": "Linux-6.12.47+rpt-rpi-2712-aarch64-with-glibc2.41",
     "machine": "aarch64",
@@ -12,18 +12,27 @@
   },
   "platform": "pi",
   "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
-  "note": "Illustrative commands written for this demo (not dataset rows). Accuracy numbers come from the held-out test set, not from this table. Only read-only 'safe' commands were executed.",
+  "note": "Illustrative commands written for this demo, each intent in ENGLISH and HINGLISH (not dataset rows). Accuracy numbers come from the held-out test set, not from this table. Only read-only 'safe' commands were executed.",
   "rows": [
     {
       "intended_category": "Audio & media",
-      "command": "volume 40 kar do",
+      "intent": 1,
+      "language": "ENGLISH",
+      "command": "set the volume to 40",
+      "expected": {
+        "action": "set_volume",
+        "args": {
+          "value": 40
+        }
+      },
+      "correct": true,
       "action": "set_volume",
       "args": {
         "value": 40
       },
       "predicted_category": "Audio & media",
       "confidence": 1.0,
-      "latency_ms": 46.307,
+      "latency_ms": 46.353,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -40,12 +49,81 @@
     },
     {
       "intended_category": "Audio & media",
-      "command": "gaana pause karo",
+      "intent": 1,
+      "language": "HINGLISH",
+      "command": "volume 40 kar do",
+      "expected": {
+        "action": "set_volume",
+        "args": {
+          "value": 40
+        }
+      },
+      "correct": true,
+      "action": "set_volume",
+      "args": {
+        "value": 40
+      },
+      "predicted_category": "Audio & media",
+      "confidence": 1.0,
+      "latency_ms": 41.619,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Set master volume to an exact percent",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): pactl",
+      "planned_command": "set_volume value=40",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Audio & media",
+      "intent": 2,
+      "language": "ENGLISH",
+      "command": "pause the music",
+      "expected": {
+        "action": "media_pause",
+        "args": {}
+      },
+      "correct": true,
       "action": "media_pause",
       "args": {},
       "predicted_category": "Audio & media",
       "confidence": 1.0,
-      "latency_ms": 37.838,
+      "latency_ms": 37.445,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Pause / stop media",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): playerctl",
+      "planned_command": "media_pause",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Audio & media",
+      "intent": 2,
+      "language": "HINGLISH",
+      "command": "gaana pause karo",
+      "expected": {
+        "action": "media_pause",
+        "args": {}
+      },
+      "correct": true,
+      "action": "media_pause",
+      "args": {},
+      "predicted_category": "Audio & media",
+      "confidence": 1.0,
+      "latency_ms": 37.131,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -62,12 +140,19 @@
     },
     {
       "intended_category": "Display & appearance",
-      "command": "brightness thoda kam karo",
+      "intent": 3,
+      "language": "ENGLISH",
+      "command": "lower the brightness a little",
+      "expected": {
+        "action": "brightness_down",
+        "args": {}
+      },
+      "correct": true,
       "action": "brightness_down",
       "args": {},
       "predicted_category": "Display & appearance",
       "confidence": 1.0,
-      "latency_ms": 42.0,
+      "latency_ms": 40.239,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -84,12 +169,77 @@
     },
     {
       "intended_category": "Display & appearance",
-      "command": "dark mode on kar do",
+      "intent": 3,
+      "language": "HINGLISH",
+      "command": "brightness thoda kam karo",
+      "expected": {
+        "action": "brightness_down",
+        "args": {}
+      },
+      "correct": true,
+      "action": "brightness_down",
+      "args": {},
+      "predicted_category": "Display & appearance",
+      "confidence": 1.0,
+      "latency_ms": 40.642,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Decrease brightness (default step 10)",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): brightnessctl",
+      "planned_command": "brightness_down",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Display & appearance",
+      "intent": 4,
+      "language": "ENGLISH",
+      "command": "turn on dark mode",
+      "expected": {
+        "action": "dark_mode_on",
+        "args": {}
+      },
+      "correct": true,
       "action": "dark_mode_on",
       "args": {},
       "predicted_category": "Display & appearance",
       "confidence": 1.0,
-      "latency_ms": 39.683,
+      "latency_ms": 37.666,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: gsettings",
+      "handler_module": "executors.common",
+      "effect": "Switch to dark theme",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "gsettings set org.gnome.desktop.interface color-scheme prefer-dark",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Display & appearance",
+      "intent": 4,
+      "language": "HINGLISH",
+      "command": "dark mode on kar do",
+      "expected": {
+        "action": "dark_mode_on",
+        "args": {}
+      },
+      "correct": true,
+      "action": "dark_mode_on",
+      "args": {},
+      "predicted_category": "Display & appearance",
+      "confidence": 1.0,
+      "latency_ms": 40.17,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: gsettings",
@@ -106,12 +256,19 @@
     },
     {
       "intended_category": "Network & connectivity",
-      "command": "wifi ka signal kitna strong hai",
+      "intent": 5,
+      "language": "ENGLISH",
+      "command": "how strong is the wifi signal",
+      "expected": {
+        "action": "get_wifi_signal",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_wifi_signal",
       "args": {},
       "predicted_category": "Network & connectivity",
       "confidence": 1.0,
-      "latency_ms": 39.879,
+      "latency_ms": 38.678,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: nmcli",
@@ -130,7 +287,48 @@
     },
     {
       "intended_category": "Network & connectivity",
+      "intent": 5,
+      "language": "HINGLISH",
+      "command": "wifi ka signal kitna strong hai",
+      "expected": {
+        "action": "get_wifi_signal",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_wifi_signal",
+      "args": {},
+      "predicted_category": "Network & connectivity",
+      "confidence": 1.0,
+      "latency_ms": 39.621,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: nmcli",
+      "handler_module": "executors.common",
+      "effect": "Wi-Fi signal strength",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "nmcli device wifi list",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (output not published: local device details)"
+    },
+    {
+      "intended_category": "Network & connectivity",
+      "intent": 6,
+      "language": "ENGLISH",
       "command": "connect to wifi Redmi Note 12 password hello@123",
+      "expected": {
+        "action": "connect_wifi",
+        "args": {
+          "ssid": "Redmi Note 12",
+          "password": "hello@123"
+        }
+      },
+      "correct": true,
       "action": "connect_wifi",
       "args": {
         "password": "hello@123",
@@ -138,7 +336,42 @@
       },
       "predicted_category": "Network & connectivity",
       "confidence": 1.0,
-      "latency_ms": 43.911,
+      "latency_ms": 45.025,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: nmcli",
+      "handler_module": "executors.common",
+      "effect": "Connect to a Wi-Fi network (optional password)",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "nmcli device wifi connect Redmi Note 12 password hello@123",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Network & connectivity",
+      "intent": 6,
+      "language": "HINGLISH",
+      "command": "Redmi Note 12 wifi se connect karo password hello@123",
+      "expected": {
+        "action": "connect_wifi",
+        "args": {
+          "ssid": "Redmi Note 12",
+          "password": "hello@123"
+        }
+      },
+      "correct": true,
+      "action": "connect_wifi",
+      "args": {
+        "password": "hello@123",
+        "ssid": "Redmi Note 12"
+      },
+      "predicted_category": "Network & connectivity",
+      "confidence": 1.0,
+      "latency_ms": 45.107,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: nmcli",
@@ -155,14 +388,23 @@
     },
     {
       "intended_category": "GPIO & I2C",
-      "command": "gpio 17 ko high karo",
+      "intent": 7,
+      "language": "ENGLISH",
+      "command": "set gpio 17 high",
+      "expected": {
+        "action": "gpio_on",
+        "args": {
+          "pin": 17
+        }
+      },
+      "correct": true,
       "action": "gpio_on",
       "args": {
         "pin": 17
       },
       "predicted_category": "GPIO & I2C",
       "confidence": 1.0,
-      "latency_ms": 41.33,
+      "latency_ms": 41.009,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: pinctrl",
@@ -179,7 +421,50 @@
     },
     {
       "intended_category": "GPIO & I2C",
-      "command": "physical pin 11 ki value padho",
+      "intent": 7,
+      "language": "HINGLISH",
+      "command": "gpio 17 ko high karo",
+      "expected": {
+        "action": "gpio_on",
+        "args": {
+          "pin": 17
+        }
+      },
+      "correct": true,
+      "action": "gpio_on",
+      "args": {
+        "pin": 17
+      },
+      "predicted_category": "GPIO & I2C",
+      "confidence": 1.0,
+      "latency_ms": 39.982,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: pinctrl",
+      "handler_module": "executors.common",
+      "effect": "Set a GPIO pin HIGH (e.g. relay / LED on)",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "pinctrl set 17 op dh",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "GPIO & I2C",
+      "intent": 8,
+      "language": "ENGLISH",
+      "command": "read the value of physical pin 11",
+      "expected": {
+        "action": "gpio_read",
+        "args": {
+          "pin": 11,
+          "numbering": "board"
+        }
+      },
+      "correct": true,
       "action": "gpio_read",
       "args": {
         "numbering": "board",
@@ -187,7 +472,7 @@
       },
       "predicted_category": "GPIO & I2C",
       "confidence": 1.0,
-      "latency_ms": 42.935,
+      "latency_ms": 41.812,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: pinctrl",
@@ -204,12 +489,83 @@
     },
     {
       "intended_category": "GPIO & I2C",
-      "command": "i2c bus scan karo",
+      "intent": 8,
+      "language": "HINGLISH",
+      "command": "physical pin 11 ki value padho",
+      "expected": {
+        "action": "gpio_read",
+        "args": {
+          "pin": 11,
+          "numbering": "board"
+        }
+      },
+      "correct": true,
+      "action": "gpio_read",
+      "args": {
+        "numbering": "board",
+        "pin": 11
+      },
+      "predicted_category": "GPIO & I2C",
+      "confidence": 1.0,
+      "latency_ms": 41.44,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: pinctrl",
+      "handler_module": "executors.common",
+      "effect": "Read GPIO pin state",
+      "effective_risk": "caution",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "pinctrl get 17",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "GPIO & I2C",
+      "intent": 9,
+      "language": "ENGLISH",
+      "command": "scan the i2c bus",
+      "expected": {
+        "action": "i2c_scan",
+        "args": {}
+      },
+      "correct": true,
       "action": "i2c_scan",
       "args": {},
       "predicted_category": "GPIO & I2C",
       "confidence": 1.0,
-      "latency_ms": 42.046,
+      "latency_ms": 37.719,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Scan I2C bus",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): i2cdetect",
+      "planned_command": "i2c_scan",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "GPIO & I2C",
+      "intent": 9,
+      "language": "HINGLISH",
+      "command": "i2c bus scan karo",
+      "expected": {
+        "action": "i2c_scan",
+        "args": {}
+      },
+      "correct": true,
+      "action": "i2c_scan",
+      "args": {},
+      "predicted_category": "GPIO & I2C",
+      "confidence": 1.0,
+      "latency_ms": 38.099,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -226,12 +582,19 @@
     },
     {
       "intended_category": "Hardware & Raspberry Pi",
-      "command": "pi ka temperature batao",
+      "intent": 10,
+      "language": "ENGLISH",
+      "command": "what is the pi temperature",
+      "expected": {
+        "action": "get_temperature",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_temperature",
       "args": {},
       "predicted_category": "Hardware & Raspberry Pi",
-      "confidence": 0.8183,
-      "latency_ms": 39.082,
+      "confidence": 1.0,
+      "latency_ms": 42.045,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: vcgencmd",
@@ -250,12 +613,81 @@
     },
     {
       "intended_category": "Hardware & Raspberry Pi",
-      "command": "fan speed kitni hai",
+      "intent": 10,
+      "language": "HINGLISH",
+      "command": "pi ka temperature batao",
+      "expected": {
+        "action": "get_temperature",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_temperature",
+      "args": {},
+      "predicted_category": "Hardware & Raspberry Pi",
+      "confidence": 0.8183,
+      "latency_ms": 38.667,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: vcgencmd",
+      "handler_module": "executors.common",
+      "effect": "CPU / SoC temperature",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "vcgencmd measure_temp",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "temp=43.3'C"
+    },
+    {
+      "intended_category": "Hardware & Raspberry Pi",
+      "intent": 11,
+      "language": "ENGLISH",
+      "command": "what is the fan speed",
+      "expected": {
+        "action": "get_fan_speed",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_fan_speed",
       "args": {},
       "predicted_category": "Hardware & Raspberry Pi",
       "confidence": 1.0,
-      "latency_ms": 46.352,
+      "latency_ms": 38.866,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.hardware)",
+      "handler_module": "executors.hardware",
+      "effect": "Fan RPM",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "get_fan_speed",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "failed",
+      "published_result": "failed: No matching hardware readings exist under /sys/class/hwmon"
+    },
+    {
+      "intended_category": "Hardware & Raspberry Pi",
+      "intent": 11,
+      "language": "HINGLISH",
+      "command": "fan speed kitni hai",
+      "expected": {
+        "action": "get_fan_speed",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_fan_speed",
+      "args": {},
+      "predicted_category": "Hardware & Raspberry Pi",
+      "confidence": 1.0,
+      "latency_ms": 38.193,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.hardware)",
@@ -274,14 +706,23 @@
     },
     {
       "intended_category": "Files & storage",
+      "intent": 12,
+      "language": "ENGLISH",
       "command": "create file \"notes/todo.txt\"",
+      "expected": {
+        "action": "create_file",
+        "args": {
+          "path": "notes/todo.txt"
+        }
+      },
+      "correct": true,
       "action": "create_file",
       "args": {
         "path": "notes/todo.txt"
       },
       "predicted_category": "Files & storage",
       "confidence": 1.0,
-      "latency_ms": 42.56,
+      "latency_ms": 42.489,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -298,12 +739,52 @@
     },
     {
       "intended_category": "Files & storage",
-      "command": "disk space kitna bacha hai",
+      "intent": 12,
+      "language": "HINGLISH",
+      "command": "file \"notes/todo.txt\" bana do",
+      "expected": {
+        "action": "create_file",
+        "args": {
+          "path": "notes/todo.txt"
+        }
+      },
+      "correct": true,
+      "action": "create_file",
+      "args": {
+        "path": "notes/todo.txt"
+      },
+      "predicted_category": "Files & storage",
+      "confidence": 1.0,
+      "latency_ms": 41.817,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Create a new empty file; existing files are never overwritten",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "create_file path=\"notes/todo.txt\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Files & storage",
+      "intent": 13,
+      "language": "ENGLISH",
+      "command": "how much disk space is left",
+      "expected": {
+        "action": "get_disk_space",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_disk_space",
       "args": {},
       "predicted_category": "Files & storage",
       "confidence": 1.0,
-      "latency_ms": 38.919,
+      "latency_ms": 41.63,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -318,18 +799,58 @@
       "default_gate": "allowed",
       "executed": true,
       "execution_status": "completed",
-      "published_result": "disk 0.1 % used"
+      "published_result": "disk 0.0 % used"
+    },
+    {
+      "intended_category": "Files & storage",
+      "intent": 13,
+      "language": "HINGLISH",
+      "command": "disk space kitna bacha hai",
+      "expected": {
+        "action": "get_disk_space",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_disk_space",
+      "args": {},
+      "predicted_category": "Files & storage",
+      "confidence": 1.0,
+      "latency_ms": 38.229,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Read free space on the files drive",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "get_disk_space",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "disk 0.0 % used"
     },
     {
       "intended_category": "Apps & windows",
-      "command": "notepad kholo",
+      "intent": 14,
+      "language": "ENGLISH",
+      "command": "open notepad",
+      "expected": {
+        "action": "open_app",
+        "args": {
+          "app": "notepad"
+        }
+      },
+      "correct": true,
       "action": "open_app",
       "args": {
         "app": "notepad"
       },
       "predicted_category": "Apps & windows",
       "confidence": 1.0,
-      "latency_ms": 41.411,
+      "latency_ms": 39.294,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.desktop)",
@@ -346,12 +867,81 @@
     },
     {
       "intended_category": "Apps & windows",
-      "command": "is window ko minimize karo",
+      "intent": 14,
+      "language": "HINGLISH",
+      "command": "notepad kholo",
+      "expected": {
+        "action": "open_app",
+        "args": {
+          "app": "notepad"
+        }
+      },
+      "correct": true,
+      "action": "open_app",
+      "args": {
+        "app": "notepad"
+      },
+      "predicted_category": "Apps & windows",
+      "confidence": 1.0,
+      "latency_ms": 40.002,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Open / launch an application",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "open_app app=\"notepad\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Apps & windows",
+      "intent": 15,
+      "language": "ENGLISH",
+      "command": "minimize this window",
+      "expected": {
+        "action": "minimize_window",
+        "args": {}
+      },
+      "correct": true,
       "action": "minimize_window",
       "args": {},
       "predicted_category": "Apps & windows",
       "confidence": 1.0,
-      "latency_ms": 40.968,
+      "latency_ms": 36.774,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Minimize current window",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Open an app/file first, or select a target window in the UI.",
+      "planned_command": "minimize_window",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Apps & windows",
+      "intent": 15,
+      "language": "HINGLISH",
+      "command": "is window ko minimize karo",
+      "expected": {
+        "action": "minimize_window",
+        "args": {}
+      },
+      "correct": true,
+      "action": "minimize_window",
+      "args": {},
+      "predicted_category": "Apps & windows",
+      "confidence": 1.0,
+      "latency_ms": 37.855,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.desktop)",
@@ -368,14 +958,23 @@
     },
     {
       "intended_category": "Browser & web",
-      "command": "youtube pe lofi music search karo",
+      "intent": 16,
+      "language": "ENGLISH",
+      "command": "search youtube for lofi music",
+      "expected": {
+        "action": "youtube_search",
+        "args": {
+          "query": "lofi music"
+        }
+      },
+      "correct": true,
       "action": "youtube_search",
       "args": {
         "query": "lofi music"
       },
       "predicted_category": "Browser & web",
       "confidence": 1.0,
-      "latency_ms": 42.201,
+      "latency_ms": 40.34,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.desktop)",
@@ -392,7 +991,51 @@
     },
     {
       "intended_category": "Browser & web",
+      "intent": 16,
+      "language": "HINGLISH",
+      "command": "youtube pe lofi music search karo",
+      "expected": {
+        "action": "youtube_search",
+        "args": {
+          "query": "lofi music"
+        }
+      },
+      "correct": true,
+      "action": "youtube_search",
+      "args": {
+        "query": "lofi music"
+      },
+      "predicted_category": "Browser & web",
+      "confidence": 1.0,
+      "latency_ms": 43.61,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Search / play something on YouTube",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "youtube_search query=\"lofi music\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Browser & web",
+      "intent": 17,
+      "language": "ENGLISH",
       "command": "login to github username dev_user password Test@123",
+      "expected": {
+        "action": "web_login",
+        "args": {
+          "site": "github",
+          "username": "dev_user",
+          "password": "Test@123"
+        }
+      },
+      "correct": true,
       "action": "web_login",
       "args": {
         "password": "Test@123",
@@ -401,7 +1044,44 @@
       },
       "predicted_category": "Browser & web",
       "confidence": 1.0,
-      "latency_ms": 46.182,
+      "latency_ms": 44.33,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.integrations)",
+      "handler_module": "executors.integrations",
+      "effect": "Open a website and log in with supplied credentials",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install optional Python module(s): playwright",
+      "planned_command": "web_login password=\"Test@123\" site=\"github\" username=\"dev_user\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Browser & web",
+      "intent": 17,
+      "language": "HINGLISH",
+      "command": "github pe login karo username dev_user password Test@123",
+      "expected": {
+        "action": "web_login",
+        "args": {
+          "site": "github",
+          "username": "dev_user",
+          "password": "Test@123"
+        }
+      },
+      "correct": true,
+      "action": "web_login",
+      "args": {
+        "password": "Test@123",
+        "site": "github",
+        "username": "dev_user"
+      },
+      "predicted_category": "Browser & web",
+      "confidence": 1.0,
+      "latency_ms": 45.736,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.integrations)",
@@ -418,12 +1098,19 @@
     },
     {
       "intended_category": "Keyboard & clipboard",
-      "command": "sab select karo",
+      "intent": 18,
+      "language": "ENGLISH",
+      "command": "select all",
+      "expected": {
+        "action": "select_all",
+        "args": {}
+      },
+      "correct": true,
       "action": "select_all",
       "args": {},
       "predicted_category": "Keyboard & clipboard",
       "confidence": 1.0,
-      "latency_ms": 38.478,
+      "latency_ms": 38.619,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.desktop)",
@@ -440,12 +1127,77 @@
     },
     {
       "intended_category": "Keyboard & clipboard",
-      "command": "clipboard history dikhao",
+      "intent": 18,
+      "language": "HINGLISH",
+      "command": "sab select karo",
+      "expected": {
+        "action": "select_all",
+        "args": {}
+      },
+      "correct": true,
+      "action": "select_all",
+      "args": {},
+      "predicted_category": "Keyboard & clipboard",
+      "confidence": 1.0,
+      "latency_ms": 40.805,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Send ctrl+a to the selected target window",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): wmctrl",
+      "planned_command": "select_all",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Keyboard & clipboard",
+      "intent": 19,
+      "language": "ENGLISH",
+      "command": "show clipboard history",
+      "expected": {
+        "action": "clipboard_history",
+        "args": {}
+      },
+      "correct": true,
       "action": "clipboard_history",
       "args": {},
       "predicted_category": "Keyboard & clipboard",
       "confidence": 1.0,
-      "latency_ms": 38.739,
+      "latency_ms": 38.228,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Send win+v to the desktop",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): wmctrl",
+      "planned_command": "clipboard_history",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Keyboard & clipboard",
+      "intent": 19,
+      "language": "HINGLISH",
+      "command": "clipboard history dikhao",
+      "expected": {
+        "action": "clipboard_history",
+        "args": {}
+      },
+      "correct": true,
+      "action": "clipboard_history",
+      "args": {},
+      "predicted_category": "Keyboard & clipboard",
+      "confidence": 1.0,
+      "latency_ms": 40.377,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.desktop)",
@@ -462,7 +1214,17 @@
     },
     {
       "intended_category": "Timers & productivity",
-      "command": "5 minute ka timer lagao",
+      "intent": 20,
+      "language": "ENGLISH",
+      "command": "set a timer for 5 minutes",
+      "expected": {
+        "action": "set_timer",
+        "args": {
+          "amount": 5,
+          "unit": "min"
+        }
+      },
+      "correct": true,
       "action": "set_timer",
       "args": {
         "amount": 5,
@@ -470,7 +1232,7 @@
       },
       "predicted_category": "Timers & productivity",
       "confidence": 1.0,
-      "latency_ms": 41.398,
+      "latency_ms": 40.251,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -487,14 +1249,93 @@
     },
     {
       "intended_category": "Timers & productivity",
+      "intent": 20,
+      "language": "HINGLISH",
+      "command": "5 minute ka timer lagao",
+      "expected": {
+        "action": "set_timer",
+        "args": {
+          "amount": 5,
+          "unit": "min"
+        }
+      },
+      "correct": true,
+      "action": "set_timer",
+      "args": {
+        "amount": 5,
+        "unit": "min"
+      },
+      "predicted_category": "Timers & productivity",
+      "confidence": 1.0,
+      "latency_ms": 40.424,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Start a timer in this local server process",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "set_timer amount=5 unit=\"min\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Timers & productivity",
+      "intent": 21,
+      "language": "ENGLISH",
       "command": "calculate 12 + 8",
+      "expected": {
+        "action": "calculate",
+        "args": {
+          "expression": "12 + 8"
+        }
+      },
+      "correct": true,
       "action": "calculate",
       "args": {
         "expression": "12 + 8"
       },
       "predicted_category": "Timers & productivity",
       "confidence": 1.0,
-      "latency_ms": 42.014,
+      "latency_ms": 39.649,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Evaluate bounded arithmetic without Python eval",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "calculate expression=\"12 + 8\"",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "result = 20"
+    },
+    {
+      "intended_category": "Timers & productivity",
+      "intent": 21,
+      "language": "HINGLISH",
+      "command": "12 + 8 calculate karo",
+      "expected": {
+        "action": "calculate",
+        "args": {
+          "expression": "12 + 8"
+        }
+      },
+      "correct": true,
+      "action": "calculate",
+      "args": {
+        "expression": "12 + 8"
+      },
+      "predicted_category": "Timers & productivity",
+      "confidence": 1.0,
+      "latency_ms": 40.226,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -513,12 +1354,19 @@
     },
     {
       "intended_category": "Security & accounts",
-      "command": "firewall ka status batao",
+      "intent": 22,
+      "language": "ENGLISH",
+      "command": "show the firewall status",
+      "expected": {
+        "action": "firewall_status",
+        "args": {}
+      },
+      "correct": true,
       "action": "firewall_status",
       "args": {},
       "predicted_category": "Security & accounts",
       "confidence": 1.0,
-      "latency_ms": 38.533,
+      "latency_ms": 38.083,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -535,14 +1383,85 @@
     },
     {
       "intended_category": "Security & accounts",
-      "command": "firewall mein port 8080 allow karo",
+      "intent": 22,
+      "language": "HINGLISH",
+      "command": "firewall ka status batao",
+      "expected": {
+        "action": "firewall_status",
+        "args": {}
+      },
+      "correct": true,
+      "action": "firewall_status",
+      "args": {},
+      "predicted_category": "Security & accounts",
+      "confidence": 1.0,
+      "latency_ms": 40.313,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "show firewall status",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): ufw",
+      "planned_command": "firewall_status",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Security & accounts",
+      "intent": 23,
+      "language": "ENGLISH",
+      "command": "allow port 8080 in the firewall",
+      "expected": {
+        "action": "firewall_allow",
+        "args": {
+          "port": 8080
+        }
+      },
+      "correct": true,
       "action": "firewall_allow",
       "args": {
         "port": 8080
       },
       "predicted_category": "Security & accounts",
       "confidence": 1.0,
-      "latency_ms": 42.605,
+      "latency_ms": 41.241,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Allow a port",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": false,
+      "availability_reason": "Install required program(s): ufw",
+      "planned_command": "firewall_allow port=8080",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Security & accounts",
+      "intent": 23,
+      "language": "HINGLISH",
+      "command": "firewall mein port 8080 allow karo",
+      "expected": {
+        "action": "firewall_allow",
+        "args": {
+          "port": 8080
+        }
+      },
+      "correct": true,
+      "action": "firewall_allow",
+      "args": {
+        "port": 8080
+      },
+      "predicted_category": "Security & accounts",
+      "confidence": 1.0,
+      "latency_ms": 43.184,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -559,14 +1478,23 @@
     },
     {
       "intended_category": "Services & processes",
-      "command": "ssh service ka status dikhao",
+      "intent": 24,
+      "language": "ENGLISH",
+      "command": "show the status of the ssh service",
+      "expected": {
+        "action": "service_status",
+        "args": {
+          "service": "ssh"
+        }
+      },
+      "correct": true,
       "action": "service_status",
       "args": {
         "service": "ssh"
       },
       "predicted_category": "Services & processes",
       "confidence": 1.0,
-      "latency_ms": 40.939,
+      "latency_ms": 41.499,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: systemctl",
@@ -583,14 +1511,89 @@
     },
     {
       "intended_category": "Services & processes",
-      "command": "nginx service restart karo",
+      "intent": 24,
+      "language": "HINGLISH",
+      "command": "ssh service ka status dikhao",
+      "expected": {
+        "action": "service_status",
+        "args": {
+          "service": "ssh"
+        }
+      },
+      "correct": true,
+      "action": "service_status",
+      "args": {
+        "service": "ssh"
+      },
+      "predicted_category": "Services & processes",
+      "confidence": 1.0,
+      "latency_ms": 40.76,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: systemctl",
+      "handler_module": "executors.common",
+      "effect": "Show a service's status",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "systemctl status --no-pager -- ssh",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Services & processes",
+      "intent": 25,
+      "language": "ENGLISH",
+      "command": "restart the nginx service",
+      "expected": {
+        "action": "service_restart",
+        "args": {
+          "service": "nginx"
+        }
+      },
+      "correct": true,
       "action": "service_restart",
       "args": {
         "service": "nginx"
       },
       "predicted_category": "Services & processes",
       "confidence": 1.0,
-      "latency_ms": 41.319,
+      "latency_ms": 41.025,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: sudo",
+      "handler_module": "executors.common",
+      "effect": "Restart a system service",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "sudo -n systemctl restart -- nginx",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "Services & processes",
+      "intent": 25,
+      "language": "HINGLISH",
+      "command": "nginx service restart karo",
+      "expected": {
+        "action": "service_restart",
+        "args": {
+          "service": "nginx"
+        }
+      },
+      "correct": true,
+      "action": "service_restart",
+      "args": {
+        "service": "nginx"
+      },
+      "predicted_category": "Services & processes",
+      "confidence": 1.0,
+      "latency_ms": 42.919,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: sudo",
@@ -607,12 +1610,19 @@
     },
     {
       "intended_category": "Software & development",
-      "command": "docker containers list karo",
+      "intent": 26,
+      "language": "ENGLISH",
+      "command": "list docker containers",
+      "expected": {
+        "action": "docker_list",
+        "args": {}
+      },
+      "correct": true,
       "action": "docker_list",
       "args": {},
       "predicted_category": "Software & development",
       "confidence": 1.0,
-      "latency_ms": 38.816,
+      "latency_ms": 38.224,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: docker",
@@ -631,14 +1641,87 @@
     },
     {
       "intended_category": "Software & development",
-      "command": "numpy python package install karo",
+      "intent": 26,
+      "language": "HINGLISH",
+      "command": "docker containers list karo",
+      "expected": {
+        "action": "docker_list",
+        "args": {}
+      },
+      "correct": true,
+      "action": "docker_list",
+      "args": {},
+      "predicted_category": "Software & development",
+      "confidence": 1.0,
+      "latency_ms": 44.029,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: docker",
+      "handler_module": "executors.common",
+      "effect": "List containers",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "docker ps -a",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (output not published: local device details)"
+    },
+    {
+      "intended_category": "Software & development",
+      "intent": 27,
+      "language": "ENGLISH",
+      "command": "install the numpy python package",
+      "expected": {
+        "action": "install_python_package",
+        "args": {
+          "name": "numpy"
+        }
+      },
+      "correct": true,
       "action": "install_python_package",
       "args": {
         "name": "numpy"
       },
       "predicted_category": "Software & development",
       "confidence": 1.0,
-      "latency_ms": 52.419,
+      "latency_ms": 41.479,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: python",
+      "handler_module": "executors.common",
+      "effect": "pip-install a Python package",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "python -m pip install -- numpy",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Software & development",
+      "intent": 27,
+      "language": "HINGLISH",
+      "command": "numpy python package install karo",
+      "expected": {
+        "action": "install_python_package",
+        "args": {
+          "name": "numpy"
+        }
+      },
+      "correct": true,
+      "action": "install_python_package",
+      "args": {
+        "name": "numpy"
+      },
+      "predicted_category": "Software & development",
+      "confidence": 1.0,
+      "latency_ms": 41.304,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: python",
@@ -655,12 +1738,19 @@
     },
     {
       "intended_category": "AI & models",
-      "command": "ollama pe kaunse models hain",
+      "intent": 28,
+      "language": "ENGLISH",
+      "command": "which models are available in ollama",
+      "expected": {
+        "action": "list_llm_models",
+        "args": {}
+      },
+      "correct": true,
       "action": "list_llm_models",
       "args": {},
       "predicted_category": "AI & models",
       "confidence": 1.0,
-      "latency_ms": 39.21,
+      "latency_ms": 41.62,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: ollama",
@@ -679,14 +1769,87 @@
     },
     {
       "intended_category": "AI & models",
+      "intent": 28,
+      "language": "HINGLISH",
+      "command": "ollama pe kaunse models hain",
+      "expected": {
+        "action": "list_llm_models",
+        "args": {}
+      },
+      "correct": true,
+      "action": "list_llm_models",
+      "args": {},
+      "predicted_category": "AI & models",
+      "confidence": 1.0,
+      "latency_ms": 39.583,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: ollama",
+      "handler_module": "executors.common",
+      "effect": "List local LLM models",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "ollama list",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "completed (output not published: local device details)"
+    },
+    {
+      "intended_category": "AI & models",
+      "intent": 29,
+      "language": "ENGLISH",
+      "command": "run the llama3 model",
+      "expected": {
+        "action": "run_llm",
+        "args": {
+          "model": "llama3"
+        }
+      },
+      "correct": true,
+      "action": "run_llm",
+      "args": {
+        "model": "llama3"
+      },
+      "predicted_category": "AI & models",
+      "confidence": 1.0,
+      "latency_ms": 40.371,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.integrations)",
+      "handler_module": "executors.integrations",
+      "effect": "Run a local LLM",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "run_llm model=\"llama3\"",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "AI & models",
+      "intent": 29,
+      "language": "HINGLISH",
       "command": "llama3 model chalao",
+      "expected": {
+        "action": "run_llm",
+        "args": {
+          "model": "llama3"
+        }
+      },
+      "correct": true,
       "action": "run_llm",
       "args": {
         "model": "llama3"
       },
       "predicted_category": "AI & models",
       "confidence": 0.9998,
-      "latency_ms": 42.432,
+      "latency_ms": 40.24,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.integrations)",
@@ -703,12 +1866,19 @@
     },
     {
       "intended_category": "Terminal & sessions",
-      "command": "tmux sessions dikhao",
+      "intent": 30,
+      "language": "ENGLISH",
+      "command": "show tmux sessions",
+      "expected": {
+        "action": "list_sessions",
+        "args": {}
+      },
+      "correct": true,
       "action": "list_sessions",
       "args": {},
       "predicted_category": "Terminal & sessions",
       "confidence": 1.0,
-      "latency_ms": 40.173,
+      "latency_ms": 40.761,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -725,14 +1895,85 @@
     },
     {
       "intended_category": "Terminal & sessions",
+      "intent": 30,
+      "language": "HINGLISH",
+      "command": "tmux sessions dikhao",
+      "expected": {
+        "action": "list_sessions",
+        "args": {}
+      },
+      "correct": true,
+      "action": "list_sessions",
+      "args": {},
+      "predicted_category": "Terminal & sessions",
+      "confidence": 1.0,
+      "latency_ms": 39.394,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "List sessions",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): tmux",
+      "planned_command": "list_sessions",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "Terminal & sessions",
+      "intent": 31,
+      "language": "ENGLISH",
       "command": "run command \"ls -la\"",
+      "expected": {
+        "action": "run_command",
+        "args": {
+          "command": "ls -la"
+        }
+      },
+      "correct": false,
       "action": "run_command",
       "args": {
         "command": "command \"ls -la"
       },
       "predicted_category": "Terminal & sessions",
       "confidence": 0.9992,
-      "latency_ms": 41.574,
+      "latency_ms": 44.096,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "native process: sh",
+      "handler_module": "tinyagent.executor",
+      "effect": "Execute the exact reviewed shell command with your account permissions (20-second timeout)",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "sh -c command \"ls -la",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "Terminal & sessions",
+      "intent": 31,
+      "language": "HINGLISH",
+      "command": "command \"ls -la\" chalao",
+      "expected": {
+        "action": "run_command",
+        "args": {
+          "command": "ls -la"
+        }
+      },
+      "correct": false,
+      "action": "run_command",
+      "args": {
+        "command": "command \"ls -la"
+      },
+      "predicted_category": "Terminal & sessions",
+      "confidence": 0.9994,
+      "latency_ms": 42.355,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "native process: sh",
@@ -749,12 +1990,19 @@
     },
     {
       "intended_category": "System & power",
-      "command": "cpu usage batao",
+      "intent": 32,
+      "language": "ENGLISH",
+      "command": "what is the cpu usage",
+      "expected": {
+        "action": "get_cpu_usage",
+        "args": {}
+      },
+      "correct": true,
       "action": "get_cpu_usage",
       "args": {},
       "predicted_category": "System & power",
       "confidence": 1.0,
-      "latency_ms": 39.053,
+      "latency_ms": 38.808,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -773,7 +2021,48 @@
     },
     {
       "intended_category": "System & power",
-      "command": "10 min baad shutdown kar dena",
+      "intent": 32,
+      "language": "HINGLISH",
+      "command": "cpu usage batao",
+      "expected": {
+        "action": "get_cpu_usage",
+        "args": {}
+      },
+      "correct": true,
+      "action": "get_cpu_usage",
+      "args": {},
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 38.138,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Measure CPU use over 200 milliseconds",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "get_cpu_usage",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "CPU 3.7 %"
+    },
+    {
+      "intended_category": "System & power",
+      "intent": 33,
+      "language": "ENGLISH",
+      "command": "shut down in 10 minutes",
+      "expected": {
+        "action": "shutdown",
+        "args": {
+          "amount": 10,
+          "unit": "min"
+        }
+      },
+      "correct": true,
       "action": "shutdown",
       "args": {
         "amount": 10,
@@ -781,7 +2070,7 @@
       },
       "predicted_category": "System & power",
       "confidence": 1.0,
-      "latency_ms": 41.543,
+      "latency_ms": 40.655,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.common)",
@@ -797,13 +2086,113 @@
       "executed": false
     },
     {
+      "intended_category": "System & power",
+      "intent": 33,
+      "language": "HINGLISH",
+      "command": "10 min baad shutdown kar dena",
+      "expected": {
+        "action": "shutdown",
+        "args": {
+          "amount": 10,
+          "unit": "min"
+        }
+      },
+      "correct": true,
+      "action": "shutdown",
+      "args": {
+        "amount": 10,
+        "unit": "min"
+      },
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 41.756,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Shut down the machine (optional delay)",
+      "effective_risk": "critical",
+      "changes_device": true,
+      "needs_sudo": true,
+      "live_available": false,
+      "availability_reason": "Install required program(s): shutdown",
+      "planned_command": "shutdown amount=10 unit=\"min\"",
+      "default_gate": "blocked (critical; needs --allow-risk critical)",
+      "executed": false
+    },
+    {
+      "intended_category": "System & power",
+      "intent": 34,
+      "language": "ENGLISH",
+      "command": "don't shut down the laptop",
+      "expected": {
+        "action": "cancel_shutdown",
+        "args": {}
+      },
+      "correct": true,
+      "action": "cancel_shutdown",
+      "args": {},
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 39.598,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Cancel a scheduled shutdown/restart",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): shutdown",
+      "planned_command": "cancel_shutdown",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
+      "intended_category": "System & power",
+      "intent": 34,
+      "language": "HINGLISH",
+      "command": "shutdown mat karo",
+      "expected": {
+        "action": "cancel_shutdown",
+        "args": {}
+      },
+      "correct": true,
+      "action": "cancel_shutdown",
+      "args": {},
+      "predicted_category": "System & power",
+      "confidence": 1.0,
+      "latency_ms": 38.385,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.common)",
+      "handler_module": "executors.common",
+      "effect": "Cancel a scheduled shutdown/restart",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): shutdown",
+      "planned_command": "cancel_shutdown",
+      "default_gate": "allowed",
+      "executed": false
+    },
+    {
       "intended_category": "Help & intent handling",
-      "command": "tum kya kya kar sakte ho",
+      "intent": 35,
+      "language": "ENGLISH",
+      "command": "what can you do",
+      "expected": {
+        "action": "help",
+        "args": {}
+      },
+      "correct": true,
       "action": "help",
       "args": {},
       "predicted_category": "Help & intent handling",
-      "confidence": 1.0,
-      "latency_ms": 39.229,
+      "confidence": 0.9949,
+      "latency_ms": 39.611,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (tinyagent.executor)",
@@ -822,12 +2211,50 @@
     },
     {
       "intended_category": "Help & intent handling",
+      "intent": 35,
+      "language": "HINGLISH",
+      "command": "tum kya kya kar sakte ho",
+      "expected": {
+        "action": "help",
+        "args": {}
+      },
+      "correct": true,
+      "action": "help",
+      "args": {},
+      "predicted_category": "Help & intent handling",
+      "confidence": 1.0,
+      "latency_ms": 40.003,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (tinyagent.executor)",
+      "handler_module": "tinyagent.executor",
+      "effect": "Show action and adapter coverage",
+      "effective_risk": "safe",
+      "changes_device": false,
+      "needs_sudo": false,
+      "live_available": true,
+      "availability_reason": "Executor ready; arguments, permissions and device/service access are checked when run.",
+      "planned_command": "help",
+      "default_gate": "allowed",
+      "executed": true,
+      "execution_status": "completed",
+      "published_result": "371 actions, 251 live adapters here"
+    },
+    {
+      "intended_category": "Help & intent handling",
+      "intent": 36,
+      "language": "ENGLISH",
       "command": "turn it off",
+      "expected": {
+        "action": "clarify",
+        "args": {}
+      },
+      "correct": true,
       "action": "clarify",
       "args": {},
       "predicted_category": "Help & intent handling",
       "confidence": 1.0,
-      "latency_ms": 40.5,
+      "latency_ms": 41.071,
       "validation_errors": [],
       "platform": "pi",
       "executor_tool": "python adapter (executors.portable)",
@@ -843,6 +2270,35 @@
       "executed": true,
       "execution_status": "needs_input",
       "published_result": "failed: {\"status\": \"needs_input\", \"message\": \"The model needs a complete reque"
+    },
+    {
+      "intended_category": "Help & intent handling",
+      "intent": 36,
+      "language": "HINGLISH",
+      "command": "ise band kar do",
+      "expected": {
+        "action": "clarify",
+        "args": {}
+      },
+      "correct": false,
+      "action": "close_window",
+      "args": {},
+      "predicted_category": "Apps & windows",
+      "confidence": 0.9988,
+      "latency_ms": 37.958,
+      "validation_errors": [],
+      "platform": "pi",
+      "executor_tool": "python adapter (executors.desktop)",
+      "handler_module": "executors.desktop",
+      "effect": "Send alt+f4 to the selected target window",
+      "effective_risk": "caution",
+      "changes_device": true,
+      "needs_sudo": false,
+      "live_available": false,
+      "availability_reason": "Install required program(s): wmctrl",
+      "planned_command": "close_window",
+      "default_gate": "allowed",
+      "executed": false
     }
   ],
   "published_output_policy": "Raw executor output is replaced by a short summary; outputs that could reveal local device details are not published."

@@ -1,35 +1,72 @@
-{"text": "volume 40 kar do", "action": "set_volume", "args": {"value": 40}, "lang": "hi"}
-{"text": "gaana pause karo", "action": "media_pause", "args": {}, "lang": "hi"}
-{"text": "brightness thoda kam karo", "action": "brightness_down", "args": {}, "lang": "hi"}
-{"text": "dark mode on kar do", "action": "dark_mode_on", "args": {}, "lang": "hi"}
-{"text": "wifi ka signal kitna strong hai", "action": "get_wifi_signal", "args": {}, "lang": "hi"}
-{"text": "connect to wifi Redmi Note 12 password hello@123", "action": "connect_wifi", "args": {"ssid": "Redmi Note 12", "password": "hello@123"}, "lang": "en"}
-{"text": "gpio 17 ko high karo", "action": "gpio_on", "args": {"pin": 17}, "lang": "hi"}
-{"text": "physical pin 11 ki value padho", "action": "gpio_read", "args": {"pin": 11, "numbering": "board"}, "lang": "hi"}
-{"text": "i2c bus scan karo", "action": "i2c_scan", "args": {}, "lang": "hi"}
-{"text": "pi ka temperature batao", "action": "get_temperature", "args": {}, "lang": "hi"}
-{"text": "fan speed kitni hai", "action": "get_fan_speed", "args": {}, "lang": "hi"}
-{"text": "create file \"notes/todo.txt\"", "action": "create_file", "args": {"path": "notes/todo.txt"}, "lang": "en"}
-{"text": "disk space kitna bacha hai", "action": "get_disk_space", "args": {}, "lang": "hi"}
-{"text": "notepad kholo", "action": "open_app", "args": {"app": "notepad"}, "lang": "hi"}
-{"text": "is window ko minimize karo", "action": "minimize_window", "args": {}, "lang": "hi"}
-{"text": "youtube pe lofi music search karo", "action": "youtube_search", "args": {"query": "lofi music"}, "lang": "hi"}
-{"text": "login to github username dev_user password Test@123", "action": "web_login", "args": {"site": "github", "username": "dev_user", "password": "Test@123"}, "lang": "en"}
-{"text": "sab select karo", "action": "select_all", "args": {}, "lang": "hi"}
-{"text": "clipboard history dikhao", "action": "clipboard_history", "args": {}, "lang": "hi"}
-{"text": "5 minute ka timer lagao", "action": "set_timer", "args": {"amount": 5, "unit": "min"}, "lang": "hi"}
-{"text": "calculate 12 + 8", "action": "calculate", "args": {"expression": "12 + 8"}, "lang": "en"}
-{"text": "firewall ka status batao", "action": "firewall_status", "args": {}, "lang": "hi"}
-{"text": "firewall mein port 8080 allow karo", "action": "firewall_allow", "args": {"port": 8080}, "lang": "hi"}
-{"text": "ssh service ka status dikhao", "action": "service_status", "args": {"service": "ssh"}, "lang": "hi"}
-{"text": "nginx service restart karo", "action": "service_restart", "args": {"service": "nginx"}, "lang": "hi"}
-{"text": "docker containers list karo", "action": "docker_list", "args": {}, "lang": "hi"}
-{"text": "numpy python package install karo", "action": "install_python_package", "args": {"name": "numpy"}, "lang": "hi"}
-{"text": "ollama pe kaunse models hain", "action": "list_llm_models", "args": {}, "lang": "hi"}
-{"text": "llama3 model chalao", "action": "run_llm", "args": {"model": "llama3"}, "lang": "hi"}
-{"text": "tmux sessions dikhao", "action": "list_sessions", "args": {}, "lang": "hi"}
-{"text": "run command \"ls -la\"", "action": "run_command", "args": {"command": "ls -la"}, "lang": "en"}
-{"text": "cpu usage batao", "action": "get_cpu_usage", "args": {}, "lang": "hi"}
-{"text": "10 min baad shutdown kar dena", "action": "shutdown", "args": {"amount": 10, "unit": "min"}, "lang": "hi"}
-{"text": "tum kya kya kar sakte ho", "action": "help", "args": {}, "lang": "hi"}
-{"text": "turn it off", "action": "clarify", "args": {}, "lang": "en"}
+{"text": "set the volume to 40", "action": "set_volume", "args": {"value": 40}, "lang": "en", "language": "ENGLISH", "category": "Audio & media", "intent": 1}
+{"text": "volume 40 kar do", "action": "set_volume", "args": {"value": 40}, "lang": "hi", "language": "HINGLISH", "category": "Audio & media", "intent": 1}
+{"text": "pause the music", "action": "media_pause", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Audio & media", "intent": 2}
+{"text": "gaana pause karo", "action": "media_pause", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Audio & media", "intent": 2}
+{"text": "lower the brightness a little", "action": "brightness_down", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Display & appearance", "intent": 3}
+{"text": "brightness thoda kam karo", "action": "brightness_down", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Display & appearance", "intent": 3}
+{"text": "turn on dark mode", "action": "dark_mode_on", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Display & appearance", "intent": 4}
+{"text": "dark mode on kar do", "action": "dark_mode_on", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Display & appearance", "intent": 4}
+{"text": "how strong is the wifi signal", "action": "get_wifi_signal", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Network & connectivity", "intent": 5}
+{"text": "wifi ka signal kitna strong hai", "action": "get_wifi_signal", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Network & connectivity", "intent": 5}
+{"text": "connect to wifi Redmi Note 12 password hello@123", "action": "connect_wifi", "args": {"ssid": "Redmi Note 12", "password": "hello@123"}, "lang": "en", "language": "ENGLISH", "category": "Network & connectivity", "intent": 6}
+{"text": "Redmi Note 12 wifi se connect karo password hello@123", "action": "connect_wifi", "args": {"ssid": "Redmi Note 12", "password": "hello@123"}, "lang": "hi", "language": "HINGLISH", "category": "Network & connectivity", "intent": 6}
+{"text": "set gpio 17 high", "action": "gpio_on", "args": {"pin": 17}, "lang": "en", "language": "ENGLISH", "category": "GPIO & I2C", "intent": 7}
+{"text": "gpio 17 ko high karo", "action": "gpio_on", "args": {"pin": 17}, "lang": "hi", "language": "HINGLISH", "category": "GPIO & I2C", "intent": 7}
+{"text": "read the value of physical pin 11", "action": "gpio_read", "args": {"pin": 11, "numbering": "board"}, "lang": "en", "language": "ENGLISH", "category": "GPIO & I2C", "intent": 8}
+{"text": "physical pin 11 ki value padho", "action": "gpio_read", "args": {"pin": 11, "numbering": "board"}, "lang": "hi", "language": "HINGLISH", "category": "GPIO & I2C", "intent": 8}
+{"text": "scan the i2c bus", "action": "i2c_scan", "args": {}, "lang": "en", "language": "ENGLISH", "category": "GPIO & I2C", "intent": 9}
+{"text": "i2c bus scan karo", "action": "i2c_scan", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "GPIO & I2C", "intent": 9}
+{"text": "what is the pi temperature", "action": "get_temperature", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Hardware & Raspberry Pi", "intent": 10}
+{"text": "pi ka temperature batao", "action": "get_temperature", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Hardware & Raspberry Pi", "intent": 10}
+{"text": "what is the fan speed", "action": "get_fan_speed", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Hardware & Raspberry Pi", "intent": 11}
+{"text": "fan speed kitni hai", "action": "get_fan_speed", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Hardware & Raspberry Pi", "intent": 11}
+{"text": "create file \"notes/todo.txt\"", "action": "create_file", "args": {"path": "notes/todo.txt"}, "lang": "en", "language": "ENGLISH", "category": "Files & storage", "intent": 12}
+{"text": "file \"notes/todo.txt\" bana do", "action": "create_file", "args": {"path": "notes/todo.txt"}, "lang": "hi", "language": "HINGLISH", "category": "Files & storage", "intent": 12}
+{"text": "how much disk space is left", "action": "get_disk_space", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Files & storage", "intent": 13}
+{"text": "disk space kitna bacha hai", "action": "get_disk_space", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Files & storage", "intent": 13}
+{"text": "open notepad", "action": "open_app", "args": {"app": "notepad"}, "lang": "en", "language": "ENGLISH", "category": "Apps & windows", "intent": 14}
+{"text": "notepad kholo", "action": "open_app", "args": {"app": "notepad"}, "lang": "hi", "language": "HINGLISH", "category": "Apps & windows", "intent": 14}
+{"text": "minimize this window", "action": "minimize_window", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Apps & windows", "intent": 15}
+{"text": "is window ko minimize karo", "action": "minimize_window", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Apps & windows", "intent": 15}
+{"text": "search youtube for lofi music", "action": "youtube_search", "args": {"query": "lofi music"}, "lang": "en", "language": "ENGLISH", "category": "Browser & web", "intent": 16}
+{"text": "youtube pe lofi music search karo", "action": "youtube_search", "args": {"query": "lofi music"}, "lang": "hi", "language": "HINGLISH", "category": "Browser & web", "intent": 16}
+{"text": "login to github username dev_user password Test@123", "action": "web_login", "args": {"site": "github", "username": "dev_user", "password": "Test@123"}, "lang": "en", "language": "ENGLISH", "category": "Browser & web", "intent": 17}
+{"text": "github pe login karo username dev_user password Test@123", "action": "web_login", "args": {"site": "github", "username": "dev_user", "password": "Test@123"}, "lang": "hi", "language": "HINGLISH", "category": "Browser & web", "intent": 17}
+{"text": "select all", "action": "select_all", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Keyboard & clipboard", "intent": 18}
+{"text": "sab select karo", "action": "select_all", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Keyboard & clipboard", "intent": 18}
+{"text": "show clipboard history", "action": "clipboard_history", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Keyboard & clipboard", "intent": 19}
+{"text": "clipboard history dikhao", "action": "clipboard_history", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Keyboard & clipboard", "intent": 19}
+{"text": "set a timer for 5 minutes", "action": "set_timer", "args": {"amount": 5, "unit": "min"}, "lang": "en", "language": "ENGLISH", "category": "Timers & productivity", "intent": 20}
+{"text": "5 minute ka timer lagao", "action": "set_timer", "args": {"amount": 5, "unit": "min"}, "lang": "hi", "language": "HINGLISH", "category": "Timers & productivity", "intent": 20}
+{"text": "calculate 12 + 8", "action": "calculate", "args": {"expression": "12 + 8"}, "lang": "en", "language": "ENGLISH", "category": "Timers & productivity", "intent": 21}
+{"text": "12 + 8 calculate karo", "action": "calculate", "args": {"expression": "12 + 8"}, "lang": "hi", "language": "HINGLISH", "category": "Timers & productivity", "intent": 21}
+{"text": "show the firewall status", "action": "firewall_status", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Security & accounts", "intent": 22}
+{"text": "firewall ka status batao", "action": "firewall_status", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Security & accounts", "intent": 22}
+{"text": "allow port 8080 in the firewall", "action": "firewall_allow", "args": {"port": 8080}, "lang": "en", "language": "ENGLISH", "category": "Security & accounts", "intent": 23}
+{"text": "firewall mein port 8080 allow karo", "action": "firewall_allow", "args": {"port": 8080}, "lang": "hi", "language": "HINGLISH", "category": "Security & accounts", "intent": 23}
+{"text": "show the status of the ssh service", "action": "service_status", "args": {"service": "ssh"}, "lang": "en", "language": "ENGLISH", "category": "Services & processes", "intent": 24}
+{"text": "ssh service ka status dikhao", "action": "service_status", "args": {"service": "ssh"}, "lang": "hi", "language": "HINGLISH", "category": "Services & processes", "intent": 24}
+{"text": "restart the nginx service", "action": "service_restart", "args": {"service": "nginx"}, "lang": "en", "language": "ENGLISH", "category": "Services & processes", "intent": 25}
+{"text": "nginx service restart karo", "action": "service_restart", "args": {"service": "nginx"}, "lang": "hi", "language": "HINGLISH", "category": "Services & processes", "intent": 25}
+{"text": "list docker containers", "action": "docker_list", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Software & development", "intent": 26}
+{"text": "docker containers list karo", "action": "docker_list", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Software & development", "intent": 26}
+{"text": "install the numpy python package", "action": "install_python_package", "args": {"name": "numpy"}, "lang": "en", "language": "ENGLISH", "category": "Software & development", "intent": 27}
+{"text": "numpy python package install karo", "action": "install_python_package", "args": {"name": "numpy"}, "lang": "hi", "language": "HINGLISH", "category": "Software & development", "intent": 27}
+{"text": "which models are available in ollama", "action": "list_llm_models", "args": {}, "lang": "en", "language": "ENGLISH", "category": "AI & models", "intent": 28}
+{"text": "ollama pe kaunse models hain", "action": "list_llm_models", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "AI & models", "intent": 28}
+{"text": "run the llama3 model", "action": "run_llm", "args": {"model": "llama3"}, "lang": "en", "language": "ENGLISH", "category": "AI & models", "intent": 29}
+{"text": "llama3 model chalao", "action": "run_llm", "args": {"model": "llama3"}, "lang": "hi", "language": "HINGLISH", "category": "AI & models", "intent": 29}
+{"text": "show tmux sessions", "action": "list_sessions", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Terminal & sessions", "intent": 30}
+{"text": "tmux sessions dikhao", "action": "list_sessions", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Terminal & sessions", "intent": 30}
+{"text": "run command \"ls -la\"", "action": "run_command", "args": {"command": "ls -la"}, "lang": "en", "language": "ENGLISH", "category": "Terminal & sessions", "intent": 31}
+{"text": "command \"ls -la\" chalao", "action": "run_command", "args": {"command": "ls -la"}, "lang": "hi", "language": "HINGLISH", "category": "Terminal & sessions", "intent": 31}
+{"text": "what is the cpu usage", "action": "get_cpu_usage", "args": {}, "lang": "en", "language": "ENGLISH", "category": "System & power", "intent": 32}
+{"text": "cpu usage batao", "action": "get_cpu_usage", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "System & power", "intent": 32}
+{"text": "shut down in 10 minutes", "action": "shutdown", "args": {"amount": 10, "unit": "min"}, "lang": "en", "language": "ENGLISH", "category": "System & power", "intent": 33}
+{"text": "10 min baad shutdown kar dena", "action": "shutdown", "args": {"amount": 10, "unit": "min"}, "lang": "hi", "language": "HINGLISH", "category": "System & power", "intent": 33}
+{"text": "don't shut down the laptop", "action": "cancel_shutdown", "args": {}, "lang": "en", "language": "ENGLISH", "category": "System & power", "intent": 34}
+{"text": "shutdown mat karo", "action": "cancel_shutdown", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "System & power", "intent": 34}
+{"text": "what can you do", "action": "help", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Help & intent handling", "intent": 35}
+{"text": "tum kya kya kar sakte ho", "action": "help", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Help & intent handling", "intent": 35}
+{"text": "turn it off", "action": "clarify", "args": {}, "lang": "en", "language": "ENGLISH", "category": "Help & intent handling", "intent": 36}
+{"text": "ise band kar do", "action": "clarify", "args": {}, "lang": "hi", "language": "HINGLISH", "category": "Help & intent handling", "intent": 36}

@@ -12,7 +12,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-REPO_ID = "sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10"
+REPO_ID = "sraivante/tiny-agentic-home-robotic-for-edge-device-v10"
 FILENAME = "models/a100_minilm_v10_quoted/best.pt"
 SHA256 = "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b"
 SIZE = 96200101

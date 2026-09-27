@@ -1,5 +1,6 @@
 """Run sample commands from every category through the model and the SAMPLE executor.
 
+Commands come from examples/sample_commands.jsonl: every intent in ENGLISH and in HINGLISH.
 For each command: the model's structured output, the executor adapter/tool that would run it on
 this platform, the exact native command (when there is one), and the risk-gate decision.
 With --execute-safe, commands whose effective risk is "safe" and that do not change the device
@@ -28,43 +29,13 @@ from device_info import describe  # noqa: E402
 from download_model import ensure_model  # noqa: E402
 
 RISK_LEVELS = {"safe": 0, "caution": 1, "critical": 2}
-SAMPLES = [
-    ("Audio & media", "volume 40 kar do"),
-    ("Audio & media", "gaana pause karo"),
-    ("Display & appearance", "brightness thoda kam karo"),
-    ("Display & appearance", "dark mode on kar do"),
-    ("Network & connectivity", "wifi ka signal kitna strong hai"),
-    ("Network & connectivity", "connect to wifi Redmi Note 12 password hello@123"),
-    ("GPIO & I2C", "gpio 17 ko high karo"),
-    ("GPIO & I2C", "physical pin 11 ki value padho"),
-    ("GPIO & I2C", "i2c bus scan karo"),
-    ("Hardware & Raspberry Pi", "pi ka temperature batao"),
-    ("Hardware & Raspberry Pi", "fan speed kitni hai"),
-    ("Files & storage", 'create file "notes/todo.txt"'),
-    ("Files & storage", "disk space kitna bacha hai"),
-    ("Apps & windows", "notepad kholo"),
-    ("Apps & windows", "is window ko minimize karo"),
-    ("Browser & web", "youtube pe lofi music search karo"),
-    ("Browser & web", "login to github username dev_user password Test@123"),
-    ("Keyboard & clipboard", "sab select karo"),
-    ("Keyboard & clipboard", "clipboard history dikhao"),
-    ("Timers & productivity", "5 minute ka timer lagao"),
-    ("Timers & productivity", "calculate 12 + 8"),
-    ("Security & accounts", "firewall ka status batao"),
-    ("Security & accounts", "firewall mein port 8080 allow karo"),
-    ("Services & processes", "ssh service ka status dikhao"),
-    ("Services & processes", "nginx service restart karo"),
-    ("Software & development", "docker containers list karo"),
-    ("Software & development", "numpy python package install karo"),
-    ("AI & models", "ollama pe kaunse models hain"),
-    ("AI & models", "llama3 model chalao"),
-    ("Terminal & sessions", "tmux sessions dikhao"),
-    ("Terminal & sessions", 'run command "ls -la"'),
-    ("System & power", "cpu usage batao"),
-    ("System & power", "10 min baad shutdown kar dena"),
-    ("Help & intent handling", "tum kya kya kar sakte ho"),
-    ("Help & intent handling", "turn it off"),
-]
+SAMPLES_FILE = ROOT / "examples/sample_commands.jsonl"
+
+
+def load_samples(path=SAMPLES_FILE):
+    """Every intent appears twice in the file: once in ENGLISH and once in HINGLISH."""
+    with open(path, encoding="utf-8") as stream:
+        return [json.loads(line) for line in stream if line.strip()]
 
 
 def shorten(value, limit=240):
@@ -114,10 +85,14 @@ def main():
     workdir = tempfile.mkdtemp(prefix="union-v10-examples-")
     executor = LabExecutor(workdir)
     rows = []
-    for intended, text in SAMPLES:
+    for sample in load_samples():
+        intended, text = sample["category"], sample["text"]
         prediction = model.predict(text)
         action, arguments = prediction["action"], prediction["args"]
-        row = {"intended_category": intended, "command": text, "action": action, "args": arguments,
+        row = {"intended_category": intended, "intent": sample["intent"], "language": sample["language"],
+               "command": text, "expected": {"action": sample["action"], "args": sample["args"]},
+               "correct": action == sample["action"] and arguments == sample["args"],
+               "action": action, "args": arguments,
                "predicted_category": category_for(action), "confidence": round(prediction["confidence"], 4),
                "latency_ms": prediction["latency_ms"], "validation_errors": prediction["validation_errors"],
                "platform": executor.platform}
@@ -146,12 +121,13 @@ def main():
                 executor.pending.pop(plan["id"], None)
                 row["executed"] = False
         rows.append(row)
-        print(f"{text!r:55} -> {action} {json.dumps(arguments, ensure_ascii=False)}"
+        print(f"{row['language']:8} {text!r:58} -> {action} {json.dumps(arguments, ensure_ascii=False)}"
+              f"{'' if row['correct'] else '  [differs from expected]'}"
               f" | {row.get('executor_tool', row.get('plan_error', 'no plan'))}"
               f"{' | ran: ' + row['execution_output'][:80] if row.get('executed') else ''}", flush=True)
     report = {"created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "device": describe(args.threads),
               "platform": executor.platform, "checkpoint_sha256": model.checkpoint_sha256,
-              "note": "Illustrative commands written for this demo (not dataset rows). Accuracy numbers come "
+              "note": "Illustrative commands written for this demo, each intent in ENGLISH and HINGLISH (not dataset rows). Accuracy numbers come "
                       "from the held-out test set, not from this table. Only read-only 'safe' commands were executed.",
               "rows": rows}
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
