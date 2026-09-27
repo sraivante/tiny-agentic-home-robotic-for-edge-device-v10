@@ -19,11 +19,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from categories import category_for  # noqa: E402
 
-HF_REPO = "sraivante/union-command-minilm-v10"
+HF_REPO = "sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10"
 HF_URL = f"https://huggingface.co/{HF_REPO}"
-GH_REPO = "sraivante/union-command-minilm-v10"
+GH_REPO = "sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10"
 GH_URL = f"https://github.com/{GH_REPO}"
-PAGES_URL = "https://sraivante.github.io/union-command-minilm-v10/"
+PAGES_URL = "https://sraivante.github.io/tiny-agentic-home-robotic-v10-for-edge-device-v10/"
 ZIP_URL = f"{GH_URL}/archive/refs/heads/main.zip"
 WEIGHTS_URL = f"{HF_URL}/resolve/main/models/a100_minilm_v10_quoted/best.pt"
 SHA256 = "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b"
@@ -424,7 +424,7 @@ Full accuracy run speed (batched, held-out test):
 
 ```bash
 git clone {GH_URL}.git
-cd union-command-minilm-v10
+cd tiny-agentic-home-robotic-v10-for-edge-device-v10
 python download_model.py      # 96.2 MB from Hugging Face, SHA-256 verified
 ```
 
@@ -693,7 +693,7 @@ footer {{ margin-top:48px; color:var(--muted); font-size:.88rem; }}
 <div class="steps">
 <div><h3>1 · Get the code and model</h3>
 <pre><code>git clone {GH_URL}.git
-cd union-command-minilm-v10
+cd tiny-agentic-home-robotic-v10-for-edge-device-v10
 python download_model.py</code></pre>
 <p class="muted">The downloader fetches the 96.2 MB model from Hugging Face and verifies its SHA-256.</p></div>
 <div><h3>2 · Install (Python 3.11–3.13, CPU)</h3>

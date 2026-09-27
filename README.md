@@ -17,7 +17,7 @@ Docker, local LLMs, Raspberry Pi GPIO/I2C and more.
 | Runs on | CPU only, fully offline after download (Windows, Linux, Raspberry Pi 5) |
 | Held-out test accuracy | **94.87% exact** (action + every argument) on 24,498 unseen-template commands; 96.05% action-only |
 | Speed | **5.9 ms** median per command on a laptop i7-1360P (2 threads); **40 ms** median per command on a Raspberry Pi 5 (2 threads) |
-| Links | [GitHub code](https://github.com/sraivante/union-command-minilm-v10) · [HTML test guide](https://sraivante.github.io/union-command-minilm-v10/) · [Hugging Face model](https://huggingface.co/sraivante/union-command-minilm-v10) |
+| Links | [GitHub code](https://github.com/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10) · [HTML test guide](https://sraivante.github.io/tiny-agentic-home-robotic-v10-for-edge-device-v10/) · [Hugging Face model](https://huggingface.co/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10) |
 
 > **Executor notice.** The model only *parses* commands. The executor included in this repository is a **sample
 > for testing, not a fully developed product**. It is there so you can see a parsed command turn into a real
@@ -195,13 +195,13 @@ Raspberry Pi 5 notes. The first attempt ran the held-out test in one go with 4 t
 ### 1. Get the code and the model
 
 ```bash
-git clone https://github.com/sraivante/union-command-minilm-v10.git
-cd union-command-minilm-v10
+git clone https://github.com/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10.git
+cd tiny-agentic-home-robotic-v10-for-edge-device-v10
 python download_model.py      # 96.2 MB from Hugging Face, SHA-256 verified
 ```
 
-Or download the [ZIP of the repository](https://github.com/sraivante/union-command-minilm-v10/archive/refs/heads/main.zip). The model file alone is at
-[sraivante/union-command-minilm-v10](https://huggingface.co/sraivante/union-command-minilm-v10/resolve/main/models/a100_minilm_v10_quoted/best.pt).
+Or download the [ZIP of the repository](https://github.com/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10/archive/refs/heads/main.zip). The model file alone is at
+[sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10](https://huggingface.co/sraivante/tiny-agentic-home-robotic-v10-for-edge-device-v10/resolve/main/models/a100_minilm_v10_quoted/best.pt).
 
 ### 2. Install (Python 3.11 to 3.13, CPU only)
 
@@ -306,7 +306,7 @@ security hardening are incomplete. Do not expose it to a network or run it unatt
 | `app.py`, `lab_executor.py`, `executors/`, `web/` | The sample executor lab |
 | `test_results/` | Accuracy, speed and temperature reports for the laptop and the Raspberry Pi 5 |
 | `examples/` | Illustrative commands and per-platform executor plans |
-| `docs/index.html` | The HTML test guide ([online](https://sraivante.github.io/union-command-minilm-v10/)) |
+| `docs/index.html` | The HTML test guide ([online](https://sraivante.github.io/tiny-agentic-home-robotic-v10-for-edge-device-v10/)) |
 
 ## License and credits
 
