@@ -759,7 +759,7 @@ def main():
     NOTES = notes
     if notes.get("status") == "partial" and not results[2]:
         PI_MISSING = "not completed (Pi went offline)"
-    PI_NOTES = notes.get("text", "") if notes.get("status") == "partial" or not results[2] else ""
+    PI_NOTES = notes.get("text", "")
     DEVICE_ROWS = []
     for name, report in (("Laptop", results[0]), ("Raspberry Pi 5", results[2] or results[3])):
         if report:
