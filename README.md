@@ -16,7 +16,7 @@ Docker, local LLMs, Raspberry Pi GPIO/I2C and more.
 | Model file | 96.2 MB, FP32 PyTorch, 23,889,849 parameters |
 | Runs on | CPU only, fully offline after download (Windows, Linux, Raspberry Pi 5) |
 | Held-out test accuracy | **94.87% exact** (action + every argument) on 24,498 unseen-template commands; 96.05% action-only |
-| Speed | **5.9 ms** median per command on a laptop i7-1360P (2 threads); about **40 ms** on a Raspberry Pi 5 (2 threads, partial run, see below) |
+| Speed | **5.9 ms** median per command on a laptop i7-1360P (2 threads); **40 ms** median per command on a Raspberry Pi 5 (2 threads) |
 | Links | [GitHub code](https://github.com/sraivante/union-command-minilm-v10) · [HTML test guide](https://sraivante.github.io/union-command-minilm-v10/) · [Hugging Face model](https://huggingface.co/sraivante/union-command-minilm-v10) |
 
 > **Executor notice.** The model only *parses* commands. The executor included in this repository is a **sample
@@ -60,23 +60,23 @@ machine. "Result" is shown only for read-only commands that were actually execut
 
 | Category | Sample command | Model output | Executor tool: Windows 11 | Executor tool: Raspberry Pi 5 | Default gate | Result |
 |---|---|---|---|---|---|---|
-| Audio & media | volume 40 kar do | set_volume {"value": 40} | Python adapter executors/windows.py: Set master volume to an exact percent [needs pycaw] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| Display & appearance | brightness thoda kam karo | brightness_down {} | PowerShell: $b=Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness… [ready] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| Network & connectivity | wifi ka signal kitna strong hai | get_wifi_signal {} | netsh.exe wlan show interfaces [ready] | not measured (Pi went offline) | allowed | completed (output not published: local device details) |
-| GPIO & I2C | gpio 17 ko high karo | gpio_on {"pin": 17} | Python adapter executors/common.py: Set a GPIO pin HIGH (e.g. relay / LED on) [Pi only] | not measured (Pi went offline) | blocked | blocked by default gate |
-| Hardware & Raspberry Pi | pi ka temperature batao | get_temperature {} | PowerShell: $t=Get-CimInstance -Namespace root/wmi -ClassName MSAcpi_ThermalZoneTe… [ready] | not measured (Pi went offline) | allowed | failed: needs administrator rights |
-| Files & storage | create file "notes/todo.txt" | create_file {"path": "notes/todo.txt"} | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| Apps & windows | notepad kholo | open_app {"app": "notepad"} | Python adapter executors/desktop.py: Open / launch an application [needs pywinauto] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| Browser & web | youtube pe lofi music search karo | youtube_search {"query": "lofi music"} | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| Keyboard & clipboard | sab select karo | select_all {} | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs pywinauto] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| Timers & productivity | 5 minute ka timer lagao | set_timer {"amount": 5, "unit": "min"} | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| Security & accounts | firewall ka status batao | firewall_status {} | PowerShell: Get-NetFirewallProfile \| Select-Object Name,Enabled \| ConvertTo-Json [ready] | not measured (Pi went offline) | allowed | completed (output not published: local device details) |
-| Services & processes | ssh service ka status dikhao | service_status {"service": "ssh"} | PowerShell: Get-Service -Name $a.service \| Select-Object Name,Status,DisplayName \|… [ready] | not measured (Pi went offline) | allowed | failed: no such service on this OS |
-| Software & development | docker containers list karo | docker_list {} | docker.EXE ps -a [ready] | not measured (Pi went offline) | allowed | completed (output not published: local device details) |
-| AI & models | ollama pe kaunse models hain | list_llm_models {} | ollama.EXE list [ready] | not measured (Pi went offline) | allowed | completed (output not published: local device details) |
-| Terminal & sessions | tmux sessions dikhao | list_sessions {} | Python adapter executors/common.py: List sessions [Pi only] | not measured (Pi went offline) | allowed | plan only (not executed in this demo) |
-| System & power | cpu usage batao | get_cpu_usage {} | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | not measured (Pi went offline) | allowed | CPU 14.6 % |
-| Help & intent handling | tum kya kya kar sakte ho | help {} | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | not measured (Pi went offline) | allowed | 371 actions, 221 live adapters here |
+| Audio & media | volume 40 kar do | set_volume {"value": 40} | Python adapter executors/windows.py: Set master volume to an exact percent [needs pycaw] | Python adapter executors/common.py: Set master volume to an exact percent [needs pactl] | allowed | plan only (not executed in this demo) |
+| Display & appearance | brightness thoda kam karo | brightness_down {} | PowerShell: $b=Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness… [ready] | Python adapter executors/common.py: Decrease brightness (default step 10) [needs brightnessctl] | allowed | plan only (not executed in this demo) |
+| Network & connectivity | wifi ka signal kitna strong hai | get_wifi_signal {} | netsh.exe wlan show interfaces [ready] | nmcli device wifi list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| GPIO & I2C | gpio 17 ko high karo | gpio_on {"pin": 17} | Python adapter executors/common.py: Set a GPIO pin HIGH (e.g. relay / LED on) [Pi only] | pinctrl set 17 op dh [ready] | blocked | blocked by default gate |
+| Hardware & Raspberry Pi | pi ka temperature batao | get_temperature {} | PowerShell: $t=Get-CimInstance -Namespace root/wmi -ClassName MSAcpi_ThermalZoneTe… [ready] | vcgencmd measure_temp [ready] | allowed | Windows: failed: needs administrator rights; Pi: temp=43.9'C |
+| Files & storage | create file "notes/todo.txt" | create_file {"path": "notes/todo.txt"} | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | Python adapter tinyagent/executor.py: Create a new empty file; existing files are never overwritt… [ready] | allowed | plan only (not executed in this demo) |
+| Apps & windows | notepad kholo | open_app {"app": "notepad"} | Python adapter executors/desktop.py: Open / launch an application [needs pywinauto] | Python adapter executors/desktop.py: Open / launch an application [ready] | allowed | plan only (not executed in this demo) |
+| Browser & web | youtube pe lofi music search karo | youtube_search {"query": "lofi music"} | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | Python adapter executors/desktop.py: Search / play something on YouTube [ready] | allowed | plan only (not executed in this demo) |
+| Keyboard & clipboard | sab select karo | select_all {} | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs pywinauto] | Python adapter executors/desktop.py: Send ctrl+a to the selected target window [needs wmctrl] | allowed | plan only (not executed in this demo) |
+| Timers & productivity | 5 minute ka timer lagao | set_timer {"amount": 5, "unit": "min"} | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | Python adapter tinyagent/executor.py: Start a timer in this local server process [ready] | allowed | plan only (not executed in this demo) |
+| Security & accounts | firewall ka status batao | firewall_status {} | PowerShell: Get-NetFirewallProfile \| Select-Object Name,Enabled \| ConvertTo-Json [ready] | Python adapter executors/common.py: show firewall status [needs ufw] | allowed | Windows: completed (output not published: local device details) |
+| Services & processes | ssh service ka status dikhao | service_status {"service": "ssh"} | PowerShell: Get-Service -Name $a.service \| Select-Object Name,Status,DisplayName \|… [ready] | systemctl status --no-pager -- ssh [ready] | allowed | Windows: failed: no such service on this OS |
+| Software & development | docker containers list karo | docker_list {} | docker.EXE ps -a [ready] | docker ps -a [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| AI & models | ollama pe kaunse models hain | list_llm_models {} | ollama.EXE list [ready] | ollama list [ready] | allowed | Windows: completed (output not published: local device details); Pi: completed (output not published: local device details) |
+| Terminal & sessions | tmux sessions dikhao | list_sessions {} | Python adapter executors/common.py: List sessions [Pi only] | Python adapter executors/common.py: List sessions [needs tmux] | allowed | plan only (not executed in this demo) |
+| System & power | cpu usage batao | get_cpu_usage {} | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | Python adapter tinyagent/executor.py: Measure CPU use over 200 milliseconds [ready] | allowed | Windows: CPU 14.6 %; Pi: CPU 0.0 % |
+| Help & intent handling | tum kya kya kar sakte ho | help {} | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | Python adapter tinyagent/executor.py: Show action and adapter coverage [ready] | allowed | Windows: 371 actions, 221 live adapters here; Pi: 371 actions, 251 live adapters here |
 
 All 35 illustrative commands (two per category) are in
 [`examples/sample_commands.jsonl`](examples/sample_commands.jsonl), with per-platform executor plans in
@@ -98,9 +98,9 @@ abstentions stay in the denominator. Same checkpoint on both devices: SHA-256 `c
 
 | Dataset | Rows | Laptop CPU exact | Laptop action-only | Raspberry Pi 5 exact | Pi action-only | About the set |
 |---|---|---|---|---|---|---|
-| Held-out test (unseen templates) | 24,498 | 94.87% (23,241) | 96.05% | not completed (Pi went offline) | — | 24,498 rows · all 371 actions · template families never seen in training |
-| Practical dev (A) | 1,321 | 96.44% (1,274) | 96.90% | not completed (Pi went offline) | — | 1,321 realistic phrasings · used during development |
-| Golden dev (B) | 383 | 97.39% (373) | 97.91% | not completed (Pi went offline) | — | 383 hand-checked commands · used during development |
+| Held-out test (unseen templates) | 24,498 | 94.87% (23,241) | 96.05% | 94.87% (23,241) | 96.05% | 24,498 rows · all 371 actions · template families never seen in training |
+| Practical dev (A) | 1,321 | 96.44% (1,274) | 96.90% | 96.44% (1,274) | 96.90% | 1,321 realistic phrasings · used during development |
+| Golden dev (B) | 383 | 97.39% (373) | 97.91% | 97.39% (373) | 97.91% | 383 hand-checked commands · used during development |
 
 The held-out test split is made of whole template families that were never used for training. It was evaluated once
 for this release. Practical dev and golden dev guided earlier development, so treat them as regression checks.
@@ -161,14 +161,16 @@ throughput (batch 32). Includes Python and PyTorch overhead. "RAM" is the whole 
 | Laptop i7-1360P | 1 | 7.4 ms | 9.9 ms | 131 | 141 | 5.3 s | 650 MB |
 | Laptop i7-1360P | 2 | 5.9 ms | 9.4 ms | 157 | 249 | 5.3 s | 650 MB |
 | Laptop i7-1360P | 4 | 7.2 ms | 11.3 ms | 128 | 237 | 5.3 s | 650 MB |
-| Raspberry Pi 5 (partial) | 2 | ~40 ms (2 warm requests) | — | — | 77 (4 threads, batch 64) | 8.6 s | — |
+| Raspberry Pi 5 | 1 | 32.8 ms | 40.8 ms | 30 | 91 | 8.3 s | 533 MB |
+| Raspberry Pi 5 | 2 | 40.4 ms | 47.6 ms | 24 | 88 | 8.3 s | 533 MB |
+| Raspberry Pi 5 | 4 | 36.2 ms | 44.0 ms | 27 | 100 | 8.3 s | 533 MB |
 
 Full accuracy run speed (batched, held-out test):
 
 | Device | Seconds | Commands/s | Threads | Batch |
 |---|---|---|---|---|
 | Laptop i7-1360P | 95.86 | 255.5 | 4 | 64 |
-| Raspberry Pi 5 (partial) | 130 for 10,048 of 24,498 | 77 | 4 | 64 |
+| Raspberry Pi 5 | 331.81 | 73.8 | 2 | 64 |
 
 ### Temperature
 
@@ -176,16 +178,17 @@ Full accuracy run speed (batched, held-out test):
 |---|---|---|---|---|---|---|
 | Laptop i7-1360P | Accuracy run (26k rows, 4 threads) | Windows ACPI thermal zone (typeperf, Thermal Zone Information) | 60.9 °C | 95.9 °C | 85.3 °C | n/a (not a Pi) |
 | Laptop i7-1360P | Latency benchmark (1/2/4 threads) | Windows ACPI thermal zone (typeperf, Thermal Zone Information) | 53.9 °C | 85.9 °C | 71.2 °C | n/a (not a Pi) |
-| Raspberry Pi 5 | Accuracy run, partial (4 threads) | vcgencmd SoC sensor (spot readings) | 45.0 °C (idle) | 85.1 °C after 130 s | — | 0x0 before; board went offline |
+| Raspberry Pi 5 | Accuracy run | sysfs cpu-thermal (Raspberry Pi SoC sensor) | 51.8 °C | 73.2 °C | 68.2 °C | throttled=0x0 |
+| Raspberry Pi 5 | Latency benchmark | sysfs cpu-thermal (Raspberry Pi SoC sensor) | 41.9 °C | 65.5 °C | 56.5 °C | throttled=0x0 |
 
-Raspberry Pi 5 status: partial. On the Pi 5 (16 GB, active cooler, 64-bit Debian 13) the model loaded in 8.6 s and answered warm single commands in about 40 ms with 2 threads (first, cold request 222 ms). The sustained accuracy run on the held-out test used 4 threads and batch 64. It processed 10,048 of 24,498 commands in 130 s (about 77 commands/s). At that point the SoC was at 85.1 °C, the Pi 5 soft-throttle point, with the fan at about 9,900 RPM. Soon after, the Pi stopped responding on the network and had not come back when these results were published. Pi accuracy is therefore not reported yet. The weights and code are identical to the laptop run, so predictions should match closely, but this was not measured. For long jobs on a Pi 5, use 2 threads, make sure the cooler and a 5 V / 5 A supply are fitted, and watch `vcgencmd measure_temp` and `vcgencmd get_throttled`.
+Raspberry Pi 5 notes. The first attempt ran the held-out test in one go with 4 threads. After 202 s and 15,040 commands the SoC reached about 85 °C with the fan near 9,900 RPM, and the Pi dropped off the network until it was power-cycled. The reported Pi results come from a second, gentler run: 2 threads, the held-out test split into five chunks of 5,000 rows, and a cool-down below 65 °C before each chunk. Temperature, the 5 V rail, throttle flags and fan speed were logged every 5 seconds (test_results/rpi5/sensors.log). That run finished with throttle flags at 0x0 throughout, a peak of 73.2 °C and a 5 V rail between 5.05 V and 5.20 V. The Pi made exactly the same predictions as the laptop: the same 1,314 commands were wrong on both devices across the three sets. On the Pi, 1 thread gives the lowest single-command latency; extra threads mainly help batched throughput. For long jobs on a Pi 5, use 1 or 2 threads, keep the active cooler and a 5 V / 5 A supply, and watch `vcgencmd measure_temp` and `vcgencmd get_throttled`.
 
 ### Test devices
 
 | Device | CPU | OS | Python / PyTorch |
 |---|---|---|---|
 | Laptop | 13th Gen Intel(R) Core(TM) i7-1360P | Windows-11-10.0.26200-SP0 | Python 3.13.14 / torch 2.12.0+cpu |
-| Raspberry Pi 5 (16 GB, active cooler) | Broadcom BCM2712, 4x Arm Cortex-A76 @ 2.4 GHz | Debian 13 (trixie) 64-bit, kernel 6.12.47 | Python 3.13.5 / torch 2.8.0+cpu |
+| Raspberry Pi 5 | Raspberry Pi 5 Model B Rev 1.1 (Arm Cortex-A76, 4 cores) | Linux-6.12.47+rpt-rpi-2712-aarch64-with-glibc2.41 | Python 3.13.5 / torch 2.8.0+cpu |
 
 ## Download and test
 

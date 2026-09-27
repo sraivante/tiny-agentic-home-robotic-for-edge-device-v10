@@ -244,7 +244,14 @@ def build(results):
         row = primary.get(category)
         if not row:
             continue
-        result = display_result(row["pi"]) or display_result(row["win"]) or ("blocked by default gate" if row["gate"].startswith("blocked") else "plan only (not executed in this demo)")
+        win_result, pi_result = display_result(row["win"]), display_result(row["pi"])
+        if row["gate"].startswith("blocked"):
+            result = "blocked by default gate"
+        elif win_result or pi_result:
+            result = "; ".join(part for part in (f"Windows: {win_result}" if win_result else "",
+                                                  f"Pi: {pi_result}" if pi_result else "") if part)
+        else:
+            result = "plan only (not executed in this demo)"
         cat_table.append([category, row["command"], output_text(row), tool_short(row["win"]) + f" [{ready_text(row['win'])}]",
                           (tool_short(row["pi"]) + f" [{ready_text(row['pi'])}]") if row["pi"] else ("not measured (Pi went offline)" if NOTES.get("status") == "partial" else "not measured"),
                           row["gate"].split(" (")[0], result])

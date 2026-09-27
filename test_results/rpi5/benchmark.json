@@ -1,0 +1,77 @@
+{
+  "device": {
+    "os": "Linux-6.12.47+rpt-rpi-2712-aarch64-with-glibc2.41",
+    "machine": "aarch64",
+    "cpu": "Raspberry Pi 5 Model B Rev 1.1 (Arm Cortex-A76, 4 cores)",
+    "logical_cpus": 4,
+    "ram_gb": 15.8,
+    "python": "3.13.5",
+    "torch": "2.8.0+cpu",
+    "threads": 1
+  },
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+  "parameters": 23889849,
+  "model_bytes": 96200101,
+  "load_seconds": 8.26,
+  "requests_per_pass": 371,
+  "protocol": "warm single-request latency, one command per catalog action; then batched throughput",
+  "throttled_before": "throttled=0x0",
+  "started_at": "2026-09-27T15:21:04+0530",
+  "runs": [
+    {
+      "threads": 1,
+      "requests": 742,
+      "latency_ms": {
+        "median": 32.76,
+        "mean": 33.61,
+        "p95": 40.78,
+        "p99": 53.01,
+        "max": 58.41
+      },
+      "single_request_per_second": 29.8,
+      "batched_commands_per_second": 91.3,
+      "batch_size": 32
+    },
+    {
+      "threads": 2,
+      "requests": 742,
+      "latency_ms": {
+        "median": 40.41,
+        "mean": 41.12,
+        "p95": 47.59,
+        "p99": 56.94,
+        "max": 70.68
+      },
+      "single_request_per_second": 24.3,
+      "batched_commands_per_second": 87.9,
+      "batch_size": 32
+    },
+    {
+      "threads": 4,
+      "requests": 742,
+      "latency_ms": {
+        "median": 36.19,
+        "mean": 36.89,
+        "p95": 44.0,
+        "p99": 51.98,
+        "max": 96.0
+      },
+      "single_request_per_second": 27.1,
+      "batched_commands_per_second": 99.5,
+      "batch_size": 32
+    }
+  ],
+  "temperature": {
+    "source": "sysfs cpu-thermal (Raspberry Pi SoC sensor)",
+    "samples": 98,
+    "start_c": 41.9,
+    "end_c": 65.5,
+    "min_c": 41.9,
+    "max_c": 65.5,
+    "mean_c": 56.5
+  },
+  "throttled_after": "throttled=0x0",
+  "process_rss_mb": 532.8,
+  "model_rss_increase_mb": 319.4,
+  "finished_at": "2026-09-27T15:22:42+0530"
+}

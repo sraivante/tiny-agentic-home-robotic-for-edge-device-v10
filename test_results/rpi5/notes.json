@@ -1,27 +1,26 @@
 {
-  "status": "partial",
+  "status": "complete",
   "date": "2026-09-27",
-  "device": "Raspberry Pi 5 Model B Rev 1.1, 16 GB RAM, active cooler; Debian 13 (trixie) 64-bit, kernel 6.12.47; Python 3.13.5, torch 2.8.0+cpu, transformers 4.56.2, tokenizers 0.22.1",
   "device_row": ["Raspberry Pi 5 (16 GB, active cooler)", "Broadcom BCM2712, 4x Arm Cortex-A76 @ 2.4 GHz", "Debian 13 (trixie) 64-bit, kernel 6.12.47", "Python 3.13.5 / torch 2.8.0+cpu"],
   "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
-  "measurements": {
-    "idle_soc_temperature_c": 45.0,
-    "throttled_flags_at_start": "0x0",
-    "model_load_seconds_2_threads": 8.6,
-    "first_request_ms_cold": 222.4,
-    "warm_request_ms_2_threads": [39.7, 41.1],
-    "accuracy_run": {
-      "threads": 4,
-      "batch_size": 64,
-      "rows_done": 10048,
-      "rows_total": 24498,
-      "seconds": 130,
-      "commands_per_second": 77,
-      "soc_temperature_c_at_that_point": 85.1,
-      "fan_rpm_at_that_point": 9937,
-      "load_average_1min": 3.55
-    }
+  "first_attempt": {
+    "threads": 4,
+    "batch_size": 64,
+    "rows_done_before_failure": 15040,
+    "seconds_before_failure": 202,
+    "soc_temperature_c_near_failure": 85.1,
+    "fan_rpm_near_failure": 9937,
+    "outcome": "Pi stopped responding on the network and needed a power cycle; the systemd journal was not persistent, so no kernel log survived."
   },
-  "outcome": "About 2.5 minutes into the sustained 4-thread accuracy run the Pi stopped answering on the network and did not come back during the test session, so the Pi accuracy and latency tables are incomplete.",
-  "text": "Raspberry Pi 5 status: partial. On the Pi 5 (16 GB, active cooler, 64-bit Debian 13) the model loaded in 8.6 s and answered warm single commands in about 40 ms with 2 threads (first, cold request 222 ms). The sustained accuracy run on the held-out test used 4 threads and batch 64. It processed 10,048 of 24,498 commands in 130 s (about 77 commands/s). At that point the SoC was at 85.1 °C, the Pi 5 soft-throttle point, with the fan at about 9,900 RPM. Soon after, the Pi stopped responding on the network and had not come back when these results were published. Pi accuracy is therefore not reported yet. The weights and code are identical to the laptop run, so predictions should match closely, but this was not measured. For long jobs on a Pi 5, use 2 threads, make sure the cooler and a 5 V / 5 A supply are fitted, and watch `vcgencmd measure_temp` and `vcgencmd get_throttled`."
+  "final_run": {
+    "accuracy_threads": 2,
+    "batch_size": 64,
+    "chunking": "held-out test split in five chunks of up to 5,000 rows; SoC cooled below 65 C before each chunk",
+    "sensor_log": "test_results/rpi5/sensors.log (every 5 s: SoC temperature, 5 V rail, throttle flags, fan RPM, load)",
+    "throttled_flags": "0x0 for the whole run",
+    "five_volt_rail_v": [5.05, 5.20],
+    "max_fan_rpm": 8088,
+    "identical_predictions_to_laptop": "yes: the same 1,314 rows were wrong on both devices across the three evaluation sets"
+  },
+  "text": "Raspberry Pi 5 notes. The first attempt ran the held-out test in one go with 4 threads. After 202 s and 15,040 commands the SoC reached about 85 °C with the fan near 9,900 RPM, and the Pi dropped off the network until it was power-cycled. The reported Pi results come from a second, gentler run: 2 threads, the held-out test split into five chunks of 5,000 rows, and a cool-down below 65 °C before each chunk. Temperature, the 5 V rail, throttle flags and fan speed were logged every 5 seconds (test_results/rpi5/sensors.log). That run finished with throttle flags at 0x0 throughout, a peak of 73.2 °C and a 5 V rail between 5.05 V and 5.20 V. The Pi made exactly the same predictions as the laptop: the same 1,314 commands were wrong on both devices across the three sets. On the Pi, 1 thread gives the lowest single-command latency; extra threads mainly help batched throughput. For long jobs on a Pi 5, use 1 or 2 threads, keep the active cooler and a 5 V / 5 A supply, and watch `vcgencmd measure_temp` and `vcgencmd get_throttled`."
 }

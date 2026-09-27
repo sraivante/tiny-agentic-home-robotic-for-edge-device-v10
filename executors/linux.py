@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 from tinyagent.executor import ExecutionError
-from .common import bind, command, detached, name, output_path, profile, seconds
+from .common import bind, command, detached, integer, name, output_path, profile, seconds
 
 
 def register(e):
@@ -37,6 +37,12 @@ def register(e):
     }
     for action, argv in readers.items():
         cmd(action, argv, mutates=False, programs=(argv[2] if argv[:2] == ["sudo", "-n"] else argv[0],))
+    # The core executor registers traceroute and kill_process for Windows only; without these
+    # Linux/Pi adapters register_all() raised "Missing executor implementations" on a Pi.
+    trace = "traceroute" if e._executable("traceroute") else "tracepath"
+    cmd("traceroute", lambda a: ([trace, "-n", "-m", "8", "-w", "1"] if trace == "traceroute" else [trace, "-n", "-m", "8"])
+        + [e._host(a["host"])], mutates=False, programs=(trace,), timeout=60)
+    cmd("kill_process", lambda a: ["kill", "-s", "TERM", str(integer(a["pid"], 1, 4194304))], programs=("kill",))
     commands = {
         "wifi_on": ["nmcli", "radio", "wifi", "on"], "wifi_off": ["nmcli", "radio", "wifi", "off"],
         "bluetooth_on": ["bluetoothctl", "power", "on"], "bluetooth_off": ["bluetoothctl", "power", "off"],
