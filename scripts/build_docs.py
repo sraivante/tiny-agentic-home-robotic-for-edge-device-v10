@@ -287,7 +287,8 @@ def readme(d):
     wrong_note = "\n".join(f"- `{r['command']}` gave `{output_text(r)}`; expected `{w[0]} {json.dumps(w[1], ensure_ascii=False)}`."
                            for r, w in d["wrong"]) or "- None in this sample."
     pi_speed_line = (f"**{pi2['latency_ms']['median']:.0f} ms** median per command on a Raspberry Pi 5 (2 threads)"
-                     if pi2 else "Raspberry Pi 5 latency: see the Pi section below")
+                     if pi2 else (f"about **{sum(NOTES['measurements']['warm_request_ms_2_threads']) / 2:.0f} ms** on a Raspberry Pi 5 (2 threads, partial run, see below)"
+                                  if NOTES.get("status") == "partial" else "Raspberry Pi 5 latency: see the Pi section below"))
     pi_acc = (f"{pct(pi_test['exact_accuracy'])} on the Pi (identical predictions)" if pi_test else "Pi run: see below")
     s = []
     s.append(f"""# Union Command v10: offline Hinglish/English command parser for laptop and Raspberry Pi agents
@@ -562,7 +563,8 @@ def page(d, readme_text):
     stats = "".join([
         stat(pct(test["exact_accuracy"]), f"exact match, held-out test ({test['rows']:,} commands)"),
         stat(f"{lap2['latency_ms']['median']:.1f} ms", "per command, laptop i7-1360P, 2 threads"),
-        stat(f"{pi2['latency_ms']['median']:.0f} ms" if pi2 else "see below", "per command, Raspberry Pi 5, 2 threads"),
+        stat(f"{pi2['latency_ms']['median']:.0f} ms" if pi2 else (f"~{sum(NOTES['measurements']['warm_request_ms_2_threads']) / 2:.0f} ms" if NOTES.get("status") == "partial" else "see below"),
+             "per command, Raspberry Pi 5, 2 threads" + ("" if pi2 else " (partial run)")),
         stat("371", "actions in 17 categories"),
         stat("96.2 MB", "FP32 model, CPU only, offline"),
     ])

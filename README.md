@@ -16,7 +16,7 @@ Docker, local LLMs, Raspberry Pi GPIO/I2C and more.
 | Model file | 96.2 MB, FP32 PyTorch, 23,889,849 parameters |
 | Runs on | CPU only, fully offline after download (Windows, Linux, Raspberry Pi 5) |
 | Held-out test accuracy | **94.87% exact** (action + every argument) on 24,498 unseen-template commands; 96.05% action-only |
-| Speed | **5.9 ms** median per command on a laptop i7-1360P (2 threads); Raspberry Pi 5 latency: see the Pi section below |
+| Speed | **5.9 ms** median per command on a laptop i7-1360P (2 threads); about **40 ms** on a Raspberry Pi 5 (2 threads, partial run, see below) |
 | Links | [GitHub code](https://github.com/sraivante/union-command-minilm-v10) · [HTML test guide](https://sraivante.github.io/union-command-minilm-v10/) · [Hugging Face model](https://huggingface.co/sraivante/union-command-minilm-v10) |
 
 > **Executor notice.** The model only *parses* commands. The executor included in this repository is a **sample

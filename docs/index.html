@@ -62,7 +62,7 @@ footer { margin-top:48px; color:var(--muted); font-size:.88rem; }
 <a class="button secondary" href="https://huggingface.co/sraivante/union-command-minilm-v10">Hugging Face model</a>
 <a class="button secondary" href="https://github.com/sraivante/union-command-minilm-v10#readme">README</a>
 </div>
-<div class="stats"><div class="stat"><strong>94.87%</strong><span>exact match, held-out test (24,498 commands)</span></div><div class="stat"><strong>5.9 ms</strong><span>per command, laptop i7-1360P, 2 threads</span></div><div class="stat"><strong>see below</strong><span>per command, Raspberry Pi 5, 2 threads</span></div><div class="stat"><strong>371</strong><span>actions in 17 categories</span></div><div class="stat"><strong>96.2 MB</strong><span>FP32 model, CPU only, offline</span></div></div>
+<div class="stats"><div class="stat"><strong>94.87%</strong><span>exact match, held-out test (24,498 commands)</span></div><div class="stat"><strong>5.9 ms</strong><span>per command, laptop i7-1360P, 2 threads</span></div><div class="stat"><strong>~40 ms</strong><span>per command, Raspberry Pi 5, 2 threads (partial run)</span></div><div class="stat"><strong>371</strong><span>actions in 17 categories</span></div><div class="stat"><strong>96.2 MB</strong><span>FP32 model, CPU only, offline</span></div></div>
 <div class="warn"><strong>The executor is sample testing only, not fully developed.</strong> The model parses; the included executor exists so you can watch a parsed command become a real action. It refuses every <code>critical</code> action by default. Use a test machine and read each plan before you run it.</div>
 
 <h2>How it fits in an agent</h2>
