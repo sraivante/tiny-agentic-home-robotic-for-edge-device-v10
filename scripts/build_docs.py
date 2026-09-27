@@ -183,7 +183,7 @@ def build(results):
         piv = next((f for f in (pi_eval or {}).get("files", []) if f["file"] == lap["file"]), None)
         acc_rows.append([FILE_NAMES.get(lap["file"], lap["file"]), f"{lap['rows']:,}",
                          f"{pct(lap['exact_accuracy'])} ({lap['exact_correct']:,})", pct(lap["action_accuracy"]),
-                         f"{pct(piv['exact_accuracy'])} ({piv['exact_correct']:,})" if piv else "not measured",
+                         f"{pct(piv['exact_accuracy'])} ({piv['exact_correct']:,})" if piv else PI_MISSING,
                          pct(piv["action_accuracy"]) if piv else "—", FILE_NOTES.get(lap["file"], "")])
     test = lap_eval["files"][0]
     lang_rows = [[LANG_NAMES.get(k, k), f"{v['rows']:,}", pct(v["exact_accuracy"]), pct(v["action_accuracy"])]
@@ -203,10 +203,20 @@ def build(results):
                         f"{bench['load_seconds']:.1f} s", f"{bench['process_rss_mb']:.0f} MB"])
         return out
     speed = speed_rows(lap_bench, "Laptop i7-1360P") + speed_rows(pi_bench, "Raspberry Pi 5")
+    partial = NOTES.get("measurements") if NOTES.get("status") == "partial" else None
+    if partial and not pi_bench:
+        warm = partial["warm_request_ms_2_threads"]
+        speed[-1] = ["Raspberry Pi 5 (partial)", 2, f"~{sum(warm) / len(warm):.0f} ms ({len(warm)} warm requests)", "—", "—",
+                     f"{partial['accuracy_run']['commands_per_second']} (4 threads, batch 64)",
+                     f"{partial['model_load_seconds_2_threads']:.1f} s", "—"]
     eval_speed = [["Laptop i7-1360P", test["seconds"], test["rows_per_second"], lap_eval["device"]["threads"], lap_eval["batch_size"]]]
     if pi_eval:
         pt = pi_eval["files"][0]
         eval_speed.append(["Raspberry Pi 5", pt["seconds"], pt["rows_per_second"], pi_eval["device"]["threads"], pi_eval["batch_size"]])
+    elif partial:
+        run = partial["accuracy_run"]
+        eval_speed.append(["Raspberry Pi 5 (partial)", f"{run['seconds']} for {run['rows_done']:,} of {run['rows_total']:,}",
+                           run["commands_per_second"], run["threads"], run["batch_size"]])
 
     # --- temperature
     def temp_row(name, run, report):
@@ -220,6 +230,13 @@ def build(results):
              temp_row("Laptop i7-1360P", "Latency benchmark (1/2/4 threads)", lap_bench),
              temp_row("Raspberry Pi 5", "Accuracy run", pi_eval),
              temp_row("Raspberry Pi 5", "Latency benchmark", pi_bench)]
+    if partial and not pi_eval:
+        run = partial["accuracy_run"]
+        temps[2] = ["Raspberry Pi 5", f"Accuracy run, partial ({run['threads']} threads)", "vcgencmd SoC sensor (spot readings)",
+                    f"{partial['idle_soc_temperature_c']} °C (idle)", f"{run['soc_temperature_c_at_that_point']} °C after {run['seconds']} s",
+                    "—", f"{partial['throttled_flags_at_start']} before; board went offline"]
+    if partial and not pi_bench:
+        temps = temps[:3]
 
     # --- categories
     cat_table = []
@@ -229,7 +246,7 @@ def build(results):
             continue
         result = display_result(row["pi"]) or display_result(row["win"]) or ("blocked by default gate" if row["gate"].startswith("blocked") else "plan only (not executed in this demo)")
         cat_table.append([category, row["command"], output_text(row), tool_short(row["win"]) + f" [{ready_text(row['win'])}]",
-                          (tool_short(row["pi"]) + f" [{ready_text(row['pi'])}]") if row["pi"] else "not measured",
+                          (tool_short(row["pi"]) + f" [{ready_text(row['pi'])}]") if row["pi"] else ("not measured (Pi went offline)" if NOTES.get("status") == "partial" else "not measured"),
                           row["gate"].split(" (")[0], result])
     all_examples = [[row["category"], row["command"], output_text(row), f"{row['confidence']:.0%}",
                      "✓" if row.get("expected_ok", True) else "✗"] for row in examples]
@@ -523,6 +540,8 @@ Provided as-is, without warranty. You are responsible for anything you let an ex
 
 PI_NOTES = ""
 DEVICE_ROWS = []
+NOTES = {}
+PI_MISSING = "not measured"
 
 
 def html_table(header, rows, cls=""):
@@ -730,17 +749,22 @@ def sanitize_published_json():
 
 
 def main():
-    global PI_NOTES, DEVICE_ROWS
+    global PI_NOTES, DEVICE_ROWS, NOTES, PI_MISSING
     sanitize_published_json()
     results = (load("test_results/laptop_cpu/evaluation.json"), load("test_results/laptop_cpu/benchmark.json"),
                load("test_results/rpi5/evaluation.json"), load("test_results/rpi5/benchmark.json"))
     notes = load("test_results/rpi5/notes.json") or {}
-    PI_NOTES = notes.get("text", "")
+    NOTES = notes
+    if notes.get("status") == "partial" and not results[2]:
+        PI_MISSING = "not completed (Pi went offline)"
+    PI_NOTES = notes.get("text", "") if notes.get("status") == "partial" or not results[2] else ""
     DEVICE_ROWS = []
     for name, report in (("Laptop", results[0]), ("Raspberry Pi 5", results[2] or results[3])):
         if report:
             dev = report["device"]
             DEVICE_ROWS.append([name, dev["cpu"], dev["os"], f"Python {dev['python']} / torch {dev['torch']}"])
+        elif name.startswith("Raspberry") and notes.get("device_row"):
+            DEVICE_ROWS.append(notes["device_row"])
     data = mark_examples(build(results))
     text = readme(data)
     (ROOT / "README.md").write_text(scrub(text), "utf-8")

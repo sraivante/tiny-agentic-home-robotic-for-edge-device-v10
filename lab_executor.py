@@ -117,6 +117,9 @@ class LabExecutor(Executor):
                           "display": target_string(action, args), "cwd": str(self.files_root),
                           "effect": plan["effect"]}]
             plan["commands"] = steps
+            if action == "repeat_last" and self.previous:
+                plan["repeat_target"] = {"action": self.previous[0], "args": copy.deepcopy(self.previous[1])}
+                steps[0]["display"] += " → " + target_string(self.previous[0], self.previous[1])
             # The one-use base plan must retain the preflight decision too.
             with self.lock:
                 self.pending[plan["id"]].update(live_available=plan["live_available"], availability_reason=plan["availability_reason"])
@@ -147,6 +150,10 @@ class LabExecutor(Executor):
                 lambda a: self.command(step["argv"], step["timeout_seconds"],
                                        os.environ.copy() | step["environment"]),
                 original.description, original.platforms, original.mutates, original.executable)
+        elif action == "repeat_last" and plan.get("repeat_target"):
+            target = copy.deepcopy(plan["repeat_target"])
+            self.adapters[action] = Adapter(lambda a: self.execute_automatically(self.preview(target["action"], target["args"])),
+                                            original.description, original.platforms, original.mutates, original.executable)
         else:
             self.trace.append(steps[0])
         try:

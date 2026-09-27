@@ -1,0 +1,27 @@
+{
+  "status": "partial",
+  "date": "2026-09-27",
+  "device": "Raspberry Pi 5 Model B Rev 1.1, 16 GB RAM, active cooler; Debian 13 (trixie) 64-bit, kernel 6.12.47; Python 3.13.5, torch 2.8.0+cpu, transformers 4.56.2, tokenizers 0.22.1",
+  "device_row": ["Raspberry Pi 5 (16 GB, active cooler)", "Broadcom BCM2712, 4x Arm Cortex-A76 @ 2.4 GHz", "Debian 13 (trixie) 64-bit, kernel 6.12.47", "Python 3.13.5 / torch 2.8.0+cpu"],
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+  "measurements": {
+    "idle_soc_temperature_c": 45.0,
+    "throttled_flags_at_start": "0x0",
+    "model_load_seconds_2_threads": 8.6,
+    "first_request_ms_cold": 222.4,
+    "warm_request_ms_2_threads": [39.7, 41.1],
+    "accuracy_run": {
+      "threads": 4,
+      "batch_size": 64,
+      "rows_done": 10048,
+      "rows_total": 24498,
+      "seconds": 130,
+      "commands_per_second": 77,
+      "soc_temperature_c_at_that_point": 85.1,
+      "fan_rpm_at_that_point": 9937,
+      "load_average_1min": 3.55
+    }
+  },
+  "outcome": "About 2.5 minutes into the sustained 4-thread accuracy run the Pi stopped answering on the network and did not come back during the test session, so the Pi accuracy and latency tables are incomplete.",
+  "text": "Raspberry Pi 5 status: partial. On the Pi 5 (16 GB, active cooler, 64-bit Debian 13) the model loaded in 8.6 s and answered warm single commands in about 40 ms with 2 threads (first, cold request 222 ms). The sustained accuracy run on the held-out test used 4 threads and batch 64. It processed 10,048 of 24,498 commands in 130 s (about 77 commands/s). At that point the SoC was at 85.1 °C, the Pi 5 soft-throttle point, with the fan at about 9,900 RPM. Soon after, the Pi stopped responding on the network and had not come back when these results were published. Pi accuracy is therefore not reported yet. The weights and code are identical to the laptop run, so predictions should match closely, but this was not measured. For long jobs on a Pi 5, use 2 threads, make sure the cooler and a 5 V / 5 A supply are fitted, and watch `vcgencmd measure_temp` and `vcgencmd get_throttled`."
+}

@@ -124,7 +124,7 @@ def register(e):
         "edit_system_config": (lambda a: ["x-terminal-emulator", "-e", "sudo", "nano", a.get("file") or "/boot/firmware/config.txt"], "nano"),
         "set_wallpaper": (lambda a: ["gsettings", "set", "org.gnome.desktop.background", "picture-uri", e.path(a["path"]).as_uri()], "gsettings"),
         "set_display_scale": (lambda a: display_scale(e, a), "xrandr"),
-        "set_mouse_speed": (lambda a: ["gsettings", "set", "org.gnome.desktop.peripherals.mouse", "speed", str({"slow": -.6, "fast": .6}.get(a["value"], max(-1, min(1, (float(a["value"]) - 10) / 10)) if isinstance(a["value"], (int, float)) else 0))], "gsettings"),
+        "set_mouse_speed": (lambda a: ["gsettings", "set", "org.gnome.desktop.peripherals.mouse", "speed", str(mouse_speed_value(a["value"]))], "gsettings"),
         "set_resolution": (lambda a: ["xrandr", "--output", str(profile(e, "display", "output")), "--mode", a["resolution"]], "xrandr"),
         "set_refresh_rate": (lambda a: ["xrandr", "--output", str(profile(e, "display", "output")), "--rate", str(a["value"])], "xrandr"),
         "rotate_screen": (lambda a: ["xrandr", "--output", str(profile(e, "display", "output")), "--rotate", {"landscape": "normal", "portrait": "left", "landscape_flipped": "inverted"}[a["orientation"]]], "xrandr"),
@@ -204,6 +204,15 @@ def display_scale(e, a):
     if not 50 <= percent <= 400: raise ExecutionError("Display scale must be 50–400 percent")
     ratio = 100 / percent
     return ["xrandr", "--output", str(profile(e, "display", "output")), "--scale", f"{ratio:.4f}x{ratio:.4f}"]
+
+
+def mouse_speed_value(value):
+    aliases = {"slow": -.6, "slower": -.6, "dheere": -.6, "fast": .6, "faster": .6, "tez": .6, "medium": 0, "normal": 0}
+    if str(value).lower() in aliases: return aliases[str(value).lower()]
+    try: number = float(value)
+    except ValueError: raise ExecutionError("Use a speed from 1–20, slow, medium or fast")
+    if not 1 <= number <= 20: raise ExecutionError("Mouse speed must be 1–20")
+    return (number - 10) / 10
 
 
 def disk_health(e):

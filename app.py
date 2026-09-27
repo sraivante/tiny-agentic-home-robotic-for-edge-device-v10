@@ -135,10 +135,10 @@ def create_app(port=8770, files_root=None, predictor_factory=None, allow_risk="c
         sequences = {}
         for index, model_id in enumerate(models, 1):
             filename = f"agent-{index}-{run_id}.txt"
-            text = f"Agentic actions working for model {index} run {run_id}"
+            text = "Agentic actions working"
             steps = [
                 (f'create file "{filename}"', "create_file", {"path": filename}),
-                (f'open file "{filename}"', "open_file", {"path": filename}),
+                (f'please open the file "{filename}"', "open_file", {"path": filename}),
                 (f'type "{text}"', "type_text", {"text": text}),
                 ("save file", "save_file", {}),
                 (f'read file "{filename}"', "read_file", {"path": filename}),

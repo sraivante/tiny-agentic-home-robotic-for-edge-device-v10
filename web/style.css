@@ -15,7 +15,7 @@
 .coverage-row{display:grid;grid-template-columns:minmax(140px,1fr) 2fr;gap:16px;font-size:12px;padding:9px 12px;border-bottom:1px solid #e5ebe6}
 .coverage-row span{color:#53685d}
 .status.mismatch,.status.no_action,.status.needs_input{background:#fff0d5;color:#805520}
-
+#results{max-height:78vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:4px}
 .sample-banner { margin: 0 0 18px; padding: 12px 16px; border-left: 4px solid #c98a00; background: #fff6df; color: #4a3500; border-radius: 6px; font-size: 14px; line-height: 1.5; }
 .sample-banner code { background: #fbe7b0; padding: 1px 5px; border-radius: 4px; }
 @media (prefers-color-scheme: dark) { .sample-banner { background: #3a2e10; color: #ffe6a8; } .sample-banner code { background: #5a4716; } }

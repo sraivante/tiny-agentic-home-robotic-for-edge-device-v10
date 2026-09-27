@@ -175,8 +175,12 @@ class Desktop:
                 units = str(text).encode("utf-16-le")
                 for i in range(0, len(units), 2):
                     unit = int.from_bytes(units[i:i + 2], "little")
-                    self._input(scan=unit, flags=4); self._input(scan=unit, flags=6)
-                    time.sleep(.003)
+                    # WinUI editors can coalesce rapid VK_PACKET events. Allow
+                    # their message loop to translate each packet before the next.
+                    self._input(scan=unit, flags=4)
+                    time.sleep(.03)
+                    self._input(scan=unit, flags=6)
+                    time.sleep(.03)
             else:
                 subprocess.run(["xdotool", "type", "--clearmodifiers", "--", str(text)], check=True)
             return {"characters_typed": len(text), "target": target}

@@ -20,7 +20,7 @@ from email.message import EmailMessage
 from pathlib import Path
 
 from tinyagent.executor import ExecutionError
-from .common import bind, command, output_path, profile, seconds
+from .common import bind, command, is_module, output_path, profile, seconds
 
 
 def register(e):
@@ -29,8 +29,9 @@ def register(e):
     bind(e, "record_audio", lambda a: record_audio(e, a), modules=("sounddevice", "numpy"))
     bind(e, "screen_record_start", lambda a: recording(e, True), programs=("ffmpeg",))
     bind(e, "screen_record_stop", lambda a: recording(e, False), preflight=lambda a: require_recording(e))
-    command(e, "convert_media", lambda a: ["ffmpeg", "-nostdin", "-n", "-i", str(e.path(a["file"])), str(convert_output(e, a))],
-            programs=("ffmpeg",), timeout=600)
+    bind(e, "convert_media", lambda a: convert_media(e, a), preflight=lambda a: conversion_requirements(e, a))
+    if not is_module("faster_whisper"):
+        e.requirements["convert_media"]["programs"] = ["ffmpeg"]
     bind(e, "transcribe_audio", lambda a: transcribe(e, a), modules=("faster_whisper",))
     command(e, "list_llm_models", ["ollama", "list"], programs=("ollama",), mutates=False)
     command(e, "pull_llm_model", lambda a: ["ollama", "pull", a["model"]], programs=("ollama",), timeout=3600)
@@ -128,6 +129,24 @@ def convert_output(e, a):
     return output_path(e, "converted", extension)
 
 
+def conversion_requirements(e, a):
+    format_name = str(a["format"]).lower().strip()
+    if format_name in {"text", "txt"}:
+        if not is_module("faster_whisper"): raise ExecutionError("Install faster-whisper and a local transcription model for text conversion")
+    elif not e._executable("ffmpeg"):
+        raise ExecutionError("Install ffmpeg for media conversion")
+
+
+def convert_media(e, a):
+    format_name = str(a["format"]).lower().strip()
+    if format_name in {"text", "txt"}: return transcribe(e, {"file": a["file"]})
+    audio_options = ["-ar", "16000", "-ac", "1"] if format_name in {"16khz wav", "16 khz wav"} else []
+    normalized = a | {"format": "wav" if audio_options else format_name}
+    dest = convert_output(e, normalized)
+    result = e.command(["ffmpeg", "-nostdin", "-n", "-i", str(e.path(a["file"])), *audio_options, str(dest)], timeout=600)
+    return {"file": str(dest), "conversion": result}
+
+
 def transcribe(e, a):
     from faster_whisper import WhisperModel
     source = e.path(a["file"])
@@ -197,15 +216,21 @@ def message_profile(e, a):
     if not isinstance(config, dict): raise ExecutionError("Configure send_message.apps." + a["app"])
     contacts = config.get("contacts", {})
     if a["contact"] not in contacts: raise ExecutionError("Configure the exact recipient ID for contact: " + a["contact"])
-    secret(config, "token_env")
     provider = config.get("provider", a["app"])
-    if provider not in {"telegram", "slack", "discord", "whatsapp", "sms"}:
-        raise ExecutionError("Use a supported API provider: telegram, slack, discord, whatsapp or sms")
+    if provider == "signal":
+        if not config.get("account") or not e._executable("signal-cli"):
+            raise ExecutionError("Signal requires signal-cli, an already registered account and send_message.apps.signal.account")
+    else: secret(config, "token_env")
+    if provider not in {"telegram", "slack", "discord", "whatsapp", "sms", "teams", "signal"}:
+        raise ExecutionError("Use telegram, slack, discord, whatsapp, sms, teams or signal")
     return config, contacts[a["contact"]], provider
 
 
 def send_message(e, a):
-    config, recipient, provider = message_profile(e, a); token = secret(config, "token_env")
+    config, recipient, provider = message_profile(e, a)
+    if provider == "signal":
+        return {"provider": provider, "contact": a["contact"], "native": e.command(["signal-cli", "-a", config["account"], "send", "-m", a["text"], str(recipient)], timeout=60)}
+    token = secret(config, "token_env")
     text = a["text"]
     if provider == "telegram":
         response = json_request(f"https://api.telegram.org/bot{token}/sendMessage", {"chat_id": recipient, "text": text})
@@ -218,6 +243,10 @@ def send_message(e, a):
     elif provider == "discord":
         response = json_request(f"https://discord.com/api/v10/channels/{urllib.parse.quote(str(recipient), safe='')}/messages",
                                 {"content": text}, {"Authorization": "Bot " + token})
+        identity = response["id"]
+    elif provider == "teams":
+        response = json_request(f"https://graph.microsoft.com/v1.0/chats/{urllib.parse.quote(str(recipient), safe='')}/messages",
+                                {"body": {"contentType": "text", "content": text}}, {"Authorization": "Bearer " + token})
         identity = response["id"]
     elif provider == "whatsapp":
         version = config.get("api_version")

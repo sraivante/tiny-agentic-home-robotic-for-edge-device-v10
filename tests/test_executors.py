@@ -9,6 +9,9 @@ from tinyagent.schema import CATALOG
 from executors.desktop import Desktop
 from executors.hardware import address, byte, alt
 from executors.linux import block_device
+from executors.scheduling import event_time, task_schedule, cron_expression
+from executors.integrations import convert_media
+import datetime as dt
 
 
 class ExecutorTests(unittest.TestCase):
@@ -39,7 +42,9 @@ class ExecutorTests(unittest.TestCase):
 
     def test_repeat_reuses_the_last_successful_model_arguments(self):
         first = self.e.execute_automatically(self.e.preview("calculate", {"expression": "12 + 8"}))
-        repeated = self.e.execute_automatically(self.e.preview("repeat_last", {}))
+        repeat_plan = self.e.preview("repeat_last", {})
+        self.e.execute_automatically(self.e.preview("calculate", {"expression": "1 + 1"}))
+        repeated = self.e.execute_automatically(repeat_plan)
         self.assertEqual(first["status"], "completed")
         self.assertEqual(repeated["result"]["result"], first["result"])
 
@@ -66,6 +71,35 @@ class ExecutorTests(unittest.TestCase):
         self.assertEqual(alt("alt4"), "a4")
         for fn, value in [(address, "0x27; reboot"), (byte, 256), (alt, "a4 --help"), (block_device, "/dev/sda;reboot")]:
             with self.assertRaises(ValueError): fn(value)
+
+    def test_dataset_time_phrases_resolve_to_exact_times(self):
+        now = dt.datetime(2026, 9, 27, 10)
+        self.assertEqual(event_time("kal dopahar 1 baje", now), dt.datetime(2026, 9, 28, 13))
+        self.assertEqual(event_time("tomorrow at 10 am", now), dt.datetime(2026, 9, 28, 10))
+        self.assertEqual(cron_expression(task_schedule("every 5 minutes")), "*/5 * * * *")
+        self.assertEqual(cron_expression(task_schedule("har ghante")), "0 * * * *")
+        self.assertEqual(cron_expression(task_schedule("at midnight")), "0 0 * * *")
+        self.assertEqual(task_schedule("on reboot"), {"kind": "boot"})
+        with self.assertRaises(ExecutionError): cron_expression(task_schedule("every 7 minutes"))
+
+    def test_media_16khz_format_preserves_file_binding(self):
+        source = self.e.files_root / "sample.wav"
+        source.write_bytes(b"test fixture")
+        with patch.object(self.e, "command", return_value={"exit_code": 0}) as run:
+            result = convert_media(self.e, {"file": "sample.wav", "format": "16khz wav"})
+        argv = run.call_args.args[0]
+        self.assertEqual(argv[argv.index("-i") + 1], str(source))
+        self.assertEqual(argv[argv.index("-ar") + 1], "16000")
+        self.assertEqual(argv[argv.index("-ac") + 1], "1")
+        self.assertTrue(result["file"].endswith(".wav"))
+
+    def test_message_requires_an_exact_configured_contact_before_network(self):
+        self.e.settings["send_message"] = {"apps": {"teams": {"provider": "teams", "token_env": "LAB_TEST_TOKEN", "contacts": {"Known contact": "known-chat-id"}}}}
+        with patch.dict(os.environ, {"LAB_TEST_TOKEN": "test-only"}), patch("executors.integrations.json_request") as network:
+            plan = self.e.preview("send_message", {"app": "teams", "contact": "Unconfigured contact", "text": "sample"})
+            self.assertFalse(plan["live_available"])
+            with self.assertRaises(ExecutionError): self.e.execute_automatically(plan)
+            network.assert_not_called()
 
     @unittest.skipUnless(os.name == "nt", "Windows input API")
     def test_unicode_text_is_sent_literally_not_as_shortcuts(self):
