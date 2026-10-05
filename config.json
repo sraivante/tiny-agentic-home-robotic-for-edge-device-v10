@@ -1,0 +1,14 @@
+{
+  "name": "union-command-v10",
+  "library_name": "pytorch",
+  "task": "text-classification",
+  "base_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "languages": ["en", "hi"],
+  "checkpoint": "models/a100_minilm_v10_quoted/best.pt",
+  "checkpoint_sha256": "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b",
+  "checkpoint_size": 96200101,
+  "parameters": 23889849,
+  "precision": "fp32",
+  "actions": 371,
+  "categories": 17
+}

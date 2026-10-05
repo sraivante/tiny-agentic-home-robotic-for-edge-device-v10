@@ -17,6 +17,18 @@ FILENAME = "models/a100_minilm_v10_quoted/best.pt"
 SHA256 = "c91d44e4a687152cd65d86d56cfc0e453a60a1afe14f8c395e8af058f2fc4d5b"
 SIZE = 96200101
 URL = f"https://huggingface.co/{REPO_ID}/resolve/main/{FILENAME}"
+# Hugging Face counts a model download per request to the root config.json, not per weight file.
+CONFIG_URL = f"https://huggingface.co/{REPO_ID}/resolve/main/config.json"
+USER_AGENT = "union-command-v10-downloader"
+
+
+def count_download() -> None:
+    """Request config.json once per real download so it shows in the Hub download stats. Best effort."""
+    try:
+        request = urllib.request.Request(CONFIG_URL, method="HEAD", headers={"User-Agent": USER_AGENT})
+        urllib.request.urlopen(request, timeout=10).close()
+    except OSError:
+        pass
 
 
 def sha256(path: Path) -> str:
@@ -36,7 +48,8 @@ def ensure_model(quiet: bool = False) -> Path:
     target.parent.mkdir(parents=True, exist_ok=True)
     partial = target.with_suffix(".part")
     print(f"Downloading Union Command v10 ({SIZE / 1e6:.1f} MB) from {URL}", flush=True)
-    request = urllib.request.Request(URL, headers={"User-Agent": "union-command-v10-downloader"})
+    count_download()
+    request = urllib.request.Request(URL, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(request, timeout=60) as response, partial.open("wb") as out:
         done = 0
         while True:

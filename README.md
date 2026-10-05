@@ -416,6 +416,7 @@ security hardening are incomplete. Do not expose it to a network or run it unatt
 | Path | What it is |
 |---|---|
 | `models/a100_minilm_v10_quoted/best.pt` | The model (Hugging Face only; GitHub users run `download_model.py`) |
+| `config.json` | Model metadata; also the file Hugging Face uses to count downloads |
 | `tinyagent/` | Model and inference code (`Predictor`) plus the base executor |
 | `union_catalog.json` | The 371 actions with slots, risk, sudo and platform metadata |
 | `quickstart.py`, `download_model.py` | Command-line demo and verified downloader |
